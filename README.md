@@ -4,7 +4,7 @@ Repo with original and forked (from [pretty_midi](https://github.com/craffel/pre
 The purpose of the scripts (`write_midi_as_np.py` and `generate_training_samples.py`) are to encode midi files as numpy arrays and to generate arbitrary number of note sequences of any length from the midi files encoded as numpy arrays, respectively.  Therefore, you must run `write_midi_as_np.py` on your folder of midi files before you can run `generate_training_samples.py`.
 
 ## How to use
-Install as you would any git repo, but you must also install all dependencies of `pretty_midi`.
+Simply clone this repo to your local computer, but you must also install all dependencies of `pretty_midi`: `numpy`, `mido`, and `six`.
 
 ### `write_midi_as_np.py`
 Use this to encode midi files into numpy arrays.  During the process we will only retain the following information: note start time, end time, and pitch.  
