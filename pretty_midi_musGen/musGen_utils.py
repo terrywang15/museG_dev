@@ -154,7 +154,7 @@ def generate_samples(np_midi_file, sample_length, n_samples=1):
 
     while num_sampled < n_samples:
         # first, randomly sample a track
-        samp_track = np_midi[random.randint(0, len(tracks_to_use)-1)]
+        samp_track = np_midi[tracks_to_use[random.randint(0, len(tracks_to_use)-1)]]
 
         # construct valid range for random sampling of starting positions
         max_pos = samp_track.shape[0] - sample_length
@@ -173,6 +173,62 @@ def generate_samples(np_midi_file, sample_length, n_samples=1):
         num_sampled += 1
 
     return np.array(output)
+
+
+def sample_pitch_to_onehot(np_midi_file):
+    """
+    Converts pitch column from number to one-hot of array of 128 elements
+    This only works with data shape (x, y, 3) where
+    x is number of samples
+    y is number of notes per sample
+    3 refers to the 3 columns from midi file (start time, end time, pitch)
+    See to_onehot function for modularized version
+    :param np_midi_file: an array (x, y, 3) with 3 columns, the last of which is the pitch column
+    :return: an np array wtih 130 (2+128) columns with pitch one-hot encoded
+    """
+
+    # Create x, y, 128 array template for pitches
+    num_samps = np_midi_file.shape[0]
+    num_notes = np_midi_file.shape[1]
+    output = []
+    for samp_idx in range(num_samps):
+        # Create x, y, 128 array template for pitches
+        template = np.zeros((num_notes, 128))
+        # Replace 0 as 1 at the right places
+        template[np.arange(num_notes), np_midi_file[samp_idx, :, -1].astype(int)] = 1.
+        # Concat with real data and append
+        output.append(np.concatenate((np_midi_file[samp_idx, :, :-1], template), axis = 1))
+
+    # Concat and return output so that shape will remain the same for the first two axes
+    return np.concatenate(output, axis=0)
+
+
+def pitch_to_onehot(array_of_pitches):
+    """
+    generalized and modularized pitch to one hot function
+    converts array of pitch numbers into a one hot matrix
+    :param array_of_pitches: flat array of integers between 0 and 127
+    :return: matrix of shape (len(array_of_pitches), 128)
+    """
+
+    num_notes = len(array_of_pitches)
+    # create template
+    template = np.zeros((num_notes, 128))
+    # fill template with 1 where applicable
+    template[np.arange(num_notes), array_of_pitches.astype(int)] = 1.
+
+    return template
+
+
+def onehot_to_pitch(matrix_of_ohe_pitches):
+    """
+    converts matrix of one hot encoded pitches to integer
+    inverse of to_onehot
+    :param matrix_of_ohe_pitches: matrix of shape (num_notes, 128)
+    :return: an array of length equal to num_notes
+    """
+
+    return np.where(matrix_of_ohe_pitches == 1.)[1]
 
 
 def midi2NP(midi_file):

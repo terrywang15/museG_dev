@@ -56,7 +56,7 @@ class PrettyMIDI(object):
         :param midi_file: file path pointing to midi file to load
         :param resolution: not sure
         :param initial_tempo: initial tempo used, need to be float
-        :param ignore_tempo_changes: if True, ignores any tempo change
+        :param ignore_tempo_changes: if True, no tempo changes is recorded and tempo defaults to 120 bpm
         """
 
         if midi_file is not None:

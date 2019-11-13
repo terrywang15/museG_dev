@@ -7,7 +7,7 @@ import random
 
 import numpy as np
 
-from pretty_midi_musGen.musGen_utils import generate_samples
+from pretty_midi_musGen.musGen_utils import generate_samples, sample_pitch_to_onehot
 
 
 def main(source_folder, samples_folder, sample_length, n_samples):
@@ -46,15 +46,15 @@ def main(source_folder, samples_folder, sample_length, n_samples):
             samp = generate_samples(sample_file, sample_length, 1)
             processed_files.append(sample_file)
             # print("successfully processed " + sample_file)
-            output.append(samp)
+            output.append(sample_pitch_to_onehot(samp))
             num_sampled += 1
-        except:
-            print("Index error, no sample generated")
+        except Exception as e:
+            print(e)
             unprocessed_files.append(sample_file)
 
     timestamp = time.time()
     st = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d-%H-%M')
-    np.save(samples_folder+'/'+'sample_'+st+'.npy', np.array(output).reshape((n_samples, sample_length, 3)))
+    np.save(samples_folder+'/'+'sample_'+st+'.npy', np.array(output).reshape((n_samples, sample_length, 130)))
 
     processed_files = list(set(processed_files))
 
