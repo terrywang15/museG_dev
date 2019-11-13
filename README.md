@@ -1,5 +1,5 @@
 # museG_dev
-Repo with original and forked (from pretty_midi) scripts for easy midi preprocessing for deep learning.  
+Repo with original and forked (from [pretty_midi](https://github.com/craffel/pretty-midi)) scripts for easy midi preprocessing for deep learning.  
 
 The purpose of the scripts (`write_midi_as_np.py` and `generate_training_samples.py`) are to encode midi files as numpy arrays and to generate arbitrary number of note sequences of any length from the midi files encoded as numpy arrays, respectively.  Therefore, you must run `write_midi_as_np.py` on your folder of midi files before you can run `generate_training_samples.py`.
 
