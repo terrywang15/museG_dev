@@ -1,0 +1,84 @@
+# Findings {#findings .unnumbered}
+
+Should be organized as follows:
+
+ - Results of descriptive analyses
+ - Modeling results
+ - Results of model performance and validation
+
+## Results of descriptive analyses  {#findings-descriptive .unnumbered}
+ 
+
+```{r summary}
+kable(summary(ToothGrowth), align = "r", caption = "Summary of ToothGrowth data",
+      format = "latex", longtable = TRUE)
+```
+
+Table \@ref(tab:summary) above contains summary statistics of the _Tooth Growth_ data.
+
+While the code is not displayed to create the graph below (`echo=FALSE`), it is displayed in the Appendix by referencing the `boxplot` chunk name..
+
+```{r boxplot, echo=FALSE, warning=FALSE,  message=FALSE, fig.cap="Avg. length by  supplement and dose", fig.width=6}
+data(ToothGrowth)
+colnames(ToothGrowth) <- c("length", "supplement", "dose")
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+
+groupedTooth <- aggregate(ToothGrowth, by=ToothGrowth[,2:3], FUN=mean)[,1:3]
+
+library(ggplot2)
+ ggplot(ToothGrowth, aes(x = supplement, y = length)) + 
+                     geom_boxplot(aes(fill=supplement)) + 
+                     facet_wrap(~dose) + 
+                     guides(colour = guide_legend("Color = Supplement")) + 
+                     labs(x="Orange Juice or Vitamin C, grouped by dose", 
+                          y="Odontoblast Growth (microns)")  +
+                     theme_bw()
+```
+
+Figure \@ref(fig:boxplot) was created with the `ggplot2` package. We can visually compare the average tooth growth by `supplement` and `dose`.
+
+## Modeling results  {.unnumbered}
+
+First, use a `t.test()` to test _if_ dosage leads to growth of incisor length. From the results below, it appears every test rejects the null hypothesis.
+
+```{r t-test}
+test1 <- t.test(length ~ dose, ToothGrowth, dose %in% c(0.5,1)) 
+test2 <- t.test(length ~ dose, ToothGrowth, dose %in% c(0.5,2))
+test3 <- t.test(length ~ dose, ToothGrowth, dose %in% c(1,2)) 
+
+testAgg <- data.frame(Name = c("Test 0.5-1", "Test 0.5-2", "Test 1-2"),
+                  Method = c(test1$method, test2$method, test3$method), 
+               Pvalue = c(test1$p.value, test2$p.value, test3$p.value), 
+          Tstat = c(test1$statistic, test2$statistic, test3$statistic))
+
+kable(testAgg, digit = 7, align = "r", caption = "t-test results", 
+      format = "latex", longtable = TRUE)
+```
+
+Table \@ref(tab:t-test)
+
+## Results of model performance and validation  {.unnumbered}
+
+Next, subset the `ToothGrowth` data into seperate data sets defined by supplement dose of 0.5, 1, and 2 mg. This allow us to controlling for dose increases of _economic_ significance.
+
+Subset tooth data into a separate `data.frame` for each dosage level. Then Execute the `t.test()` function for the dosage of 0.5 mg and display the results. 
+
+```{r}
+dose05 <- ToothGrowth[ToothGrowth$dose == 0.5, ] 
+ dose1 <- ToothGrowth[ToothGrowth$dose == 1, ]
+ dose2 <- ToothGrowth[ToothGrowth$dose == 2, ]
+
+ test4 <- t.test(length ~ supplement, data = dose05)
+ test5 <- t.test(length ~ supplement, data = dose1)
+ test6 <- t.test(length ~ supplement, data = dose2)
+```
+
+Place the results of the analysis directly into your content with ***inline code*** functions:
+
+With a very low p-value of `r round(test4$p.value, 4)` and a corresponding t-statistic of `r round(test4$statistic, 4)`, it appears that at low doses, _Orange Juice_ is the preferable delivery mechanism to _Vitamin C_ for Ascorbic Acid delivery.
+
+The p-value and t-statistic above have been directly extracted from the model object and printed inline. using the 'r foo' syntax with quotes(') replaced by back-ticks (`).
+
+
+
+
