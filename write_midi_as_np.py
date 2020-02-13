@@ -8,6 +8,8 @@ import numpy as np
 
 from pretty_midi_musGen.musGen_utils import getDataFromMidi
 
+# sample usage
+# python3 write_midi_as_np.py "training_midis" "midi_np_data/bach_choral" "None" "None"
 
 def main(source_filepath, target_filepath, target_key='None', max_n_files='None'):
     """

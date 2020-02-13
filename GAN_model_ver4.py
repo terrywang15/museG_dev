@@ -262,9 +262,9 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=100, n_batc
             df_history.to_csv(ts_str + '/loss_history.csv', mode='a', index=False, header=False)
             df_history = pd.DataFrame(columns=["epoch", "batch", "d_loss_real", "d_loss_fake", "g_loss"])
             # save the model
-            g_model.save(ts_str + '/try_dc_generator.h5')
+            g_model.save(ts_str + '/gen_wgts_ep_' + str(i) + '.h5')
     # save the generator model
-    g_model.save(ts_str + '/try_dc_generator.h5')
+    g_model.save(ts_str + '/gen_wgts_ep_' + str(n_epochs) + '.h5')
     # save loss history for analysis
     df_history.to_csv(ts_str + '/loss_history.csv', mode='a', index=False, header=False)
 
@@ -276,29 +276,40 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=100, n_batc
 latent_dim = 128
 # length of noise vectors
 num_nodes = 256
+# generator dropout
+gen_dropout = 0.2
 # create the discriminator
 discriminator = define_discriminator()
 # create the generator
-generator = define_generator(latent_dim, 0.2, num_nodes)
+generator = define_generator(latent_dim, gen_dropout, num_nodes)
 # create the gan
 gan_model = define_gan(generator, discriminator)
-# load image data
-dataset = np.load("training_samples/sample_2019-11-13-16-10.npy")
+# load training data
+train_fp = "training_samples/sample_2020-02-13-17-14.npy"
+dataset = np.load(train_fp)
 # Make timestamp
 ts_str = time.strftime("%Y-%m-%d %H-%M", time.gmtime())
+# other parameters
+n_epochs = 2000
+n_batch = 600
 # create directory if not exist
 if not os.path.exists(ts_str):
     os.makedirs(ts_str)
-
-
-# In[18]:
+# create log for training metadata
+with open("metadata.txt", "w+") as f:
+    f.write("training script: GAN_model_ver" + "4" + ".py\n")
+    f.write("training sample: " + train_fp)
+    f.write("latent dim: %i \n" % latent_dim)
+    f.write("number of nodes : %i \n" % num_nodes)
+    f.write("generator dropout rate: %f.2 \n" % gen_dropout)
+    f.write("number of epochs: %i \n" % n_epochs)
+    f.write("samples per epoch: %i \n" % n_batch)
 
 
 # train model
-train(generator, discriminator, gan_model, dataset, latent_dim, n_epochs=2000, n_batch=600)
+train(generator, discriminator, gan_model, dataset, latent_dim, n_epochs=n_epochs, n_batch=n_batch)
 
 
-# In[ ]:
 
 
 

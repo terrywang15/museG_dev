@@ -11,6 +11,9 @@ from pretty_midi_musGen.musGen_utils import getDataFromMidi2
 # Version 2 Notes:
 # 1) Duration shape unchanged, however instead of (start time, end time) it is now (start time, duration)
 
+# sample usage
+# python3 write_midi_as_np.py "training_midis/Bach_Chorals" "midi_np_data/bach_choral" "None" "None"
+
 def main(source_filepath, target_filepath, target_key='None', max_n_files='None'):
     """
     Write all midi files into numpy array with key and tempo adjustment (in future release)
@@ -36,7 +39,7 @@ def main(source_filepath, target_filepath, target_key='None', max_n_files='None'
     processed_files = []
 
     if max_n_files == 'None':
-        for file in glob.iglob(source_filepath+'/**/*.mid'):
+        for file in glob.iglob(source_filepath+'/*.mid'):
             in_fname = str(file)
             # print('processing ' + in_fname)
             out_fname = in_fname.split('/')[-1]

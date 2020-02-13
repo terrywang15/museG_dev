@@ -63,6 +63,58 @@ def getDataFromMidi(midi_file, target_key):
     return np.array(output_tracks)
 
 
+def getDataFromMidi2(midi_file, target_key):
+    """
+    convert midi file to np array akin to a list of numpy arrays
+    with duration encoded as (start time, duration)
+    inputs:
+        midi_file: midi file
+        target_key: if not None, will convert to target key [0-11]
+    outputs:
+        list of np arrays with 3 columns (depending on the number of tracks)
+    """
+    # Note: Using forked version of pretty_midi during implementation
+    # Note: remember to turn on ignore tempo changes
+    midi_data = PrettyMIDI(midi_file, ignore_tempo_changes=True)
+
+    output_tracks = []
+    # if a target key is passed then will attempt to convert to that key
+    # take the initial key as the song's key
+    # If no initial key, throw an exception
+    if target_key is not None:
+        try:
+            original_key = midi_data.key_signature_changes[0].key_number
+        except IndexError as e:
+            raise "invalid key"
+
+    # make one np array for each track, loop through them
+    for track in midi_data.instruments:
+        # ignore drums
+        if track.is_drum:
+            continue
+        # Here we check whether the track is a "melody" track
+        # which is something we will have to define
+        # for now I am making anything related to piano/violin/cello/guitar to be melody tracks
+        # But this can change as we iterate over the work
+        # Will use program number for this task
+        # filter out bass instruments
+        if track.program in [33, 34, 35, 36, 37, 38, 39, 40, 44, 59]:
+            continue
+            # some other cases such as sparcity of notes can indicate that the track is complementary
+            # can be thrown out as well
+        # rewrite notes to np.array, but first sort by start time
+        track_sorted = sorted(track.notes, key=lambda x: x.start)
+        midi_np = np.array([[note.start, note.end - note.start, note.pitch] for note in track_sorted])
+
+        # Try converting to target key
+        if target_key is not None:
+            output_tracks.append(keyConvert(midi_np, original_key, target_key))
+        else:
+            output_tracks.append(midi_np)
+
+    return np.array(output_tracks)
+
+
 def toMajorKey(key):
     """
     make all key signatures into its major equivalent
@@ -142,7 +194,8 @@ def generate_samples(np_midi_file, sample_length, n_samples=1):
     output = []
 
     # load the file
-    np_midi = np.load(np_midi_file)
+    # new in numpy 1.17.1: must set allow pickle to true, but beware of security risk as you are loading a binary
+    np_midi = np.load(np_midi_file, allow_pickle=True)
 
     # remove track if sample length is greater than the track's length
     tracks_to_use = []
@@ -263,3 +316,39 @@ def notes2Midi(notes, output_file_path):
         instr.notes.append(note_to_add)
     output.instruments.append(instr)
     output.write(output_file_path)
+
+
+def make_midi(pred, write_file_name):
+    """
+    Makes a midi file from a numpy array - for duration encoded as (start time, end time)
+    :param pred: a numpy array of shape (1, 20, 130) (can only process one sample at a time)
+    :param write_file_name: location and name of the file you want to write
+    :return: nothing, writes a midi file to specified location
+    """
+    midi = PrettyMIDI()
+    notes = np.argmax(pred[0, :, 2:], axis=-1)
+    instr = Instrument(0, name='Piano')
+    for idx, note in enumerate(notes):
+        note_to_add = Note(velocity=100, pitch=int(note), start=min(pred[0, idx, 0], pred[0, idx, 1]),
+                           end=max(pred[0, idx, 0], pred[0, idx, 1]))
+        instr.notes.append(note_to_add)
+    midi.instruments.append(instr)
+    midi.write(write_file_name)
+
+
+def make_midi2(pred, write_file_name):
+    """
+    Makes a midi file from a numpy array - for duration encoded as (start time, duration)
+    :param pred: a numpy array of shape (1, 20, 130) (can only process one sample at a time)
+    :param write_file_name: location and name of the file you want to write
+    :return: nothing, writes a midi file to specified location
+    """
+    midi = PrettyMIDI()
+    notes = np.argmax(pred[0, :, 2:], axis=-1)
+    instr = Instrument(0, name='Piano')
+    for idx, note in enumerate(notes):
+        note_to_add = Note(velocity=100, pitch=int(note), start=pred[0, idx, 0],
+                           end=pred[0, idx, 0] + pred[0, idx, 1])
+        instr.notes.append(note_to_add)
+    midi.instruments.append(instr)
+    midi.write(write_file_name)
