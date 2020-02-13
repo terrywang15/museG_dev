@@ -21,9 +21,9 @@ You must specify `source_filepath`, `target_filepath`, `target_key`, and `max_n_
 
 `max_n_files` is the max number of files you want processed.  If you wish to process all files in the folder, then pass `None`.
 
-Example: `python midi_files midi_np_files None None`
+Example: `python3 write_midi_as_np.py midi_files midi_np_files None None`
 
 ### `generate_training_samples.py`
 Run this script to generate note sequence samples for deep learning, with pitches being converted into one-hot.  You can specify how long each note sequence should be (`sample_length`) and how many samples to generate (`n_samples`).  The output will have shape (`n_samples`, `sample_length`, 130) where 130 refers to start time and end time, plus the one-hot encoded pitches (length of 128).
 
-Example: `python midi_np_files training_samples 20 50000`
+Example: `python3 generate_training_samples.py midi_np_files training_samples 20 50000`
