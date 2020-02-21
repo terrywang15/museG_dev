@@ -2,7 +2,7 @@
 
 ## Acknowledgements {-}
 
-I want to thank a few people.
+First of all, we would like to thank Yuri Balasanov, our Capstone advisor, for his kind support and guidance.
 
 ## Preface {-}
 

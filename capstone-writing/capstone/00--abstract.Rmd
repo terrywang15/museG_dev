@@ -1,11 +1,13 @@
 
-Maximum 40 to 50 words. An abstract is a concise description of your project. It should include very brief description of the problem, purpose, method, key results, and conclusions. Note you may want to write the abstract after writing the report.
+We propose the application of Deep Learning models to help individuals generate interesting music ideas. The platform has a GAN-based generator. The data used to train the generator are 130,000 midi files across many different genres of music. The algorithmic process is expected to be able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
+
+Our work includes a modified version of the python package pretty_midi, which serves as a midi pre-processing starter package for Deep Learning. Using Generative Adversarial models, we provide insights on predicting pitches and duration to ultimately generate music notes.
 
 \bigskip 
 \bigskip
 \bigskip
 
-**Keywords**: Include 6 to 10 keywords on the same page as the abstract. Select keywords that would help a researcher retrieve your report. 
+**Keywords**: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing
 
 \bigskip 
 \bigskip

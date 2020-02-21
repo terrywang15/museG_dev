@@ -16,16 +16,16 @@ This section provides a literature review that informs the reader in the followi
 
 **Introduction** 
 
-* Define the focus: e.g., pricing models based on emerging market conditions
-* Introduce the thesis: e.g., existing models are ex-post and there is a need for ex-ante
+We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. Our model focuses on generating melody instead of the sound - we use midi files, or consisting of music notes, as training data. In addition, we explore an unique model structure where the time dependency inherent in music is not explicitly given by the model structure but is inferred by the model through the deep neural net structure. Despite this, we have observed that the model was able to learn time-dependent musical structure, such as the pre-dominant to dominant to tonic chord progression. 
+
+In addition, the model exhibits certain unconventional behavior. This can be attributed to the model using a different perspective to create music compared to humans. This behavior may or may not be useful in inspiring musicians to create interesting sounding music that at the same time stays true to the kind of melodies that the model is trained on.
 
 **Body** 
 
-* Elaborate on the thesis 
-* Review literature to substantiate your assumptions and build support for the thesis 
-* Resolve conflicting findings to the thesis and formulate alternative theses 
-* Discuss why the alternatives are not favored and Identify knowledge gaps 
-* Identify and motivate the contribution of the research 
+In 1950s, experimental music composers wrote music using randomized statistical modelling. In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of group of words and sentences to produce potentially significant lyrical combinations. Nowadays, there is an entire industry built around AI generated music including Flow Machines, IBM Watson Beat and Google’s NSynth. 
+
+Our purpose is to build an effective platform to help artists in their creative process and assist them in music composition. Note that artists do not have to be professionally designated. Any individual interested in creating music should find the platform useful and empowering.  The first concrete step we need to take to achieve that goal is to build a music generation model that is able to generate music that is similar to what a human would compose in the style of music the model is trained on.
+
     
 **Conclusion**
 
