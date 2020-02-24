@@ -1,13 +1,33 @@
 # Findings {#findings .unnumbered}
 
-Should be organized as follows:
+We divide our findings into two separate sections: GAN Training and Assessment of Model Output. 
 
- - Results of descriptive analyses
- - Modeling results
- - Results of model performance and validation
-
-## Results of descriptive analyses  {#findings-descriptive .unnumbered}
+## GAN Training {#findings-gan_training .unnumbered}
  
+GAN models are notoriously hard to train properly. During training of our model, we encountered numerous issues which we have had varying degrees of success in addressing. The main issues are:
+
+1. Error balancing. In many cases, the errors from the discriminator and generator often collapse to 0 or become extremely large.
+2. Mode collapse. Model learns to generate one kind of output that is able to fool the discriminator despite random input.
+
+We will be referring to discriminator and generator losses in the following section. To clarify, discriminator loss is loss from training the discriminator specifically and generator loss is the loss from training the adversarial model.
+
+### Error Balancing {.unnumbered}
+
+Using the data we collected from the training process, we find that the GAN training can be summarized into three distinctive stages:
+
+1. The initial chaos. The generator and discriminator are trying to balance each other out and the error can vary drastically from epoch to epoch and either the discriminator or generator loss can be much larger than the other. It often settles into a more balanced stage, but this is not a given as we observe some models being unable to get past this initial stage.
+2. The stable equilibrium. The model enters into a stable stage characterized by similar magnitude of losses between discriminator and generator and across different epochs. Judging from the quality of the output, it is during this period when the model learned the most from training data and generated the most musical samples.
+3. The final collapse. This stage is characterized by a steady increase in loss magnitude in one of or both the generator and the discriminator, until the losses of either model collapsing to 0. There are even rare cases where both the discriminator and generator losses go down to 0.
+
+In the following plot of one of the training sessions we can observe these three distinctive stages:
+
+**Insert loss graph**
+
+
+
+### Mode Collapse {.unnumbered}
+
+Mode collapse is a common problem for GAN models **citation needed**. 
 
 ```{r summary}
 kable(summary(ToothGrowth), align = "r", caption = "Summary of ToothGrowth data",

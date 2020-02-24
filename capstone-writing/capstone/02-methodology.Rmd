@@ -1,160 +1,90 @@
 # Methodology {#methodology .unnumbered}
 
-The methodology section may include the following subsections:
-
- - Data 
- - Descriptive analyses
- - Modeling Framework
-
 ## Data {#methodology-data .unnumbered}
 
-**General description of the data and source(s). This includes limitations and delimitations; units of analysis; time window for aggregation and modeling (if applicable); and validation and development samples.**
+The training data used to train our model is a collection of midi files that was compiled by a Reddit user [see reddit page](https://www.reddit.com/r/WeAreTheMusicMakers/comments/3ajwe4/the_largest_midi_collection_on_the_internet/) and put up for [download](https://mega.co.nz/#!Elg1TA7T!MXEZPzq9s9YObiUcMCoNQJmCbawZqzAkHzY4Ym6Gs_Q). There are about 130,000 midi files from a wide range of genres included in this collection. Our training, however, centers around a small subset of the files that are of 4/4 rhythm, in order to reduce the chance of complication from training with a wider range of rhythmic patterns.
 
-Let's revisit the work of E.W. Crampton’s November 22, 1946 paper titled _The Growth of the Odontoblasts of the Incisor Tooth as a Criterion of the Vitamin C Intake of the Guinea Pig_. It is one of the data sets available within in the R statistical programming environment.
+In addition, in our pre-processing script, we took steps to "normalize" the samples as much as we can, in terms of making the tempo constant as well as transposing all songs to the key of C major (or A minor if in minor key). The efforts to normalize keys is not always successful. In some midi files, tempo and key changes are included as part of the metadata, which we can then extract and edit. But in others, the metadata is not included.
 
-From the description file (`?ToothGrowth`): 
+Before diving deeper into the details of our data, it is necessary to introduce the basic structure of midi files. Midi files (.mid) are digital records of musical "events" divided into various tracks, where each track contains a voice, an instrument, or a line of melody. For example, a midi file containing piano music might have two tracks representing the notes played by the two hands of the human piano player. Each time the human player plays a note, the midi file would record the following information: at what time is the piano key pressed; at what time is the key released; how hard is the key pressed; what is the pitch bend. After collecting these information for each and every note in a song in a midi file, we will have most of the information needed to reproduce the song in its entirety down to some basic expressive elements. In the midi metadata, some other relevant information is stored, such as tempo, key, tempo changes, etc. Midi files are not music by themselves because they only contain the information needed to produce music - think of it as the digital equivalent of the sheet music. Midi decoders and synthesizers are needed to translate midi files into music.
 
->The response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice (OJ) or ascorbic acid (a form of vitamin C, coded VC).
+If we strip the midi file structure down to its most basic elements, it would look something like this:
 
-Variables:
+**Insert graph 1-1, unable to get DiagrammeR to work for now**
 
- - *len*:	_numeric_.	Tooth length
- -	*supp*:	_factor_.	Supplement type (VC or OJ).
- - *dose*:	_numeric_.	Dose in milligrams/day
+We can reimagine the midi file to be like a dictionary, where each track is indexed by its name, and in each track we have a nice tabular structure of data consisting of the following columns: pitch number, start time, end time, and pitch velocity (we will ignore pitch bend for now). For example, if we look at the first 3 notes played by the right hand in Beethoven's song Moonlight Sonata, we can tabulate them like the following:
 
+| Pitch | Start Time | End Time | Pitch Velocity |
+|-------|------------|----------|----------------|
+| 56    | 0.00       | 0.40     | 33             |
+| 61    | 0.40       | 0.81     | 26             |
+| 64    | 0.81       | 1.21     | 26             |
+Table: (\#tab:inher) Midi File Structure Example
 
-```{r data}
-data(ToothGrowth)
-```
+The above table tells us the following: at time 0.00 seconds pitch 56 is played with velocity 33, and the note stopped at time 0.40 seconds; then at time 0.40 seconds pitch 61 is played with velocity 26, and the note stopped at time 0.81 seconds; and so on. We can see clearly how a piece of music can be represented digitally via the midi file structure.
 
-## Descriptive analyses {#methodology-descriptive .unnumbered} 
+The other thing to note about midi is the data types of the columns above. The `Pitch` and `Pitch Velocity` columns take only an integer between 0-127. The `Start Time` and `End Time` columns are positive floats to represent the number of seconds since the start of the song. These things will have an impact on the decisions we made about the model structure.
 
-**Identification of the methodologies that would provide a view into the data. These may include highlighting the relationships that are important for the research, validating assumptions with respect to important metrics, and providing evidence that substantiates the way data is analyzed.**
+Since the goal of the model is to generate novel melody ideas, we decided to focus only on pitch, start time, and end time from the midi file information, as well as limiting the output of the generator to 20 notes at a time.
 
+For data fed into the model, we use a processing script to rewrite a pre-selected subset of these midi files into numpy arrays in accordance with the above-mentioned structure: each song will be represented by a series of numpy arrays, each representing a track, and each array will have the tabular structure of 130 columns: a 128-length one hot vector for pitch, start time, and end time. We made the decision to only focus on pitch, start time, and end time in order to focus on learning the melody and not expressiveness, as well as to cut down on complexity. We then use another training script to randomly make 20-note samples from the training data and arrange them into a numpy array. We need 20-note samples in order to make sure that the real and fake samples have the same dimensions[^1].  Therefore, our training dataset has dimensions of (x, 130, 20) where x represents the number of real samples generated for training, the number 130 represents the three columns (pitch, start time, end time), and 20 represents the 20 notes sampled.
 
+[^1]: For our discriminator model this is necessary, but there are other model structures available to overcome this problem.
 
-```{r datatable, echo=TRUE}
-growth_short <- rbind(ToothGrowth[1:7,], ToothGrowth[26:34,], ToothGrowth[53:60,])
-kable(growth_short, align = "r", format = "latex", 
-      longtable = TRUE, caption = "Tooth Growth")
-```
+**maybe insert a chart with sample data structure**
 
-Table: \@ref(tab:datatable): Head, center, and tail of _Tooth Growth_ data.
-
+One early choice we made to make the pitch a one-hot vector was done out of the observation about the nature of pitches in the Western musical tradition: the meaning of pitches in the musical sense do not exist in a continuum despite their origins in the frequencies. Therefore, it does not make sense to treat them like so. Instead, one-hot encoding pitches will allow us to treat each pitch as independent objects; in addition, our model will be able to output softmax for pitches, therefore leading to pitch probabilities that can be further investigated. However, there are successful music generation models that treat pitches as one number.
 
 \newpage
 
 ## Modeling Framework {#methodology-modeling .unnumbered}
 
-**Justification of model(s) selected. Identification of dependent and independent variables, per model as well as variable transformations. Feature extraction (if applicable). Discussion of model(s) functional form. Assumptions of model(s) and ways of insuring that assumptions are observed or tested. Assessing model(s) performance and validation.**
+Our model follows the Generative Adversarial Networks (GAN) architecture. GANs are a special case of deep learning models where the goal is to turn random noise into some kind of output (images or, in our case, music) which captures the essence of the training data. They have been successfully deployed to generate realistic-looking images.
 
-Transform `dose` into a `factor`. Only three dosage levels are present.
+The basic structure of the model has three parts: the generator, the discriminator, and the adversarial model, which combines the generator and the discriminator. The basic idea of the model is to train the discriminator with both real samples (from training data) and fake samples (generated by the generator), and then train the generator with the error from the discriminator. The goal is not to minimize the error of the generator or discriminator, but rather to have achieve a balance between the generator and the discriminator so that they get better together. **insert some kind of quote or footnote from wikipedia** 
 
-```{r transform}
-data(ToothGrowth)
-colnames(ToothGrowth) <- c("length", "supplement", "dose")
-ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+### Generator {.unnumbered}
+
+Our generator is a deep neural network with the following basic structure:
+
+```{r, out.width="0.3\\linewidth", include=TRUE, fig.align="center", fig.cap=c("museGen Model Structure"), echo=FALSE}
+knitr::include_graphics("figure/model_terryjosh.png")
 ```
- 
-We are most interested in discovering which treatment leads to the optimal tooth growth.
-In this vein, we use `aggregate` function to transform our data and compute the average tooth `length` by both `supplement` type  and `dose` size.
 
+The input of this model is a 128-length vector of standard normal Gaussian noise. The noise will go through 4 dense layers (currently set at 256 nodes each) with ReLU activation, dropout, and batch normalization. Then, the model splits in half, one each for pitch and duration generation.  The pitch part of the model then upsamples the output from the last layer into 20\*128 nodes, where 20 is for the 20 notes to generate, and 128 is for the one-hot vector of pitches. Similarly, we upsample duration from the same layer into 20\*2 nodes, where 20 is for the 20 notes to generate and 2 is for start and end times. Afterwards, we have to reshape these nodes into the correct shapes, (20, 128) for pitches and (20, 2) for duration, and apply to the correct axis the corresponding activation functions: softmax for pitch (for pitch onehot), and ReLU for duration (for outputting positive numbers).  The generated pitch and duration vectors are then concacted into one single array of dimensions (20, 130) as the output of the model.
 
-```{r group, warning=FALSE}
-groupedTooth <- aggregate(ToothGrowth, by=ToothGrowth[,2:3], FUN=mean)[,1:3]
+Using this modeling structure, we ensure that pitch and duration of one generated music sample is generated by a single model and one single noise input. The dense layers preceding the split in the model will allow the model to learn latent features and rules of music before feeding that latent representation of the final product into the part of the model that turns latent vectors into pitch and duration. 
 
-kable(groupedTooth, align = "r", caption = "Average tooth length",
-      format = "latex", longtable = TRUE)
-```                   
+Conventionally, music generator models are usually time-dependent models such as the LSTM, with some added features like the attention mechanism for model to learn how to place emphasis on repeated patterns. While those models work, they are quite a bit more complex than simple dense neural networks deployed in our approach. We observe that, even with a more simplistic (and thus less artificial) model, the generator is still able to learn basic musical structures.
 
+Once the generator has made its predictions, we have to feed it through another function we wrote to convert the softmax vector for pitch into a one-hot vector, so that the output would look as similar as possible to the real samples.
 
+### Discriminator {.unnumbered}
 
-\newpage
+Our discriminator model is a simple dense neural network with input dimensions of 20*130 (for the 20 note sample, either generated or real) and outputs a float between 0 and 1 (using sigmoid activation) that represents the probability of whether the sample is fake (0) or real (1).
 
-## Math and Science notation  {#math-sci .unnumbered}
-<!-- Required to number equations in HTML files -->
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
-});
-</script>
+**Insert discriminator model image here**
 
-\TeX\ is the best way to typeset mathematics. Donald Knuth designed \TeX\ when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics.  One nice feature of _R Markdown_ is its ability to read \LaTeX\ code directly.
+As we can see the model is a straightforward dense neural network (with dropout and batch normalization layers).   The model is deliberately kept simplistic here because a big concern during the training was the unequal speeds at which the generator and discriminator learns. More often than not in our case, the discriminator learns much quicker than the generator, and we have concluded that such a simple model actually was the most optimal so that the generator and discriminator can achieve balanced learning for long periods of time.
 
-Get around math mode's automatic italicizing in LaTeX by using the argument `$\mathrm{formula here}$`, with your formula inside the curly brackets.  (Notice the use of the backticks here which enclose text that acts as code.)
+### Adversarial Model {.unnumbered}
 
-So, $\mathrm{Fe_2^{2+}Cr_2O_4}$ is written `$\mathrm{Fe_2^{2+}Cr_2O_4}$`.
+The adversarial model is simply the sequential collection of the generator and the discriminator as illustrated below:
 
-The \noindent command below does what you'd expect:  it forces the current line/paragraph to not indent. See below and examples of commonly used symbols:
+**Insert GAN model image here**
 
-\noindent Exponent or Superscript written as `$x^2$` becomes $x^2$
+However, in the adversarial model, the weights of the discriminator is frozen. The reason for that is the need to feed the error from the discriminator to train the generator. We will expand on this topic in the next section regarding training GAN models.
 
-\noindent Subscript written as `$x_1$` becomes $x_1$
+### Training GAN models {.unnumbered}
 
-\noindent Infinity written as `$\infty$` becomes $\infty$
+Training GAN models is not a straightforward process and requires looping through the following specialized steps:
 
-\noindent alpha written as `$\alpha$` becomes $\alpha$
+1. **Train the discriminator with real samples.** We use a function to sample from the real training data. The size of this sample is usually 1/2 of the batch size parameter of the training script. We then feed this data and the target variable (a vector of 1's) to the discriminator model. The resulting error is the error of misclassificating real samples as fake. We use binary crossentropy as loss metric.
+2. **Train the discriminator with fake samples.** We use a function to generate fake samples using the generator model we've set up. The size of this sample is usually 1/2 of the batch size parameter of the training script. We then feed this data and the target variable (a vector of 0's) to the discriminator model. The resulting error is the error of misclassificating fake samples as real. We use binary crossentropy as loss metric.
+3. **Train the adversarial model**. We feed the adversarial model with a number of batches of random noise as input, but mark the target variable as a vector of 1's, or telling the model that these are real samples. Since the adversarial is basically the sequential collection of the generator and discriminator, the random noise input will be converted into fake samples of music before getting fed into the discriminator, where the output is a classification of whether the sample is fake or real. Since we are technically mislabeling the data by using 1's as the target variable, the error will negatively correlated with how well the discriminator performs - the the better the discriminator does, the larger the error, thus the more the weights will be adjusted in the generator, and vice versa. The discriminator is not affected because its weights are frozen when training the adversarial model. This serves to balance the rate of learning for the generator and the discriminator and prevents any one of them to become overly good, but this occurs very often in training.
 
-\noindent beta written as `$\beta$` becomes $\beta$
-
-\noindent delta written as `$\delta$` becomes $\delta$
-
-\noindent epsilon written as `$\epsilon$` becomes $\epsilon$
-
-\noindent sigma written `$\sum_{i=1}^n f(x)$` becomes $\sum_{i=1}^n f(x)$
-
-### Math Examples {.unnumbered}
-
-An Ordinary Least Squares model, from _Introductory Econometrics, 6th edition_ by Jeffrey M. Wooldridge, page 27. 
-
-$$y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$ 
-
-An infinite distributed lag (IDL) time series model, by Wooldridge, page 633.
-
-$$ y_t = \alpha + \delta_0 z_t + \delta_1 z_{t-1} + \delta_2 z_{t-2} \ldots + \epsilon_t$$ 
-
-A vector autoregressive (VAR) model, by Wooldridge, page 657. 
-
-$$ y_t = \delta_0 + \alpha_1 y_{t-1} + \gamma_1 z_{t-1} + \alpha_2 y_{t-2} + \gamma_2 z_{t-2} \ldots,$$ 
-\newpage
-
-Determinant of a square matrix: 
-
-
-$$\det\left|\,\begin{matrix}%
-c_0&c_1\hfill&c_2\hfill&\ldots&c_n\hfill\cr
-c_1&c_2\hfill&c_3\hfill&\ldots&c_{n+1}\hfill\cr
-c_2&c_3\hfill&c_4\hfill&\ldots&c_{n+2}\hfill\cr
-\,\vdots\hfill&\,\vdots\hfill&
-  \,\vdots\hfill&&\,\vdots\hfill\cr
-c_n&c_{n+1}\hfill&c_{n+2}\hfill&\ldots&c_{2n}\hfill\cr
-\end{matrix}\right|>0$$ 
-
-\bigskip
-
-A regularization problem solved by Jerome Friedman, Trevor Hastie, Rob Tibshirani and Noah Simon, implemented in the [R package `glmnet`](https://cran.r-project.org/web/packages/glmnet/index.html). 
-
-
-$$ \min_{\beta_0,\beta} \frac{1}{N}\sum_{i=1}^N w_il(y_i,\beta_0+\beta^Tx_i)+\lambda \left[(1-\alpha) ||\beta||_2^2/2+\alpha||\beta||_1\right]$$ 
-
-\bigskip
-
-From Lapidus and Pindar, Numerical Solution of Partial Differential Equations in Science and Engineering, page 54. 
-
-$$\int_t\left\{\sum_{j=1}^3 T_j \left({d\phi_j\over dt}+k\phi_j\right)-kT_e\right\}w_i(t)\ dt=0, \qquad\quad i=1,2,3.$$ 
-
-\bigskip
-  
-From Lapidus and Pindar, page 145. 
-
-$$\int_{-1}^1\!\int_{-1}^1\!\int_{-1}^1 f\big(\xi,\eta,\zeta\big) = \sum_{k=1}^n\sum_{j=1}^n\sum_{i=1}^n w_i w_j w_k f\big( \xi,\eta,\zeta\big).$$ 
+GAN models are notoriously fickle and require special care to train properly **add footnote**. In our training script, we have set up a mechanism to collect the errors from the discriminator and the generator in order to keep track of training progress and detect any learning issues which happen frequently, and most of our work to date has been to find ways to address these issues. We will address our learning points in the Findings section.
 
 
 
-### Additional R Markdown and bookdown resources {.unnumbered}
 
-- _Bookdown_ Online Book - <https://bookdown.org/yihui/bookdown/>
-
-- _Markdown_ Info Sheet - <https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet>
-
-- _R Markdown_ Reference Guide - <https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf>

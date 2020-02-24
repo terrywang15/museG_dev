@@ -136,13 +136,15 @@
 
 
 \Abstract{
-Maximum 40 to 50 words. An abstract is a concise description of your project. It should include very brief description of the problem, purpose, method, key results, and conclusions. Note you may want to write the abstract after writing the report.
+We propose the application of Deep Learning models to help individuals generate interesting music ideas. The platform has a GAN-based generator. The data used to train the generator are 130,000 midi files across many different genres of music. The algorithmic process is expected to be able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
+
+Our work includes a modified version of the python package pretty\_midi, which serves as a midi pre-processing starter package for Deep Learning. Using Generative Adversarial models, we provide insights on predicting pitches and duration to ultimately generate music notes.
 
 \bigskip 
 \bigskip
 \bigskip
 
-\textbf{Keywords}: Include 6 to 10 keywords on the same page as the abstract. Select keywords that would help a researcher retrieve your report.
+\textbf{Keywords}: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing
 
 \bigskip 
 \bigskip
@@ -153,11 +155,11 @@ Maximum 40 to 50 words. An abstract is a concise description of your project. It
 
 % Added by JMS
 \Executive{
-The executive summary is a maximum one page, double spaced summary of your report aimed at informing someone, who does not read the entire report, about your project. The executive summary is an extended version of the abstract with more space allocated to the key findings of the project and the conclusions and recommendations. You may want to write this section after writing the report.
+We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. The results show limited success in reaching our goal of meaningful musical output, and we include a few ideas for future improvement on the model.
 
-Second Paragraph.
+Our main model is a Generative Adversarial Network with two components: the generative model, which takes a Gaussian noise input of length 128 and outputs a numpy array representing a 20-note midi sample; the discriminator, which takes an input of the numpy array representing a 20-note midi sample and outputs a float between 0 and 1, with 1 representing real and 0 fake. For real samples, we used a midi data repository totaling 130,000 midi files across many different genres of music, but for this project specifically we used mostly Baroque music. For generated samples, we use a deep neural network structure that terminates in separate branches for pitches, whose output is a length 128 softmax vector representing the probabilities of the pitches, and duration, whose output is a vector of 2 positive numbers representing the start and end time of the note, for each of the 20 notes generated. This structure seems to perform the best out of the many structures we tried.
 
-Third Paragraph.
+Our work includes a modified version of the python package pretty\_midi. We adapted its main engine to pre-process midi files with varying tempo and key changes and write midi files into numpy array, as well as putting the generated numpy array back into the midi format. In addition, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
 
 \bigskip
 \bigskip
@@ -196,13 +198,15 @@ Third Paragraph.
 
 %% Reorganized by JMS
   \begin{abstract}
-    Maximum 40 to 50 words. An abstract is a concise description of your project. It should include very brief description of the problem, purpose, method, key results, and conclusions. Note you may want to write the abstract after writing the report.
+    We propose the application of Deep Learning models to help individuals generate interesting music ideas. The platform has a GAN-based generator. The data used to train the generator are 130,000 midi files across many different genres of music. The algorithmic process is expected to be able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
+    
+    Our work includes a modified version of the python package pretty\_midi, which serves as a midi pre-processing starter package for Deep Learning. Using Generative Adversarial models, we provide insights on predicting pitches and duration to ultimately generate music notes.
     
     \bigskip 
     \bigskip
     \bigskip
     
-    \textbf{Keywords}: Include 6 to 10 keywords on the same page as the abstract. Select keywords that would help a researcher retrieve your report.
+    \textbf{Keywords}: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing
     
     \bigskip 
     \bigskip
@@ -212,11 +216,11 @@ Third Paragraph.
   \end{abstract}
  % Added by JMS
   \begin{executive}
-    The executive summary is a maximum one page, double spaced summary of your report aimed at informing someone, who does not read the entire report, about your project. The executive summary is an extended version of the abstract with more space allocated to the key findings of the project and the conclusions and recommendations. You may want to write this section after writing the report.
+    We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. The results show limited success in reaching our goal of meaningful musical output, and we include a few ideas for future improvement on the model.
     
-    Second Paragraph.
+    Our main model is a Generative Adversarial Network with two components: the generative model, which takes a Gaussian noise input of length 128 and outputs a numpy array representing a 20-note midi sample; the discriminator, which takes an input of the numpy array representing a 20-note midi sample and outputs a float between 0 and 1, with 1 representing real and 0 fake. For real samples, we used a midi data repository totaling 130,000 midi files across many different genres of music, but for this project specifically we used mostly Baroque music. For generated samples, we use a deep neural network structure that terminates in separate branches for pitches, whose output is a length 128 softmax vector representing the probabilities of the pitches, and duration, whose output is a vector of 2 positive numbers representing the start and end time of the note, for each of the 20 notes generated. This structure seems to perform the best out of the many structures we tried.
     
-    Third Paragraph.
+    Our work includes a modified version of the python package pretty\_midi. We adapted its main engine to pre-process midi files with varying tempo and key changes and write midi files into numpy array, as well as putting the generated numpy array back into the midi format. In addition, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
     
     \bigskip
     \bigskip
@@ -242,66 +246,26 @@ Third Paragraph.
 \mainmatter % here the regular arabic numbering starts
 \pagestyle{fancyplain} % turns page numbering back on
 
-\hypertarget{introduction}{%
-\chapter*{Introduction}\label{introduction}}
-\addcontentsline{toc}{chapter}{Introduction}
+\hypertarget{phoenixdowncapstone_gitbook-default}{%
+\chapter{phoenixdown::capstone\_gitbook: default}\label{phoenixdowncapstone_gitbook-default}}
 
-We built a deep learning model to help individuals generate interesting music ideas. The model is a GAN-based generator. The data used to train the generator are 130,000 midi files across many different genres of music.
+Placeholder
 
 \hypertarget{problem-statement}{%
 \section*{Problem Statement}\label{problem-statement}}
 \addcontentsline{toc}{section}{Problem Statement}
 
-In 1950s, experimental music composers wrote music using randomized statistical modelling. In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of group of words and sentences to produce potentially significant lyrical combinations. Nowadays, there is an entire industry built around AI generated music including Flow Machines, IBM Watson Beat and Google's NSynth.
-
-Our purpose is to build an effective platform to help artists in their creative process and assist them in music composition. Note that artists do not have to be professionally designated. Any individual interested in creating music should find the platform useful and empowering. The first concrete step we need to take to achieve that goal is to build a music generation model that is able to generate music that is similar to what a human would compose in the style of music the model is trained on.
-
 \hypertarget{research-purpose}{%
 \section*{Research Purpose}\label{research-purpose}}
 \addcontentsline{toc}{section}{Research Purpose}
-
-The purpose of this project is to develop a deep learning based music generator (instrumental music) which has a good understanding of the language of music and is able to generate human-like outputs, ultimately helping musicians and non-musicians alike to develop and refine musical ideas, and facilitate them in the music composition process. We divided the project into two parts, Generation and Validation.
-
-By doing this iteratively, the weights and parameters of the model will hopefully converge to a point at which the music generated is satisfactory to the user, who can use the output of the model, or save the weights for future use. In a sense, we are democratizing deep learning to non-technical users wishing to generate new music ideas in a novel way. Moreover, we expect the algorithmic process to able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
 
 \hypertarget{variables-and-scope}{%
 \section*{Variables and Scope}\label{variables-and-scope}}
 \addcontentsline{toc}{section}{Variables and Scope}
 
-Our data consists of 130,000 midi files curated by a Reddit user, with a size of 3.65GB uncompressed. The collection has a great amount of variety representing all major genres in classical, jazz, metal, pop, etc. These midi files can be parsed by python packages such as midi and music21 into numpy arrays that preserves the note duration information, and our model will be trained on them.
-
 \hypertarget{writing-tips}{%
 \section*{Writing Tips}\label{writing-tips}}
 \addcontentsline{toc}{section}{Writing Tips}
-\begin{itemize}
-\tightlist
-\item
-  Develop an outline of what you are going to write for each section before you start writing
-\item
-  Good writing follows a general format: introduction, body, and conclusion. This rule applies to the entire project, to each section, and to each paragraph
-\item
-  Each paragraph presents only one idea and follows the \textbf{MEAL} rule
-  \begin{itemize}
-  \tightlist
-  \item
-    \textbf{M}ain: start the paragraph with the \emph{Main} idea
-  \item
-    \textbf{E}xplain the concepts and define the terms
-  \item
-    \textbf{A}nalyze the idea
-  \item
-    \textbf{L}ink: conclude the paragraph and \emph{Link} it to the next paragraph
-  \end{itemize}
-\item
-  Make sure to define any concepts or terms that reader might be unfamiliar with right before or after they are used
-\end{itemize}
-\textbf{More info}
-
-And here's some other random info: the first paragraph after a chapter title or section head \emph{shouldn't be} indented, because indents are to tell the reader that you're starting a new paragraph. Since that's obvious after a chapter or section title, proper typesetting doesn't add an indent there.
-
-\textbf{Spacing and Markdown}
-
-Be careful with your spacing in \emph{Markdown} documents. While white-space largely is ignored, it does at times give \emph{Markdown} signals as to how to proceed. As a habit, try to keep everything left aligned whenever possible, especially as you type a new paragraph. In other words, there is no need to indent basic text in the Rmd document (in fact, it might cause your text to do funny things if you do).
 
 \hypertarget{rmd-basics}{%
 \section*{R Markdown Basics}\label{rmd-basics}}
@@ -311,375 +275,47 @@ Be careful with your spacing in \emph{Markdown} documents. While white-space lar
 \subsection*{Lists}\label{lists}}
 \addcontentsline{toc}{subsection}{Lists}
 
-It's easy to create a list. It can be unordered like
-\begin{itemize}
-\tightlist
-\item
-  Item 1
-\item
-  Item 2
-\end{itemize}
-or it can be ordered like
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Item 1
-\item
-  Item 2
-\end{enumerate}
-Notice that I intentionally mislabeled Item 2 as number 4. \emph{Markdown} automatically figures this out! You can put any numbers in the list and it will create the list. Check it out below.
-
-To create a sub-list, just indent the values a bit (at least four spaces or a tab). (Here's one case where indentation is key!)
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Item 1
-\item
-  Item 2
-\item
-  Item 3
-  \begin{itemize}
-  \tightlist
-  \item
-    Item 3a
-  \item
-    Item 3b
-  \end{itemize}
-\end{enumerate}
 \hypertarget{line-breaks}{%
 \subsection*{Line breaks}\label{line-breaks}}
 \addcontentsline{toc}{subsection}{Line breaks}
-
-Make sure to add white space between lines if you'd like to start a new paragraph. Look at what happens below in the outputted document if you don't:
-
-Here is the first sentence. Here is another sentence. Here is the last sentence to end the paragraph.
-This should be a new paragraph.
-
-\emph{Now for the correct way:}
-
-Here is the first sentence. Here is another sentence. Here is the last sentence to end the paragraph.
-
-This should be a new paragraph.
 
 \hypertarget{background}{%
 \chapter*{Background}\label{background}}
 \addcontentsline{toc}{chapter}{Background}
 
-This section provides a literature review that informs the reader in the following ways:
-\begin{itemize}
-\tightlist
-\item
-  Provides background information so the reader may understand related concepts
-\item
-  Identifies and defines concepts and variables involved and ummarizes what is known
-\item
-  Motivates the research and highlights its importance within the literature described
-\end{itemize}
-\textbf{Introduction}
-\begin{itemize}
-\tightlist
-\item
-  Define the focus: e.g., pricing models based on emerging market conditions
-\item
-  Introduce the thesis: e.g., existing models are ex-post and there is a need for ex-ante
-\end{itemize}
-\textbf{Body}
-\begin{itemize}
-\tightlist
-\item
-  Elaborate on the thesis
-\item
-  Review literature to substantiate your assumptions and build support for the thesis
-\item
-  Resolve conflicting findings to the thesis and formulate alternative theses
-\item
-  Discuss why the alternatives are not favored and Identify knowledge gaps
-\item
-  Identify and motivate the contribution of the research
-\end{itemize}
-\textbf{Conclusion}
-\begin{itemize}
-\tightlist
-\item
-  Summarize the evidence in support of your thesis
-\item
-  Summarize why alternative theses are not favored
-\item
-  State the research question and hypotheses
-\end{itemize}
-\newpage
+Placeholder
 
 \hypertarget{code-chunks}{%
 \subsection*{Code chunks}\label{code-chunks}}
 \addcontentsline{toc}{subsection}{Code chunks}
 
-When you click the \textbf{Knit} button above a document will be generated that includes both content as well as the output of any embedded code chunks within the document. You can embed a code chunk as demonstrated below.
-
-The \texttt{sleep} data is a built-in \textbf{R} dataset (\texttt{Student-t} (1908) \emph{The probable error of the mean}. Biometrika, 6, 20). It shows the effect of two soporific drugs (increase in hours of sleep compared to control) on 10 patients.
-
-Use the \texttt{kable} function to create quick, decent looking tables. Other packages for higher quality tables are \href{https://cran.r-project.org/web/packages/xtable/index.html}{xtable} and \href{https://cran.r-project.org/web/packages/stargazer/index.html}{stargazar}. These are especially recommended for working with \LaTeX~output.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(sleep)}
-\NormalTok{sleep2 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(sleep[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DecValTok{1}\NormalTok{], sleep[}\DecValTok{11}\OperatorTok{:}\DecValTok{20}\NormalTok{, }\DecValTok{1}\NormalTok{])}
-\KeywordTok{colnames}\NormalTok{(sleep2) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"extra_sleep_drug1"}\NormalTok{, }\StringTok{"extra_sleep_drug2"}\NormalTok{)}
-\KeywordTok{kable}\NormalTok{(sleep2, }\DataTypeTok{row.names =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"Sleep Data"}\NormalTok{, }
-              \DataTypeTok{format =} \StringTok{"latex"}\NormalTok{, }\DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{longtable}[t]{l|r|r}
-\caption{\label{tab:sleep}Sleep Data}\\
-\hline
-  & extra\_sleep\_drug1 & extra\_sleep\_drug2\\
-\hline
-1 & 0.7 & 1.9\\
-\hline
-2 & -1.6 & 0.8\\
-\hline
-3 & -0.2 & 1.1\\
-\hline
-4 & -1.2 & 0.1\\
-\hline
-5 & -0.1 & -0.1\\
-\hline
-6 & 3.4 & 4.4\\
-\hline
-7 & 3.7 & 5.5\\
-\hline
-8 & 0.8 & 1.6\\
-\hline
-9 & 0.0 & 4.6\\
-\hline
-10 & 2.0 & 3.4\\
-\hline
-\end{longtable}
 \hypertarget{linked-tables-and-list-of-tables}{%
 \subsection*{Linked tables and List of Tables}\label{linked-tables-and-list-of-tables}}
 \addcontentsline{toc}{subsection}{Linked tables and List of Tables}
 
-We linked Table \ref{tab:sleep} above to the \texttt{List\ of\ Tables} section following the table of contents. For this to work properly, two steps are required.
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  The code chunk of the table must be given a label argument. ie; \texttt{\{r\ sleep,\ args\}}.
-\item
-  Define a caption in the \texttt{kable} function (\texttt{caption\ =\ "Sleep\ Data"}) call. The caption will be passed to the \textbf{\texttt{List\ of\ Tables}} section and is required for an entry to appear.
-\end{enumerate}
 \hypertarget{more-than-r-other-languages}{%
 \subsection*{More than R: Other Languages}\label{more-than-r-other-languages}}
 \addcontentsline{toc}{subsection}{More than R: Other Languages}
-
-R Markdown supports the following languages:
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{names}\NormalTok{(knitr}\OperatorTok{::}\NormalTok{knit_engines}\OperatorTok{$}\KeywordTok{get}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
- [1] "awk"         "bash"        "coffee"      "gawk"        "groovy"     
- [6] "haskell"     "lein"        "mysql"       "node"        "octave"     
-[11] "perl"        "psql"        "Rscript"     "ruby"        "sas"        
-[16] "scala"       "sed"         "sh"          "stata"       "zsh"        
-[21] "highlight"   "Rcpp"        "tikz"        "dot"         "c"          
-[26] "fortran"     "fortran95"   "asy"         "cat"         "asis"       
-[31] "stan"        "block"       "block2"      "js"          "css"        
-[36] "sql"         "go"          "python"      "julia"       "sass"       
-[41] "scss"        "theorem"     "lemma"       "corollary"   "proposition"
-[46] "conjecture"  "definition"  "example"     "exercise"    "proof"      
-[51] "remark"      "solution"   
-\end{verbatim}
-Of these, if you use \textbf{\texttt{python}}, first load \texttt{reticulate}.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(reticulate)}
-\NormalTok{pyPath <-}\StringTok{ }\KeywordTok{py_discover_config}\NormalTok{()}
-\KeywordTok{use_python}\NormalTok{(pyPath}\OperatorTok{$}\NormalTok{python_versions[}\DecValTok{1}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-Create a \texttt{conda} environment to store packages, install, and load one.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{conda_create}\NormalTok{(}\StringTok{"r-reticulate"}\NormalTok{)}
-\KeywordTok{py_install}\NormalTok{(}\StringTok{"numpy"}\NormalTok{)}
-\NormalTok{numpy <-}\StringTok{ }\KeywordTok{import}\NormalTok{(}\StringTok{"numpy"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-Define a python code chunk with arguments and run code: \texttt{\{python,\ eval=FALSE,\ etc\}}
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\BuiltInTok{print}\NormalTok{(np.reshape(np.arange(}\DecValTok{1}\NormalTok{,}\DecValTok{25}\NormalTok{), (}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{), }\StringTok{"F"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-Please see the \href{https://rstudio.github.io/reticulate/}{Reticulate: R interface to Python} for more specifics.
-
-Let's not forget about C++/Rcpp enables compilation of C++ into R functions.
-\begin{Shaded}
-\begin{Highlighting}[]
-\PreprocessorTok{#include }\ImportTok{<Rcpp.h>}
-\KeywordTok{using} \KeywordTok{namespace}\NormalTok{ Rcpp;}
-\CommentTok{// [[Rcpp::export]]}
-\NormalTok{NumericVector humanPercent(NumericVector x) \{}
-  \ControlFlowTok{return}\NormalTok{ x * }\DecValTok{100}\NormalTok{;}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{humanPercent}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.0274}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-Please see \href{http://www.rcpp.org/}{Rcpp for Seamless R and C++ Integration}, which is a very mature project and provides many examples.
-
-\newpage
 
 \hypertarget{pressure-plot}{%
 \subsection*{Including plots}\label{pressure-plot}}
 \addcontentsline{toc}{subsection}{Including plots}
 
-You can also embed plots. For example, here is a way to use the base \textbf{R} graphics package to produce a plot using the built-in \texttt{pressure} dataset. In this case, the \textbf{\texttt{echo=FALSE}} parameter was added to the code chunk to prevent printing the code.
-\begin{figure}
-\centering
-\includegraphics{UChicago-MScA-Capstone_files/figure-latex/pressureplot-1.pdf}
-\caption{\label{fig:pressureplot}Pressure Plot}
-\end{figure}
-This is Figure \ref{fig:pressureplot}: pressure data. Internally, we also labeled the code chunk \texttt{pressureplot} so we can call its contents and print them in the Appendix. see Appendix for the code that generated this plot. There are many arguments which govern the behavior of your code chunks. The creator of \texttt{knitr} has a many notes on this \url{http://yihui.name/knitr/options/}.
-
-\newpage
-
 \hypertarget{ref-labels}{%
 \subsection*{R Markdown Tables, Graphics, References, and Labels}\label{ref-labels}}
 \addcontentsline{toc}{subsection}{R Markdown Tables, Graphics, References, and Labels}
-
-In addition to the tables that can be automatically generated from a data frame in \textbf{R} that you saw in \protect\hyperlink{rmd-basics}{R Markdown Basics} using the \texttt{kable} function, you can also create tables using \emph{pandoc}. (More information is available at \url{http://pandoc.org/README.html\#tables}.) This might be useful if you don't have values specifically stored in \textbf{R}, but you'd like to display them in table form. Below is an example. Pay careful attention to the alignment in the table and hyphens to create the rows and columns.
-\begin{longtable}[]{@{}ccc@{}}
-\caption{\label{tab:inher} Correlation of Inheritance Factors for Parents and Child}\tabularnewline
-\toprule
-\begin{minipage}[b]{0.29\columnwidth}\centering
-Factors\strut
-\end{minipage} & \begin{minipage}[b]{0.46\columnwidth}\centering
-Correlation between Parents \& Child\strut
-\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
-Inherited\strut
-\end{minipage}\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-\begin{minipage}[b]{0.29\columnwidth}\centering
-Factors\strut
-\end{minipage} & \begin{minipage}[b]{0.46\columnwidth}\centering
-Correlation between Parents \& Child\strut
-\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
-Inherited\strut
-\end{minipage}\tabularnewline
-\midrule
-\endhead
-\begin{minipage}[t]{0.29\columnwidth}\centering
-Education\strut
-\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\centering
--0.49\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
-Yes\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.29\columnwidth}\centering
-Socio-Economic Status\strut
-\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\centering
-0.28\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
-Slight\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.29\columnwidth}\centering
-Income\strut
-\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\centering
-0.08\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
-No\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.29\columnwidth}\centering
-Family Size\strut
-\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\centering
-0.18\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
-Slight\strut
-\end{minipage}\tabularnewline
-\bottomrule
-\end{longtable}
-We can also create a link to the table like so: Table \ref{tab:inher}.\\
-To create the link, place ``Table \texttt{\textbackslash{}@ref(tab:sleep)}'', using the label argument defined in step 1. This can be helpful to reference in other parts of the document.
 
 \hypertarget{inline-code}{%
 \subsection*{Inline code}\label{inline-code}}
 \addcontentsline{toc}{subsection}{Inline code}
 
-If you'd like to put the results of your analysis directly into your discussion, add inline code like this:
-\begin{quote}
-The \texttt{cos} of \(2 \pi\) is "r cos(2*pi)".
-\end{quote}
-\begin{quote}
-The \texttt{cos} of \(2 \pi\) is 1.
-\end{quote}
-Another example would be the direct calculation of the standard deviation:
-\begin{quote}
-The standard deviation of \texttt{speed} in \texttt{cars} is ``r sd(cars\$speed)''.
-\end{quote}
-\begin{quote}
-The standard deviation of \texttt{speed} in \texttt{cars} is 5.2876444.
-\end{quote}
-One last neat feature is the use of the \texttt{ifelse} conditional statement which can be used to output text depending on the result of an \textbf{R} calculation:
-\begin{quote}
-r ifelse(sd(cars\$speed) \textless{} 6, ``The standard deviation is less than 6.'', ``The standard deviation is equal to or greater than 6.'')
-\end{quote}
-\begin{quote}
-The standard deviation is less than 6.
-\end{quote}
-Note the use of \texttt{\textgreater{}} here, which signifies a quotation environment that will be indented.
-
-As you see with \texttt{\$2\ \textbackslash{}pi\$} above, mathematics can be added by surrounding the mathematical text with dollar signs. More examples of this are in \protect\hyperlink{math-examples}{Math Examples}.
-
 \hypertarget{figures}{%
 \subsection*{Figures}\label{figures}}
 \addcontentsline{toc}{subsection}{Figures}
 
-If your capstone has a lot of figures, \emph{R Markdown} might behave better for you than that other word processor. One perk is that it will automatically number the figures accordingly in each chapter. You'll also be able to create a label for each figure, add a caption, and then reference the figure in a way similar to what we saw with tables earlier. If you label your figures, you can move the figures around and \emph{R Markdown} will automatically adjust the numbering for you. No need for you to remember! So that you don't have to get too far into LaTeX to do this, a couple \textbf{R} functions have been created for you to assist. You'll see their use below.
-
-In the \textbf{R} chunk below, we will load in a picture stored as \texttt{phoenix-logo.png} in our main directory. We then give it the caption of ``Phoenix logo'', the label of ``phoenixlogo'', and specify that this is a figure. Make note of the different \textbf{R} chunk options that are given in the R Markdown file (not shown in the knitted document).
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{include_graphics}\NormalTok{(}\DataTypeTok{path =} \StringTok{"figure/phoenix-logo.jpg"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{figure}
-
-{\centering \includegraphics[width=200px]{figure/phoenix-logo} 
-
-}
-
-\caption{Phoenix logo}\label{fig:phoenixlogo}
-\end{figure}
-Here is a reference to the Phoenix logo: Figure \ref{fig:phoenixlogo}. Note the use of the \texttt{fig:} code here. By naming the \textbf{R} chunk that contains the figure, we can then reference that figure later as done in the first sentence here. We can also specify the caption for the figure via the R chunk option \texttt{fig.cap}.
-
-Next, we will explore the use of the \texttt{out.extra} chunk option, which can be used to shrink or expand an image loaded from a file by specifying \texttt{"scale=\ "}. Here we use the mathematical graph stored in the ``subdivision.pdf'' file.
-\begin{figure}
-\includegraphics[scale=0.75]{figure/subdivision} \caption{Subdiv. graph}\label{fig:subd}
-\end{figure}
-Here is a reference to this image: Figure \ref{fig:subd}. Note that \texttt{echo=FALSE} is specified so that the \textbf{R} code is hidden in the document.
-
-\textbf{More Figure Stuff}
-
-Lastly, we will explore how to rotate and enlarge figures using the \texttt{out.extra} chunk option. (Currently this only works in the PDF version of the book.)
-\begin{figure}
-\includegraphics[angle=180, scale=1.1]{figure/subdivision} \caption{A Larger Figure, Flipped Upside Down}\label{fig:subd2}
-\end{figure}
-As another example, here is a reference: Figure \ref{fig:subd2}.
-
 \hypertarget{footnotes-and-endnotes}{%
 \subsection*{Footnotes and Endnotes}\label{footnotes-and-endnotes}}
 \addcontentsline{toc}{subsection}{Footnotes and Endnotes}
-
-You might want to footnote something.\footnote{footnote text} The footnote will be in a smaller font and placed appropriately. Endnotes work in much the same way.
 
 \hypertarget{methodology}{%
 \chapter*{Methodology}\label{methodology}}
@@ -699,102 +335,68 @@ The methodology section may include the following subsections:
 \section*{Data}\label{methodology-data}}
 \addcontentsline{toc}{section}{Data}
 
-\textbf{General description of the data and source(s). This includes limitations and delimitations; units of analysis; time window for aggregation and modeling (if applicable); and validation and development samples.}
+The training data used to train our model is a collection of midi files that was compiled by a Reddit user \href{https://www.reddit.com/r/WeAreTheMusicMakers/comments/3ajwe4/the_largest_midi_collection_on_the_internet/}{see reddit page} and put up for \href{https://mega.co.nz/\#!Elg1TA7T!MXEZPzq9s9YObiUcMCoNQJmCbawZqzAkHzY4Ym6Gs_Q}{download}. There are about 130,000 midi files from a wide range of genres included in this collection. Our training, however, centers around a small subset of the files that are of 4/4 rhythm, in order to reduce the chance of complication from training with a wider range of rhythmic patterns.
 
-Let's revisit the work of E.W. Crampton's November 22, 1946 paper titled \emph{The Growth of the Odontoblasts of the Incisor Tooth as a Criterion of the Vitamin C Intake of the Guinea Pig}. It is one of the data sets available within in the R statistical programming environment.
+In addition, in our pre-processing script, we took steps to ``normalize'' the samples as much as we can, in terms of making the tempo constant as well as transposing all songs to the key of C major (or A minor if in minor key). The efforts to normalize keys is not always successful. In some midi files, tempo and key changes are included as part of the metadata, which we can then extract and edit. But in others, the metadata is not included.
 
-From the description file (\texttt{?ToothGrowth}):
-\begin{quote}
-The response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice (OJ) or ascorbic acid (a form of vitamin C, coded VC).
-\end{quote}
-Variables:
-\begin{itemize}
-\tightlist
-\item
-  \emph{len}: \emph{numeric}. Tooth length
-\item
-  \emph{supp}: \emph{factor}. Supplement type (VC or OJ).
-\item
-  \emph{dose}: \emph{numeric}. Dose in milligrams/day
-\end{itemize}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(ToothGrowth)}
-\end{Highlighting}
-\end{Shaded}
-\hypertarget{methodology-descriptive}{%
-\section*{Descriptive analyses}\label{methodology-descriptive}}
-\addcontentsline{toc}{section}{Descriptive analyses}
+Before diving deeper into the details of our data, it is necessary to introduce the basic structure of midi files. Midi files (.mid) are digital records of musical ``events'' divided into various tracks, where each track contains a voice, an instrument, or a line of melody. For example, a midi file containing piano music might have two tracks representing the notes played by the two hands of the human piano player. Each time the human player plays a note, the midi file would record the following information: at what time is the piano key pressed; at what time is the key released; how hard is the key pressed; what is the pitch bend. After collecting these information for each and every note in a song in a midi file, we will have most of the information needed to reproduce the song in its entirety down to some basic expressive elements. In the midi metadata, some other relevant information is stored, such as tempo, key, tempo changes, etc. Midi files are not music by themselves because they only contain the information needed to produce music - think of it as the digital equivalent of the sheet music. Midi decoders and synthesizers are needed to translate midi files into music.
 
-\textbf{Identification of the methodologies that would provide a view into the data. These may include highlighting the relationships that are important for the research, validating assumptions with respect to important metrics, and providing evidence that substantiates the way data is analyzed.}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{growth_short <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(ToothGrowth[}\DecValTok{1}\OperatorTok{:}\DecValTok{7}\NormalTok{,], ToothGrowth[}\DecValTok{26}\OperatorTok{:}\DecValTok{34}\NormalTok{,], ToothGrowth[}\DecValTok{53}\OperatorTok{:}\DecValTok{60}\NormalTok{,])}
-\KeywordTok{kable}\NormalTok{(growth_short, }\DataTypeTok{align =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{format =} \StringTok{"latex"}\NormalTok{, }
-      \DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"Tooth Growth"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{longtable}[t]{l|r|r|r}
-\caption{\label{tab:datatable}Tooth Growth}\\
-\hline
-  & len & supp & dose\\
-\hline
-1 & 4.2 & VC & 0.5\\
-\hline
-2 & 11.5 & VC & 0.5\\
-\hline
-3 & 7.3 & VC & 0.5\\
-\hline
-4 & 5.8 & VC & 0.5\\
-\hline
-5 & 6.4 & VC & 0.5\\
-\hline
-6 & 10.0 & VC & 0.5\\
-\hline
-7 & 11.2 & VC & 0.5\\
-\hline
-26 & 32.5 & VC & 2.0\\
-\hline
-27 & 26.7 & VC & 2.0\\
-\hline
-28 & 21.5 & VC & 2.0\\
-\hline
-29 & 23.3 & VC & 2.0\\
-\hline
-30 & 29.5 & VC & 2.0\\
-\hline
-31 & 15.2 & OJ & 0.5\\
-\hline
-32 & 21.5 & OJ & 0.5\\
-\hline
-33 & 17.6 & OJ & 0.5\\
-\hline
-34 & 9.7 & OJ & 0.5\\
-\hline
-53 & 22.4 & OJ & 2.0\\
-\hline
-54 & 24.5 & OJ & 2.0\\
-\hline
-55 & 24.8 & OJ & 2.0\\
-\hline
-56 & 30.9 & OJ & 2.0\\
-\hline
-57 & 26.4 & OJ & 2.0\\
-\hline
-58 & 27.3 & OJ & 2.0\\
-\hline
-59 & 29.4 & OJ & 2.0\\
-\hline
-60 & 23.0 & OJ & 2.0\\
-\hline
+If we strip the midi file structure down to its most basic elements, it would look something like this:
+
+\textbf{Insert graph 1-1, unable to get DiagrammeR to work for now}
+
+We can reimagine the midi file to be like a dictionary, where each track is indexed by its name, and in each track we have a nice tabular structure of data consisting of the following columns: pitch number, start time, end time, and pitch velocity (we will ignore pitch bend for now). For example, if we look at the first 3 notes played by the right hand in Beethoven's song Moonlight Sonata, we can tabulate them like the following:
+\begin{longtable}[]{@{}llll@{}}
+\caption{\label{tab:inher} Midi File Structure Example}\tabularnewline
+\toprule
+Pitch & Start Time & End Time & Pitch Velocity\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Pitch & Start Time & End Time & Pitch Velocity\tabularnewline
+\midrule
+\endhead
+56 & 0.00 & 0.40 & 33\tabularnewline
+61 & 0.40 & 0.81 & 26\tabularnewline
+64 & 0.81 & 1.21 & 26\tabularnewline
+\bottomrule
 \end{longtable}
-Table: \ref{tab:datatable}: Head, center, and tail of \emph{Tooth Growth} data.
+The above table tells us the following: at time 0.00 seconds pitch 56 is played with velocity 33, and the note stopped at time 0.40 seconds; then at time 0.40 seconds pitch 61 is played with velocity 26, and the note stopped at time 0.81 seconds; and so on. We can see clearly how a piece of music can be represented digitally via the midi file structure.
+
+The other thing to note about midi is the data types of the columns above. The \texttt{Pitch} and \texttt{Pitch\ Velocity} columns take only an integer between 0-127. The \texttt{Start\ Time} and \texttt{End\ Time} columns are positive floats to represent the number of seconds since the start of the song. These things will have an impact on the decisions we made about the model structure.
+
+Since the goal of the model is to generate novel melody ideas, we decided to focus only on pitch, start time, and end time from the midi file information, as well as limiting the output of the generator to 20 notes at a time.
+
+For data fed into the model, we use a processing script to rewrite a pre-selected subset of these midi files into numpy arrays in accordance with the above-mentioned structure: each song will be represented by a series of numpy arrays, each representing a track, and each array will have the tabular structure of 130 columns: a 128-length one hot vector for pitch, start time, and end time. We made the decision to only focus on pitch, start time, and end time in order to focus on learning the melody and not expressiveness, as well as to cut down on complexity. We then use another training script to randomly make 20-note samples from the training data and arrange them into a numpy array. We need 20-note samples in order to make sure that the real and fake samples have the same dimensions\footnote{For our discriminator model this is necessary, but there are other model structures available to overcome this problem.}. Therefore, our training dataset has dimensions of (x, 130, 20) where x represents the number of real samples generated for training, the number 130 represents the three columns (pitch, start time, end time), and 20 represents the 20 notes sampled.
+
+\textbf{maybe insert a chart with sample data structure}
+
+One early choice we made to make the pitch a one-hot vector was done out of the observation about the nature of pitches in the Western musical tradition: the meaning of pitches in the musical sense do not exist in a continuum despite their origins in the frequencies. Therefore, it does not make sense to treat them like so. Instead, one-hot encoding pitches will allow us to treat each pitch as independent objects; in addition, our model will be able to output softmax for pitches, therefore leading to pitch probabilities that can be further investigated. However, there are successful music generation models that treat pitches as one number.
 
 \newpage
 
 \hypertarget{methodology-modeling}{%
 \section*{Modeling Framework}\label{methodology-modeling}}
 \addcontentsline{toc}{section}{Modeling Framework}
+
+\hypertarget{generator}{%
+\subsection*{Generator}\label{generator}}
+\addcontentsline{toc}{subsection}{Generator}
+
+Our generator is a deep neural network with the following basic structure:
+\begin{figure}
+
+{\centering \includegraphics[width=0.3\linewidth]{figure/model_terryjosh} 
+
+}
+
+\caption{museGen Model Structure}\label{fig:unnamed-chunk-1}
+\end{figure}
+The input of this model is a 128-length vector of standard normal Gaussian noise. The noise will go through 4 layers of dense structure (currently set at 256 nodes) with ReLU activation, dropout, and batch normalization. Then, the model splits in half, one each for pitch and duration generation. The pitch part of the model then upsamples the output from the last layer into 20*128 nodes, where 20 is for the 20 notes to generate, and 128 is for the one-hot vector of pitches. Similarly, we upsample duration from the same layer into 20*2 nodes, where 20 is for the 20 notes to generate and 2 is for start and end times. Afterwards, we have to reshape these nodes into the correct shapes, (20, 128) for pitches and (20, 2) for duration, and apply to the correct axis the corresponding activation functions: softmax for pitch (for pitch onehot), and ReLU for duration (for outputting positive numbers). The generated pitch and duration vectors are then concacted into one single array of dimensions (20, 130) as the output of the model.
+
+Using this modeling structure, we ensure that pitch and duration of one generated music sample is generated by a single model and one single noise input. The dense layers preceding the split in the model will allow the model to learn latent features and rules of music before feeding that latent representation of the final product into the part of the model that turns latent vectors into pitch and duration.
+
+Conventionally, music generation models are
 
 \textbf{Justification of model(s) selected. Identification of dependent and independent variables, per model as well as variable transformations. Feature extraction (if applicable). Discussion of model(s) functional form. Assumptions of model(s) and ways of insuring that assumptions are observed or tested. Assessing model(s) performance and validation.}
 
@@ -812,7 +414,7 @@ In this vein, we use \texttt{aggregate} function to transform our data and compu
 \begin{Highlighting}[]
 \NormalTok{groupedTooth <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(ToothGrowth, }\DataTypeTok{by=}\NormalTok{ToothGrowth[,}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{], }\DataTypeTok{FUN=}\NormalTok{mean)[,}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
 
-\KeywordTok{kable}\NormalTok{(groupedTooth, }\DataTypeTok{align =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"Average tooth length"}\NormalTok{,}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(groupedTooth, }\DataTypeTok{align =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"Average tooth length"}\NormalTok{,}
       \DataTypeTok{format =} \StringTok{"latex"}\NormalTok{, }\DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -924,110 +526,19 @@ From Lapidus and Pindar, page 145.
 \chapter*{Findings}\label{findings}}
 \addcontentsline{toc}{chapter}{Findings}
 
-Should be organized as follows:
-\begin{itemize}
-\tightlist
-\item
-  Results of descriptive analyses
-\item
-  Modeling results
-\item
-  Results of model performance and validation
-\end{itemize}
+Placeholder
+
 \hypertarget{findings-descriptive}{%
 \section*{Results of descriptive analyses}\label{findings-descriptive}}
 \addcontentsline{toc}{section}{Results of descriptive analyses}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{kable}\NormalTok{(}\KeywordTok{summary}\NormalTok{(ToothGrowth), }\DataTypeTok{align =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"Summary of ToothGrowth data"}\NormalTok{,}
-      \DataTypeTok{format =} \StringTok{"latex"}\NormalTok{, }\DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{longtable}[t]{l|r|r|r}
-\caption{\label{tab:summary}Summary of ToothGrowth data}\\
-\hline
-  &     length & supplement &  dose\\
-\hline
- & Min.   : 4.20 & OJ:30 & 0.5:20\\
-\hline
- & 1st Qu.:13.07 & VC:30 & 1  :20\\
-\hline
- & Median :19.25 & NA & 2  :20\\
-\hline
- & Mean   :18.81 & NA & NA\\
-\hline
- & 3rd Qu.:25.27 & NA & NA\\
-\hline
- & Max.   :33.90 & NA & NA\\
-\hline
-\end{longtable}
-Table \ref{tab:summary} above contains summary statistics of the \emph{Tooth Growth} data.
-
-While the code is not displayed to create the graph below (\texttt{echo=FALSE}), it is displayed in the Appendix by referencing the \texttt{boxplot} chunk name..
-\begin{figure}
-\centering
-\includegraphics{UChicago-MScA-Capstone_files/figure-latex/boxplot-1.pdf}
-\caption{\label{fig:boxplot}Avg. length by supplement and dose}
-\end{figure}
-Figure \ref{fig:boxplot} was created with the \texttt{ggplot2} package. We can visually compare the average tooth growth by \texttt{supplement} and \texttt{dose}.
 
 \hypertarget{modeling-results}{%
 \section*{Modeling results}\label{modeling-results}}
 \addcontentsline{toc}{section}{Modeling results}
 
-First, use a \texttt{t.test()} to test \emph{if} dosage leads to growth of incisor length. From the results below, it appears every test rejects the null hypothesis.
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{test1 <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(length }\OperatorTok{~}\StringTok{ }\NormalTok{dose, ToothGrowth, dose }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{)) }
-\NormalTok{test2 <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(length }\OperatorTok{~}\StringTok{ }\NormalTok{dose, ToothGrowth, dose }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\NormalTok{test3 <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(length }\OperatorTok{~}\StringTok{ }\NormalTok{dose, ToothGrowth, dose }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)) }
-
-\NormalTok{testAgg <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Name =} \KeywordTok{c}\NormalTok{(}\StringTok{"Test 0.5-1"}\NormalTok{, }\StringTok{"Test 0.5-2"}\NormalTok{, }\StringTok{"Test 1-2"}\NormalTok{),}
-                  \DataTypeTok{Method =} \KeywordTok{c}\NormalTok{(test1}\OperatorTok{$}\NormalTok{method, test2}\OperatorTok{$}\NormalTok{method, test3}\OperatorTok{$}\NormalTok{method), }
-               \DataTypeTok{Pvalue =} \KeywordTok{c}\NormalTok{(test1}\OperatorTok{$}\NormalTok{p.value, test2}\OperatorTok{$}\NormalTok{p.value, test3}\OperatorTok{$}\NormalTok{p.value), }
-          \DataTypeTok{Tstat =} \KeywordTok{c}\NormalTok{(test1}\OperatorTok{$}\NormalTok{statistic, test2}\OperatorTok{$}\NormalTok{statistic, test3}\OperatorTok{$}\NormalTok{statistic))}
-
-\KeywordTok{kable}\NormalTok{(testAgg, }\DataTypeTok{digit =} \DecValTok{7}\NormalTok{, }\DataTypeTok{align =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"t-test results"}\NormalTok{, }
-      \DataTypeTok{format =} \StringTok{"latex"}\NormalTok{, }\DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{longtable}[t]{r|r|r|r}
-\caption{\label{tab:t-test}t-test results}\\
-\hline
-Name & Method & Pvalue & Tstat\\
-\hline
-Test 0.5-1 & Welch Two Sample t-test & 1.00e-07 & -6.476648\\
-\hline
-Test 0.5-2 & Welch Two Sample t-test & 0.00e+00 & -11.799046\\
-\hline
-Test 1-2 & Welch Two Sample t-test & 1.91e-05 & -4.900484\\
-\hline
-\end{longtable}
-Table \ref{tab:t-test}
-
 \hypertarget{results-of-model-performance-and-validation}{%
 \section*{Results of model performance and validation}\label{results-of-model-performance-and-validation}}
 \addcontentsline{toc}{section}{Results of model performance and validation}
-
-Next, subset the \texttt{ToothGrowth} data into seperate data sets defined by supplement dose of 0.5, 1, and 2 mg. This allow us to controlling for dose increases of \emph{economic} significance.
-
-Subset tooth data into a separate \texttt{data.frame} for each dosage level. Then Execute the \texttt{t.test()} function for the dosage of 0.5 mg and display the results.
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dose05 <-}\StringTok{ }\NormalTok{ToothGrowth[ToothGrowth}\OperatorTok{$}\NormalTok{dose }\OperatorTok{==}\StringTok{ }\FloatTok{0.5}\NormalTok{, ] }
-\NormalTok{ dose1 <-}\StringTok{ }\NormalTok{ToothGrowth[ToothGrowth}\OperatorTok{$}\NormalTok{dose }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, ]}
-\NormalTok{ dose2 <-}\StringTok{ }\NormalTok{ToothGrowth[ToothGrowth}\OperatorTok{$}\NormalTok{dose }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{, ]}
-
-\NormalTok{ test4 <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(length }\OperatorTok{~}\StringTok{ }\NormalTok{supplement, }\DataTypeTok{data =}\NormalTok{ dose05)}
-\NormalTok{ test5 <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(length }\OperatorTok{~}\StringTok{ }\NormalTok{supplement, }\DataTypeTok{data =}\NormalTok{ dose1)}
-\NormalTok{ test6 <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(length }\OperatorTok{~}\StringTok{ }\NormalTok{supplement, }\DataTypeTok{data =}\NormalTok{ dose2)}
-\end{Highlighting}
-\end{Shaded}
-Place the results of the analysis directly into your content with \textbf{\emph{inline code}} functions:
-
-With a very low p-value of 0.0064 and a corresponding t-statistic of 3.1697, it appears that at low doses, \emph{Orange Juice} is the preferable delivery mechanism to \emph{Vitamin C} for Ascorbic Acid delivery.
-
-The p-value and t-statistic above have been directly extracted from the model object and printed inline. using the `r foo' syntax with quotes(') replaced by back-ticks (`).
 
 \hypertarget{conclusion}{%
 \chapter*{Conclusion}\label{conclusion}}
@@ -1051,79 +562,17 @@ Includes guidelines as to ways in which your results should or could be used in 
 This first appendix includes all of the R chunks of code that were hidden throughout the document (using the \texttt{include\ =\ FALSE} chunk tag) to help with readibility and/or setup.
 
 \textbf{In section} \ref{pressure-plot}:
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"cornflowerblue"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{,}
-               \DataTypeTok{xlab =} \StringTok{"Temperature (deg C)"}\NormalTok{,}
-               \DataTypeTok{ylab =} \StringTok{"Pressure (mm of Hg)"}\NormalTok{,}
-               \DataTypeTok{main =} \StringTok{"pressure data: Vapor Pressure of Mercury"}\NormalTok{,}
-               \DataTypeTok{frame =} \OtherTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+
 \textbf{In section \ref{ref-labels}:}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(ToothGrowth)}
-\KeywordTok{colnames}\NormalTok{(ToothGrowth) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"length"}\NormalTok{, }\StringTok{"supplement"}\NormalTok{, }\StringTok{"dose"}\NormalTok{)}
-\NormalTok{ToothGrowth}\OperatorTok{$}\NormalTok{dose <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(ToothGrowth}\OperatorTok{$}\NormalTok{dose)}
 
-\NormalTok{groupedTooth <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(ToothGrowth, }\DataTypeTok{by=}\NormalTok{ToothGrowth[,}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{], }\DataTypeTok{FUN=}\NormalTok{mean)[,}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
-
-\KeywordTok{library}\NormalTok{(ggplot2)}
- \KeywordTok{ggplot}\NormalTok{(ToothGrowth, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ supplement, }\DataTypeTok{y =}\NormalTok{ length)) }\OperatorTok{+}\StringTok{ }
-\StringTok{                     }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{supplement)) }\OperatorTok{+}\StringTok{ }
-\StringTok{                     }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{dose) }\OperatorTok{+}\StringTok{ }
-\StringTok{                     }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{colour =} \KeywordTok{guide_legend}\NormalTok{(}\StringTok{"Color = Supplement"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{                     }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"Orange Juice or Vitamin C, grouped by dose"}\NormalTok{, }
-                          \DataTypeTok{y=}\StringTok{"Odontoblast Growth (microns)"}\NormalTok{)  }\OperatorTok{+}
-\StringTok{                     }\KeywordTok{theme_bw}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
 \hypertarget{a-second-appendix-for-example}{%
 \chapter{A Second Appendix, for example}\label{a-second-appendix-for-example}}
-
-\backmatter
 
 \hypertarget{references}{%
 \chapter*{References}\label{references}}
 \addcontentsline{toc}{chapter}{References}
 
-\markboth{References}{References}
-
-\noindent
-
-\setlength{\parindent}{-0.20in}
-\setlength{\leftskip}{0.20in}
-\setlength{\parskip}{8pt}
-
-There are a variety of tools available for creating a bibliography database (stored with the .bib extension). In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called \href{https://www.zotero.org/}{Zotero}.
-
-\emph{R Markdown} uses \emph{pandoc} (\url{http://pandoc.org/}) to build its bibliographies. To cite references in your thesis (after creating your bibliography database), place the reference name inside square brackets and precede it by the ``at'' symbol. For example, here's a reference to a book about worrying: (Molina \& Borkovec, 1994). This \texttt{Molina1994} entry appears in a file called \texttt{thesis.bib} in the \texttt{bib} folder. This bibliography database file was created by a program called BibTeX. You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the \texttt{bib} folder.
-
-\textbf{Additional Tips}
-\begin{itemize}
-\tightlist
-\item
-  The sooner you start compiling your bibliography for something as large as a capstone, the better. Typing in source after source is mind-numbing enough; do you really want to do it for hours on end at the last minute?
-\item
-  The cite key (a citation's label) needs to be unique from the other entries.
-\item
-  When you have more than one author or editor, you need to separate each author's name by the word ``and'' e.g. \texttt{Author\ =\ \{Noble,\ Sam\ and\ Youngberg,\ Jessica\},}
-\end{itemize}
-\textbf{Example output generated from bib file}
-
-\hypertarget{refs}{}
-\leavevmode\hypertarget{ref-angel2000}{}%
-Angel, E. (2000). \emph{Interactive computer graphics : A top-down approach with opengl}. Boston, MA: Addison Wesley Longman.
-
-\leavevmode\hypertarget{ref-angel2001}{}%
-Angel, E. (2001a). \emph{Batch-file computer graphics : A bottom-up approach with quicktime}. Boston, MA: Wesley Addison Longman.
-
-\leavevmode\hypertarget{ref-angel2002a}{}%
-Angel, E. (2001b). \emph{Test second book by angel}. Boston, MA: Wesley Addison Longman.
-
-\leavevmode\hypertarget{ref-Molina1994}{}%
-Molina, S. T., \& Borkovec, T. D. (1994). The Penn State worry questionnaire: Psychometric properties and associated characteristics. In G. C. L. Davey \& F. Tallis (Eds.), \emph{Worrying: Perspectives on theory, assessment and treatment} (pp. 265--283). New York: Wiley.
+Placeholder
 
 
 % Index?
