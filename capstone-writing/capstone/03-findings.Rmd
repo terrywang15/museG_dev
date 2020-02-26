@@ -86,7 +86,7 @@ A more advanced idea that we have been considering is to combine automated loss 
 5. Add new layer to generator and/or discriminator (can have some conditions to trigger this for generator or discriminator)
 6. Train this new model until loss start to increase. Repeat the process as needed or use a stopping criterion
 
-This way, we hope to maximize learning during the stable stage for each layer while avoiding many of the problems that we have encountered during our training. We believe this is a modeling technique that we should attempt next.
+This way, we hope to maximize learning during the stable stage for each layer while avoiding many of the problems that we have encountered during our training. We believe this is a modeling technique that we should attempt in our next steps.
 
 ## Assessment of Model Output {#findings-assess_model .unnumbered}
 
@@ -120,19 +120,23 @@ When listening to this sample, one can't help but notice how "musical" it sounds
 
 The sample begins with an ambiguous chord (A3, G4, C5) which is a transposed version of an A dominant chord with the fifth missing[^4], but this chord is abruptly transitioned to the (F#3, A3, G4) chord, a very dissonant chord that, although jarring, start to pull the song in the direction of a G major/E minor key because of the introduction of the F# note that is characteristic of the G major/E minor, so overall the beginning sequence establishes the key structure of this sample. The F#3 note also has a strong tendency to go up a half-step and resolve to G3, which we will learn that it does right after.
 
-The next sequence of notes are very interesting. It starts with the melody line of D5, F#4, G3, and E3, a remarkably smooth transition that implies D major with the major third as the root (F#), which transitions to E minor (G3, E3). There are several remarkable things happening here:    The According to the circle of fifths[^5], this chord would normally resolve to something like an E chord, major or minor. However, 
+The next sequence of notes are very interesting. It starts with the melody line of D5, F#4, G3, and E3, a remarkably smooth transition that implies D major with the major third as the root (F#), which transitions to E minor (G3, E3)[^5]. There are several remarkable things happening here: first, the generator chooses a melody line that spans a wide range of octaves, giving it a sound that is very characteristic of piano music; second, the melody smartly includes the note G3, which serves the dual purpose of resolving the jarring F#3 note from the beginning sequence and anticipating the next chord (E minor). 
+
+After this sequence, the sample has firmly established an E minor feel. Next, it features an additional transition to C major then A minor through a very interesting setup (D4, D5, E5, C4, E4, A3). The octave-skipping D notes at the beginning is again found in many piano music and serves to reinforce the the D note, a note that clashes somewhat with the E minor chord the sample is in at that point and has a tendency to resolve to E or go down to C. After introducing this tension, the sample deftly does both of these things: the leading D5 goes up to E5 as a glide, the D4 goes down to C4, exactly what we would expect. But notice how the two resolutions went in different directions: D4 went down a step, while D5 went up a step. This kind of arrangement is very common in Baroque era music, which generally shuns multiple voices moving in parallel[^6]. Finally, an E4 is played after C4 to anchor the chord with a major third and removing ambiguities to what the implied chord is. This is followed by an A3 note which is again a smooth transition because it transitions to a new chord (A minor) by only adding one note (A3) while keeping the other notes (C4, E4) the same.
 
 [^4: There are other interpretations for this chord of course.]
-[^5: See Circle of Fifths, (https://en.wikipedia.org/wiki/Circle_of_fifths)]
+[^5: See Circle of Fifths, (https://en.wikipedia.org/wiki/Circle_of_fifths). The D major chord should transition to G major but can also transition to E minor.]
+[^6: See Counterpoint, (https://en.wikipedia.org/wiki/Counterpoint)]
 
+The ending sequence also features an interesting movement that could be interpreted as an attempt to make a key change in the context. The note sequence (C5, E3, B3, D4) can be understood as an attempt to move from the A minor or C major to a B major. Either way, it would entail a parallel shift of voices up or down a whole step, something that Baroque does not like. The generator's solution to this problem is to spread out the the two voices by almost 2 octaves (C5, E3) then bringing them together closer, with the C5 moving down to D4 and E3 moving up to B3. Also, the kind of resolving chords to something a half step lower (C chord to B chord) is commonly heard in Jazz and certainly makes sense in music theory. The reason that this sounds like a transition to a different key is because B is never heard throughout the sample up to that point, in addition to the sudden break in rhythmic pattern.
 
+Speaking of rhythms, this generated sample also seems to have learned to produce coherent rhythmic structure. For example, in this sample melody line (D5, F#4, G3, E3) has a rhythmic pattern consisting of a long note followed by several short notes. The next melody line (D4, D5, E5, C4) references the structure of the preceding notes by reversing it: it now has several short notes followed by a long note. This kind of rhythmic construction is what gives a melody line a "human" feel, because it creates a pattern that repeats itself and at the same time is different in each repetition. Moreover, the rhythm and melody seem to work extremely well together, showing the success of our model structure which generates pitches and duration from the same latent space.
 
+We now can see how the generator under the GAN structure achieved outputs of the following:
 
+1. It learned basic music theory such as keys and chords;
+2. It learned what rhythm sounds natural
+3. It learned to consider past and future notes as a whole and try to create repeated patterns;
+4. It learned highly abstract ideas such as chord progression and avoidance of clashing voices.
 
-
-
-
-
-
-
-
+Even more remarkable is how this is achieved without relying on explicitly encoding any artificial structures, such as LSTM or the Attention mechanism, in the generator in order to "force" the model to learn self-referencing behavior and pattern recognition. It shows the remarkable flexibility of the deep neural network architecture. At the same time, more attention must be paid on the training steps in order for this model to learn as much useful information as possible.

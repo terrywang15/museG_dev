@@ -1,10 +1,10 @@
-# Preliminary Content {-}
+# Preliminary Content {.unnumbered}
 
-## Acknowledgements {-}
+## Acknowledgements {.unnumbered}
 
 First of all, we would like to thank Yuri Balasanov, our Capstone advisor, for his kind support and guidance.
 
-## Preface {-}
+## Preface {.unnumbered}
 
 *Introduction*
 
@@ -13,7 +13,7 @@ A 17 seconds long melody named "The Silver Scale" was the first ever music gener
 Since then, computer music has been gaining a lot of public attention.
 The objective is to assist human musicians (composers, arrangers, producers etc) with the help of computer based music generation environments.
 
-The concept is to let the Machine learn the music styles automatically. The motivation behind using Deep Learning models to generate music is ts generality. As opposed to a rule based or a grammar based system, Deep Learning can generate samples which inherit the music styles and introduce appropriate randomness. 
+The concept is to let the Machine learn the music styles automatically with as little human intervention as possible. The motivation behind using Deep Learning models to generate music is ts generality. As opposed to a rule based or a grammar based system, Deep Learning can generate samples which inherit the music styles and introduce appropriate randomness. 
 
 **Research Purpose** 
 The purpose of this project is to develop a deep learning based music generator (instrumental music) which has a good understanding of the language of music and is able to generate human-like outputs, ultimately helping musicians and non-musicians alike to develop and refine musical ideas, and facilitate them in the music composition process. We divided the project into two parts, Generation and Validation. 
@@ -22,7 +22,7 @@ By doing this iteratively, the weights and parameters of the model will hopefull
 
 **Variables and Scope** 
 
-Python libraries like Music21, Librosa, PrettyMIDI are the toolkits we used to extract meaningful information from our MIDI files. 
+Python libraries like Music21 and PrettyMIDI are the toolkits we used to extract meaningful information from our MIDI files. 
 
 Some initial EDA led us to reading the music files as music21.stream.Score objects, which is a stream subclass for handling multi-part music. We were able to extract all partStreams in a Score using parts.stream.  
 
@@ -32,10 +32,11 @@ The Stream object can then be used to identify:
 3. Overlaps
 4. Time Signatures
 5. Measures
+
 From the measure, we were then able to identify:
 1. Notes
 2. Chord
+
 We did our initial EDA with metrics like the Pitch Histogram and other Composition Parameters Analysis. AnalyzedKey is a Key object with a few extra parameters and  correlationCoefficient shows how well this key fits the profile of a piece in that key. We analyzes Music time Signature, Expected Music Key, Music Key Confidence and other Music Key Alternatives based on correlation values.
 
 We also extracted Harmonic Sequences and attempted Harmonic Reductions to be able to compare how similar or dissimilar different music files are from each other.
-

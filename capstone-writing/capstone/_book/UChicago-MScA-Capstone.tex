@@ -144,7 +144,7 @@ Our work includes a modified version of the python package pretty\_midi, which s
 \bigskip
 \bigskip
 
-\textbf{Keywords}: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing
+\textbf{Keywords}: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing, Time Series Music Note Prediction.
 
 \bigskip 
 \bigskip
@@ -158,6 +158,8 @@ Our work includes a modified version of the python package pretty\_midi, which s
 We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. The results show limited success in reaching our goal of meaningful musical output, and we include a few ideas for future improvement on the model.
 
 Our main model is a Generative Adversarial Network with two components: the generative model, which takes a Gaussian noise input of length 128 and outputs a numpy array representing a 20-note midi sample; the discriminator, which takes an input of the numpy array representing a 20-note midi sample and outputs a float between 0 and 1, with 1 representing real and 0 fake. For real samples, we used a midi data repository totaling 130,000 midi files across many different genres of music, but for this project specifically we used mostly Baroque music. For generated samples, we use a deep neural network structure that terminates in separate branches for pitches, whose output is a length 128 softmax vector representing the probabilities of the pitches, and duration, whose output is a vector of 2 positive numbers representing the start and end time of the note, for each of the 20 notes generated. This structure seems to perform the best out of the many structures we tried.
+
+Some other models we tried are based on time series prediction of music notes, including an RNN model which uses grouping of 3 notes as input to predict the next 3 notes.
 
 Our work includes a modified version of the python package pretty\_midi. We adapted its main engine to pre-process midi files with varying tempo and key changes and write midi files into numpy array, as well as putting the generated numpy array back into the midi format. In addition, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
 
@@ -206,7 +208,7 @@ Our work includes a modified version of the python package pretty\_midi. We adap
     \bigskip
     \bigskip
     
-    \textbf{Keywords}: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing
+    \textbf{Keywords}: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing, Time Series Music Note Prediction.
     
     \bigskip 
     \bigskip
@@ -219,6 +221,8 @@ Our work includes a modified version of the python package pretty\_midi. We adap
     We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. The results show limited success in reaching our goal of meaningful musical output, and we include a few ideas for future improvement on the model.
     
     Our main model is a Generative Adversarial Network with two components: the generative model, which takes a Gaussian noise input of length 128 and outputs a numpy array representing a 20-note midi sample; the discriminator, which takes an input of the numpy array representing a 20-note midi sample and outputs a float between 0 and 1, with 1 representing real and 0 fake. For real samples, we used a midi data repository totaling 130,000 midi files across many different genres of music, but for this project specifically we used mostly Baroque music. For generated samples, we use a deep neural network structure that terminates in separate branches for pitches, whose output is a length 128 softmax vector representing the probabilities of the pitches, and duration, whose output is a vector of 2 positive numbers representing the start and end time of the note, for each of the 20 notes generated. This structure seems to perform the best out of the many structures we tried.
+    
+    Some other models we tried are based on time series prediction of music notes, including an RNN model which uses grouping of 3 notes as input to predict the next 3 notes.
     
     Our work includes a modified version of the python package pretty\_midi. We adapted its main engine to pre-process midi files with varying tempo and key changes and write midi files into numpy array, as well as putting the generated numpy array back into the midi format. In addition, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
     
@@ -246,26 +250,66 @@ Our work includes a modified version of the python package pretty\_midi. We adap
 \mainmatter % here the regular arabic numbering starts
 \pagestyle{fancyplain} % turns page numbering back on
 
-\hypertarget{phoenixdowncapstone_gitbook-default}{%
-\chapter{phoenixdown::capstone\_gitbook: default}\label{phoenixdowncapstone_gitbook-default}}
+\hypertarget{introduction}{%
+\chapter*{Introduction}\label{introduction}}
+\addcontentsline{toc}{chapter}{Introduction}
 
-Placeholder
+We built a deep learning model to help individuals generate interesting music ideas. The model is a GAN-based generator. The data used to train the generator are 130,000 midi files across many different genres of music.
 
 \hypertarget{problem-statement}{%
 \section*{Problem Statement}\label{problem-statement}}
 \addcontentsline{toc}{section}{Problem Statement}
 
+In 1950s, experimental music composers wrote music using randomized statistical modelling. In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of group of words and sentences to produce potentially significant lyrical combinations. Nowadays, there is an entire industry built around AI generated music including Flow Machines, IBM Watson Beat and Google's NSynth.
+
+Our purpose is to build an effective platform to help artists in their creative process and assist them in music composition. Note that artists do not have to be professionally designated. Any individual interested in creating music should find the platform useful and empowering. The first concrete step we need to take to achieve that goal is to build a music generation model that is able to generate music that is similar to what a human would compose in the style of music the model is trained on.
+
 \hypertarget{research-purpose}{%
 \section*{Research Purpose}\label{research-purpose}}
 \addcontentsline{toc}{section}{Research Purpose}
+
+The purpose of this project is to develop a deep learning based music generator (instrumental music) which has a good understanding of the language of music and is able to generate human-like outputs, ultimately helping musicians and non-musicians alike to develop and refine musical ideas, and facilitate them in the music composition process. We divided the project into two parts, Generation and Validation.
+
+By doing this iteratively, the weights and parameters of the model will hopefully converge to a point at which the music generated is satisfactory to the user, who can use the output of the model, or save the weights for future use. In a sense, we are democratizing deep learning to non-technical users wishing to generate new music ideas in a novel way. Moreover, we expect the algorithmic process to able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
 
 \hypertarget{variables-and-scope}{%
 \section*{Variables and Scope}\label{variables-and-scope}}
 \addcontentsline{toc}{section}{Variables and Scope}
 
+Our data consists of 130,000 midi files curated by a Reddit user, with a size of 3.65GB uncompressed. The collection has a great amount of variety representing all major genres in classical, jazz, metal, pop, etc. These midi files can be parsed by python packages such as midi and music21 into numpy arrays that preserves the note duration information, and our model will be trained on them.
+
 \hypertarget{writing-tips}{%
 \section*{Writing Tips}\label{writing-tips}}
 \addcontentsline{toc}{section}{Writing Tips}
+\begin{itemize}
+\tightlist
+\item
+  Develop an outline of what you are going to write for each section before you start writing
+\item
+  Good writing follows a general format: introduction, body, and conclusion. This rule applies to the entire project, to each section, and to each paragraph
+\item
+  Each paragraph presents only one idea and follows the \textbf{MEAL} rule
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{M}ain: start the paragraph with the \emph{Main} idea
+  \item
+    \textbf{E}xplain the concepts and define the terms
+  \item
+    \textbf{A}nalyze the idea
+  \item
+    \textbf{L}ink: conclude the paragraph and \emph{Link} it to the next paragraph
+  \end{itemize}
+\item
+  Make sure to define any concepts or terms that reader might be unfamiliar with right before or after they are used
+\end{itemize}
+\textbf{More info}
+
+And here's some other random info: the first paragraph after a chapter title or section head \emph{shouldn't be} indented, because indents are to tell the reader that you're starting a new paragraph. Since that's obvious after a chapter or section title, proper typesetting doesn't add an indent there.
+
+\textbf{Spacing and Markdown}
+
+Be careful with your spacing in \emph{Markdown} documents. While white-space largely is ignored, it does at times give \emph{Markdown} signals as to how to proceed. As a habit, try to keep everything left aligned whenever possible, especially as you type a new paragraph. In other words, there is no need to indent basic text in the Rmd document (in fact, it might cause your text to do funny things if you do).
 
 \hypertarget{rmd-basics}{%
 \section*{R Markdown Basics}\label{rmd-basics}}
@@ -275,62 +319,370 @@ Placeholder
 \subsection*{Lists}\label{lists}}
 \addcontentsline{toc}{subsection}{Lists}
 
+It's easy to create a list. It can be unordered like
+\begin{itemize}
+\tightlist
+\item
+  Item 1
+\item
+  Item 2
+\end{itemize}
+or it can be ordered like
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Item 1
+\item
+  Item 2
+\end{enumerate}
+Notice that I intentionally mislabeled Item 2 as number 4. \emph{Markdown} automatically figures this out! You can put any numbers in the list and it will create the list. Check it out below.
+
+To create a sub-list, just indent the values a bit (at least four spaces or a tab). (Here's one case where indentation is key!)
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Item 1
+\item
+  Item 2
+\item
+  Item 3
+  \begin{itemize}
+  \tightlist
+  \item
+    Item 3a
+  \item
+    Item 3b
+  \end{itemize}
+\end{enumerate}
 \hypertarget{line-breaks}{%
 \subsection*{Line breaks}\label{line-breaks}}
 \addcontentsline{toc}{subsection}{Line breaks}
+
+Make sure to add white space between lines if you'd like to start a new paragraph. Look at what happens below in the outputted document if you don't:
+
+Here is the first sentence. Here is another sentence. Here is the last sentence to end the paragraph.
+This should be a new paragraph.
+
+\emph{Now for the correct way:}
+
+Here is the first sentence. Here is another sentence. Here is the last sentence to end the paragraph.
+
+This should be a new paragraph.
 
 \hypertarget{background}{%
 \chapter*{Background}\label{background}}
 \addcontentsline{toc}{chapter}{Background}
 
-Placeholder
+This section provides a literature review that informs the reader in the following ways:
+\begin{itemize}
+\tightlist
+\item
+  Provides background information so the reader may understand related concepts
+\item
+  Identifies and defines concepts and variables involved and ummarizes what is known
+\item
+  Motivates the research and highlights its importance within the literature described
+\end{itemize}
+\textbf{Introduction}
+
+We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. Our model focuses on generating melody instead of the sound - we use midi files, or consisting of music notes, as training data. In addition, we explore an unique model structure where the time dependency inherent in music is not explicitly given by the model structure but is inferred by the model through the deep neural net structure. Despite this, we have observed that the model was able to learn time-dependent musical structure, such as the pre-dominant to dominant to tonic chord progression.
+
+In addition, the model exhibits certain unconventional behavior. This can be attributed to the model using a different perspective to create music compared to humans. This behavior may or may not be useful in inspiring musicians to create interesting sounding music that at the same time stays true to the kind of melodies that the model is trained on.
+
+\textbf{Body}
+
+In 1950s, experimental music composers wrote music using randomized statistical modelling. In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of group of words and sentences to produce potentially significant lyrical combinations. Nowadays, there is an entire industry built around AI generated music including Flow Machines, IBM Watson Beat and Google's NSynth.
+
+Our purpose is to build an effective platform to help artists in their creative process and assist them in music composition. Note that artists do not have to be professionally designated. Any individual interested in creating music should find the platform useful and empowering. The first concrete step we need to take to achieve that goal is to build a music generation model that is able to generate music that is similar to what a human would compose in the style of music the model is trained on.
+
+\textbf{Conclusion}
+\begin{itemize}
+\tightlist
+\item
+  Summarize the evidence in support of your thesis
+\item
+  Summarize why alternative theses are not favored
+\item
+  State the research question and hypotheses
+\end{itemize}
+\newpage
 
 \hypertarget{code-chunks}{%
 \subsection*{Code chunks}\label{code-chunks}}
 \addcontentsline{toc}{subsection}{Code chunks}
 
+When you click the \textbf{Knit} button above a document will be generated that includes both content as well as the output of any embedded code chunks within the document. You can embed a code chunk as demonstrated below.
+
+The \texttt{sleep} data is a built-in \textbf{R} dataset (\texttt{Student-t} (1908) \emph{The probable error of the mean}. Biometrika, 6, 20). It shows the effect of two soporific drugs (increase in hours of sleep compared to control) on 10 patients.
+
+Use the \texttt{kable} function to create quick, decent looking tables. Other packages for higher quality tables are \href{https://cran.r-project.org/web/packages/xtable/index.html}{xtable} and \href{https://cran.r-project.org/web/packages/stargazer/index.html}{stargazar}. These are especially recommended for working with \LaTeX~output.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(sleep)}
+\NormalTok{sleep2 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(sleep[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DecValTok{1}\NormalTok{], sleep[}\DecValTok{11}\OperatorTok{:}\DecValTok{20}\NormalTok{, }\DecValTok{1}\NormalTok{])}
+\KeywordTok{colnames}\NormalTok{(sleep2) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"extra_sleep_drug1"}\NormalTok{, }\StringTok{"extra_sleep_drug2"}\NormalTok{)}
+\KeywordTok{kable}\NormalTok{(sleep2, }\DataTypeTok{row.names =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"Sleep Data"}\NormalTok{, }
+              \DataTypeTok{format =} \StringTok{"latex"}\NormalTok{, }\DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\begin{longtable}[t]{l|r|r}
+\caption{\label{tab:sleep}Sleep Data}\\
+\hline
+  & extra\_sleep\_drug1 & extra\_sleep\_drug2\\
+\hline
+1 & 0.7 & 1.9\\
+\hline
+2 & -1.6 & 0.8\\
+\hline
+3 & -0.2 & 1.1\\
+\hline
+4 & -1.2 & 0.1\\
+\hline
+5 & -0.1 & -0.1\\
+\hline
+6 & 3.4 & 4.4\\
+\hline
+7 & 3.7 & 5.5\\
+\hline
+8 & 0.8 & 1.6\\
+\hline
+9 & 0.0 & 4.6\\
+\hline
+10 & 2.0 & 3.4\\
+\hline
+\end{longtable}
 \hypertarget{linked-tables-and-list-of-tables}{%
 \subsection*{Linked tables and List of Tables}\label{linked-tables-and-list-of-tables}}
 \addcontentsline{toc}{subsection}{Linked tables and List of Tables}
 
+We linked Table \ref{tab:sleep} above to the \texttt{List\ of\ Tables} section following the table of contents. For this to work properly, two steps are required.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The code chunk of the table must be given a label argument. ie; \texttt{\{r\ sleep,\ args\}}.
+\item
+  Define a caption in the \texttt{kable} function (\texttt{caption\ =\ "Sleep\ Data"}) call. The caption will be passed to the \textbf{\texttt{List\ of\ Tables}} section and is required for an entry to appear.
+\end{enumerate}
 \hypertarget{more-than-r-other-languages}{%
 \subsection*{More than R: Other Languages}\label{more-than-r-other-languages}}
 \addcontentsline{toc}{subsection}{More than R: Other Languages}
+
+R Markdown supports the following languages:
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(knitr}\OperatorTok{::}\NormalTok{knit_engines}\OperatorTok{$}\KeywordTok{get}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+\begin{verbatim}
+ [1] "awk"         "bash"        "coffee"      "gawk"        "groovy"     
+ [6] "haskell"     "lein"        "mysql"       "node"        "octave"     
+[11] "perl"        "psql"        "Rscript"     "ruby"        "sas"        
+[16] "scala"       "sed"         "sh"          "stata"       "zsh"        
+[21] "highlight"   "Rcpp"        "tikz"        "dot"         "c"          
+[26] "fortran"     "fortran95"   "asy"         "cat"         "asis"       
+[31] "stan"        "block"       "block2"      "js"          "css"        
+[36] "sql"         "go"          "python"      "julia"       "sass"       
+[41] "scss"        "theorem"     "lemma"       "corollary"   "proposition"
+[46] "conjecture"  "definition"  "example"     "exercise"    "proof"      
+[51] "remark"      "solution"   
+\end{verbatim}
+Of these, if you use \textbf{\texttt{python}}, first load \texttt{reticulate}.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(reticulate)}
+\NormalTok{pyPath <-}\StringTok{ }\KeywordTok{py_discover_config}\NormalTok{()}
+\KeywordTok{use_python}\NormalTok{(pyPath}\OperatorTok{$}\NormalTok{python_versions[}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+Create a \texttt{conda} environment to store packages, install, and load one.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conda_create}\NormalTok{(}\StringTok{"r-reticulate"}\NormalTok{)}
+\KeywordTok{py_install}\NormalTok{(}\StringTok{"numpy"}\NormalTok{)}
+\NormalTok{numpy <-}\StringTok{ }\KeywordTok{import}\NormalTok{(}\StringTok{"numpy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Define a python code chunk with arguments and run code: \texttt{\{python,\ eval=FALSE,\ etc\}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\BuiltInTok{print}\NormalTok{(np.reshape(np.arange(}\DecValTok{1}\NormalTok{,}\DecValTok{25}\NormalTok{), (}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{), }\StringTok{"F"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+Please see the \href{https://rstudio.github.io/reticulate/}{Reticulate: R interface to Python} for more specifics.
+
+Let's not forget about C++/Rcpp enables compilation of C++ into R functions.
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{#include }\ImportTok{<Rcpp.h>}
+\KeywordTok{using} \KeywordTok{namespace}\NormalTok{ Rcpp;}
+\CommentTok{// [[Rcpp::export]]}
+\NormalTok{NumericVector humanPercent(NumericVector x) \{}
+  \ControlFlowTok{return}\NormalTok{ x * }\DecValTok{100}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{humanPercent}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.0274}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Please see \href{http://www.rcpp.org/}{Rcpp for Seamless R and C++ Integration}, which is a very mature project and provides many examples.
+
+\newpage
 
 \hypertarget{pressure-plot}{%
 \subsection*{Including plots}\label{pressure-plot}}
 \addcontentsline{toc}{subsection}{Including plots}
 
+You can also embed plots. For example, here is a way to use the base \textbf{R} graphics package to produce a plot using the built-in \texttt{pressure} dataset. In this case, the \textbf{\texttt{echo=FALSE}} parameter was added to the code chunk to prevent printing the code.
+\begin{figure}
+\centering
+\includegraphics{UChicago-MScA-Capstone_files/figure-latex/pressureplot-1.pdf}
+\caption{\label{fig:pressureplot}Pressure Plot}
+\end{figure}
+This is Figure \ref{fig:pressureplot}: pressure data. Internally, we also labeled the code chunk \texttt{pressureplot} so we can call its contents and print them in the Appendix. see Appendix for the code that generated this plot. There are many arguments which govern the behavior of your code chunks. The creator of \texttt{knitr} has a many notes on this \url{http://yihui.name/knitr/options/}.
+
+\newpage
+
 \hypertarget{ref-labels}{%
 \subsection*{R Markdown Tables, Graphics, References, and Labels}\label{ref-labels}}
 \addcontentsline{toc}{subsection}{R Markdown Tables, Graphics, References, and Labels}
+
+In addition to the tables that can be automatically generated from a data frame in \textbf{R} that you saw in \protect\hyperlink{rmd-basics}{R Markdown Basics} using the \texttt{kable} function, you can also create tables using \emph{pandoc}. (More information is available at \url{http://pandoc.org/README.html\#tables}.) This might be useful if you don't have values specifically stored in \textbf{R}, but you'd like to display them in table form. Below is an example. Pay careful attention to the alignment in the table and hyphens to create the rows and columns.
+\begin{longtable}[]{@{}ccc@{}}
+\caption{\label{tab:inher} Correlation of Inheritance Factors for Parents and Child}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.29\columnwidth}\centering
+Factors\strut
+\end{minipage} & \begin{minipage}[b]{0.46\columnwidth}\centering
+Correlation between Parents \& Child\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Inherited\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.29\columnwidth}\centering
+Factors\strut
+\end{minipage} & \begin{minipage}[b]{0.46\columnwidth}\centering
+Correlation between Parents \& Child\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Inherited\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.29\columnwidth}\centering
+Education\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\centering
+-0.49\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+Yes\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\centering
+Socio-Economic Status\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\centering
+0.28\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+Slight\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\centering
+Income\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\centering
+0.08\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+No\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\centering
+Family Size\strut
+\end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\centering
+0.18\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+Slight\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+We can also create a link to the table like so: Table \ref{tab:inher}.\\
+To create the link, place ``Table \texttt{\textbackslash{}@ref(tab:sleep)}'', using the label argument defined in step 1. This can be helpful to reference in other parts of the document.
 
 \hypertarget{inline-code}{%
 \subsection*{Inline code}\label{inline-code}}
 \addcontentsline{toc}{subsection}{Inline code}
 
+If you'd like to put the results of your analysis directly into your discussion, add inline code like this:
+\begin{quote}
+The \texttt{cos} of \(2 \pi\) is "r cos(2*pi)".
+\end{quote}
+\begin{quote}
+The \texttt{cos} of \(2 \pi\) is 1.
+\end{quote}
+Another example would be the direct calculation of the standard deviation:
+\begin{quote}
+The standard deviation of \texttt{speed} in \texttt{cars} is ``r sd(cars\$speed)''.
+\end{quote}
+\begin{quote}
+The standard deviation of \texttt{speed} in \texttt{cars} is 5.2876444.
+\end{quote}
+One last neat feature is the use of the \texttt{ifelse} conditional statement which can be used to output text depending on the result of an \textbf{R} calculation:
+\begin{quote}
+r ifelse(sd(cars\$speed) \textless{} 6, ``The standard deviation is less than 6.'', ``The standard deviation is equal to or greater than 6.'')
+\end{quote}
+\begin{quote}
+The standard deviation is less than 6.
+\end{quote}
+Note the use of \texttt{\textgreater{}} here, which signifies a quotation environment that will be indented.
+
+As you see with \texttt{\$2\ \textbackslash{}pi\$} above, mathematics can be added by surrounding the mathematical text with dollar signs. More examples of this are in {[}Math Examples{]}.
+
 \hypertarget{figures}{%
 \subsection*{Figures}\label{figures}}
 \addcontentsline{toc}{subsection}{Figures}
+
+If your capstone has a lot of figures, \emph{R Markdown} might behave better for you than that other word processor. One perk is that it will automatically number the figures accordingly in each chapter. You'll also be able to create a label for each figure, add a caption, and then reference the figure in a way similar to what we saw with tables earlier. If you label your figures, you can move the figures around and \emph{R Markdown} will automatically adjust the numbering for you. No need for you to remember! So that you don't have to get too far into LaTeX to do this, a couple \textbf{R} functions have been created for you to assist. You'll see their use below.
+
+In the \textbf{R} chunk below, we will load in a picture stored as \texttt{phoenix-logo.png} in our main directory. We then give it the caption of ``Phoenix logo'', the label of ``phoenixlogo'', and specify that this is a figure. Make note of the different \textbf{R} chunk options that are given in the R Markdown file (not shown in the knitted document).
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{include_graphics}\NormalTok{(}\DataTypeTok{path =} \StringTok{"figure/phoenix-logo.jpg"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\begin{figure}
+
+{\centering \includegraphics[width=200px]{figure/phoenix-logo} 
+
+}
+
+\caption{Phoenix logo}\label{fig:phoenixlogo}
+\end{figure}
+Here is a reference to the Phoenix logo: Figure \ref{fig:phoenixlogo}. Note the use of the \texttt{fig:} code here. By naming the \textbf{R} chunk that contains the figure, we can then reference that figure later as done in the first sentence here. We can also specify the caption for the figure via the R chunk option \texttt{fig.cap}.
+
+Next, we will explore the use of the \texttt{out.extra} chunk option, which can be used to shrink or expand an image loaded from a file by specifying \texttt{"scale=\ "}. Here we use the mathematical graph stored in the ``subdivision.pdf'' file.
+\begin{figure}
+\includegraphics[scale=0.75]{figure/subdivision} \caption{Subdiv. graph}\label{fig:subd}
+\end{figure}
+Here is a reference to this image: Figure \ref{fig:subd}. Note that \texttt{echo=FALSE} is specified so that the \textbf{R} code is hidden in the document.
+
+\textbf{More Figure Stuff}
+
+Lastly, we will explore how to rotate and enlarge figures using the \texttt{out.extra} chunk option. (Currently this only works in the PDF version of the book.)
+\begin{figure}
+\includegraphics[angle=180, scale=1.1]{figure/subdivision} \caption{A Larger Figure, Flipped Upside Down}\label{fig:subd2}
+\end{figure}
+As another example, here is a reference: Figure \ref{fig:subd2}.
 
 \hypertarget{footnotes-and-endnotes}{%
 \subsection*{Footnotes and Endnotes}\label{footnotes-and-endnotes}}
 \addcontentsline{toc}{subsection}{Footnotes and Endnotes}
 
+You might want to footnote something.\footnote{footnote text} The footnote will be in a smaller font and placed appropriately. Endnotes work in much the same way.
+
 \hypertarget{methodology}{%
 \chapter*{Methodology}\label{methodology}}
 \addcontentsline{toc}{chapter}{Methodology}
 
-The methodology section may include the following subsections:
-\begin{itemize}
-\tightlist
-\item
-  Data
-\item
-  Descriptive analyses
-\item
-  Modeling Framework
-\end{itemize}
 \hypertarget{methodology-data}{%
 \section*{Data}\label{methodology-data}}
 \addcontentsline{toc}{section}{Data}
@@ -379,6 +731,10 @@ One early choice we made to make the pitch a one-hot vector was done out of the 
 \section*{Modeling Framework}\label{methodology-modeling}}
 \addcontentsline{toc}{section}{Modeling Framework}
 
+Our model follows the Generative Adversarial Networks (GAN) architecture. GANs are a special case of deep learning models where the goal is to turn random noise into some kind of output (images or, in our case, music) which captures the essence of the training data. They have been successfully deployed to generate realistic-looking images.
+
+The basic structure of the model has three parts: the generator, the discriminator, and the adversarial model, which combines the generator and the discriminator. The basic idea of the model is to train the discriminator with both real samples (from training data) and fake samples (generated by the generator), and then train the generator with the error from the discriminator. The goal is not to minimize the error of the generator or discriminator, but rather to have achieve a balance between the generator and the discriminator so that they get better together. \textbf{insert some kind of quote or footnote from wikipedia}
+
 \hypertarget{generator}{%
 \subsection*{Generator}\label{generator}}
 \addcontentsline{toc}{subsection}{Generator}
@@ -390,155 +746,245 @@ Our generator is a deep neural network with the following basic structure:
 
 }
 
-\caption{museGen Model Structure}\label{fig:unnamed-chunk-1}
+\caption{museGen Model Structure}\label{fig:unnamed-chunk-2}
 \end{figure}
-The input of this model is a 128-length vector of standard normal Gaussian noise. The noise will go through 4 layers of dense structure (currently set at 256 nodes) with ReLU activation, dropout, and batch normalization. Then, the model splits in half, one each for pitch and duration generation. The pitch part of the model then upsamples the output from the last layer into 20*128 nodes, where 20 is for the 20 notes to generate, and 128 is for the one-hot vector of pitches. Similarly, we upsample duration from the same layer into 20*2 nodes, where 20 is for the 20 notes to generate and 2 is for start and end times. Afterwards, we have to reshape these nodes into the correct shapes, (20, 128) for pitches and (20, 2) for duration, and apply to the correct axis the corresponding activation functions: softmax for pitch (for pitch onehot), and ReLU for duration (for outputting positive numbers). The generated pitch and duration vectors are then concacted into one single array of dimensions (20, 130) as the output of the model.
+The input of this model is a 128-length vector of standard normal Gaussian noise. The noise will go through 4 dense layers (currently set at 256 nodes each) with ReLU activation, dropout, and batch normalization. Then, the model splits in half, one each for pitch and duration generation. The pitch part of the model then upsamples the output from the last layer into 20*128 nodes, where 20 is for the 20 notes to generate, and 128 is for the one-hot vector of pitches. Similarly, we upsample duration from the same layer into 20*2 nodes, where 20 is for the 20 notes to generate and 2 is for start and end times. Afterwards, we have to reshape these nodes into the correct shapes, (20, 128) for pitches and (20, 2) for duration, and apply to the correct axis the corresponding activation functions: softmax for pitch (for pitch onehot), and ReLU for duration (for outputting positive numbers). The generated pitch and duration vectors are then concacted into one single array of dimensions (20, 130) as the output of the model.
 
 Using this modeling structure, we ensure that pitch and duration of one generated music sample is generated by a single model and one single noise input. The dense layers preceding the split in the model will allow the model to learn latent features and rules of music before feeding that latent representation of the final product into the part of the model that turns latent vectors into pitch and duration.
 
-Conventionally, music generation models are
+Conventionally, music generator models are usually time-dependent models such as the LSTM, with some added features like the attention mechanism for model to learn how to place emphasis on repeated patterns. While those models work, they are quite a bit more complex than simple dense neural networks deployed in our approach. We observe that, even with a more simplistic (and thus less artificial) model, the generator is still able to learn basic musical structures.
 
-\textbf{Justification of model(s) selected. Identification of dependent and independent variables, per model as well as variable transformations. Feature extraction (if applicable). Discussion of model(s) functional form. Assumptions of model(s) and ways of insuring that assumptions are observed or tested. Assessing model(s) performance and validation.}
+Once the generator has made its predictions, we have to feed it through another function we wrote to convert the softmax vector for pitch into a one-hot vector, so that the output would look as similar as possible to the real samples.
 
-Transform \texttt{dose} into a \texttt{factor}. Only three dosage levels are present.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(ToothGrowth)}
-\KeywordTok{colnames}\NormalTok{(ToothGrowth) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"length"}\NormalTok{, }\StringTok{"supplement"}\NormalTok{, }\StringTok{"dose"}\NormalTok{)}
-\NormalTok{ToothGrowth}\OperatorTok{$}\NormalTok{dose <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(ToothGrowth}\OperatorTok{$}\NormalTok{dose)}
-\end{Highlighting}
-\end{Shaded}
-We are most interested in discovering which treatment leads to the optimal tooth growth.
-In this vein, we use \texttt{aggregate} function to transform our data and compute the average tooth \texttt{length} by both \texttt{supplement} type and \texttt{dose} size.
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{groupedTooth <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(ToothGrowth, }\DataTypeTok{by=}\NormalTok{ToothGrowth[,}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{], }\DataTypeTok{FUN=}\NormalTok{mean)[,}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\hypertarget{discriminator}{%
+\subsection*{Discriminator}\label{discriminator}}
+\addcontentsline{toc}{subsection}{Discriminator}
 
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(groupedTooth, }\DataTypeTok{align =} \StringTok{"r"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"Average tooth length"}\NormalTok{,}
-      \DataTypeTok{format =} \StringTok{"latex"}\NormalTok{, }\DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{longtable}[t]{r|r|r}
-\caption{\label{tab:group}Average tooth length}\\
-\hline
-supplement & dose & length\\
-\hline
-OJ & 0.5 & 13.23\\
-\hline
-VC & 0.5 & 7.98\\
-\hline
-OJ & 1 & 22.70\\
-\hline
-VC & 1 & 16.77\\
-\hline
-OJ & 2 & 26.06\\
-\hline
-VC & 2 & 26.14\\
-\hline
-\end{longtable}
-\newpage
+Our discriminator model is a simple dense neural network with input dimensions of 20*130 (for the 20 note sample, either generated or real) and outputs a float between 0 and 1 (using sigmoid activation) that represents the probability of whether the sample is fake (0) or real (1).
 
-\hypertarget{math-sci}{%
-\section*{Math and Science notation}\label{math-sci}}
-\addcontentsline{toc}{section}{Math and Science notation}
+\textbf{Insert discriminator model image here}
 
-\TeX~is the best way to typeset mathematics. Donald Knuth designed \TeX~when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics. One nice feature of \emph{R Markdown} is its ability to read \LaTeX~code directly.
+As we can see the model is a straightforward dense neural network (with dropout and batch normalization layers). The model is deliberately kept simplistic here because a big concern during the training was the unequal speeds at which the generator and discriminator learns. More often than not in our case, the discriminator learns much quicker than the generator, and we have concluded that such a simple model actually was the most optimal so that the generator and discriminator can achieve balanced learning for long periods of time.
 
-Get around math mode's automatic italicizing in LaTeX by using the argument \texttt{\$\textbackslash{}mathrm\{formula\ here\}\$}, with your formula inside the curly brackets. (Notice the use of the backticks here which enclose text that acts as code.)
+\hypertarget{adversarial-model}{%
+\subsection*{Adversarial Model}\label{adversarial-model}}
+\addcontentsline{toc}{subsection}{Adversarial Model}
 
-So, \(\mathrm{Fe_2^{2+}Cr_2O_4}\) is written \texttt{\$\textbackslash{}mathrm\{Fe\_2\^{}\{2+\}Cr\_2O\_4\}\$}.
+The adversarial model is simply the sequential collection of the generator and the discriminator as illustrated below:
 
-The \noindent command below does what you'd expect: it forces the current line/paragraph to not indent. See below and examples of commonly used symbols:
+\textbf{Insert GAN model image here}
 
-\noindent Exponent or Superscript written as \texttt{\$x\^{}2\$} becomes \(x^2\)
+However, in the adversarial model, the weights of the discriminator is frozen. The reason for that is the need to feed the error from the discriminator to train the generator. We will expand on this topic in the next section regarding training GAN models.
 
-\noindent Subscript written as \texttt{\$x\_1\$} becomes \(x_1\)
+\hypertarget{training-gan-models}{%
+\subsection*{Training GAN models}\label{training-gan-models}}
+\addcontentsline{toc}{subsection}{Training GAN models}
 
-\noindent Infinity written as \texttt{\$\textbackslash{}infty\$} becomes \(\infty\)
-
-\noindent alpha written as \texttt{\$\textbackslash{}alpha\$} becomes \(\alpha\)
-
-\noindent beta written as \texttt{\$\textbackslash{}beta\$} becomes \(\beta\)
-
-\noindent delta written as \texttt{\$\textbackslash{}delta\$} becomes \(\delta\)
-
-\noindent epsilon written as \texttt{\$\textbackslash{}epsilon\$} becomes \(\epsilon\)
-
-\noindent sigma written \texttt{\$\textbackslash{}sum\_\{i=1\}\^{}n\ f(x)\$} becomes \(\sum_{i=1}^n f(x)\)
-
-\hypertarget{math-examples}{%
-\subsection*{Math Examples}\label{math-examples}}
-\addcontentsline{toc}{subsection}{Math Examples}
-
-An Ordinary Least Squares model, from \emph{Introductory Econometrics, 6th edition} by Jeffrey M. Wooldridge, page 27.
-
-\[y_i = \beta_0 + \beta_1 x_i + \epsilon_i\]
-
-An infinite distributed lag (IDL) time series model, by Wooldridge, page 633.
-
-\[ y_t = \alpha + \delta_0 z_t + \delta_1 z_{t-1} + \delta_2 z_{t-2} \ldots + \epsilon_t\]
-
-A vector autoregressive (VAR) model, by Wooldridge, page 657.
-
-\[ y_t = \delta_0 + \alpha_1 y_{t-1} + \gamma_1 z_{t-1} + \alpha_2 y_{t-2} + \gamma_2 z_{t-2} \ldots,\]
-\newpage
-
-Determinant of a square matrix:
-
-\[\det\left|\,\begin{matrix}%
-c_0&c_1\hfill&c_2\hfill&\ldots&c_n\hfill\cr
-c_1&c_2\hfill&c_3\hfill&\ldots&c_{n+1}\hfill\cr
-c_2&c_3\hfill&c_4\hfill&\ldots&c_{n+2}\hfill\cr
-\,\vdots\hfill&\,\vdots\hfill&
-  \,\vdots\hfill&&\,\vdots\hfill\cr
-c_n&c_{n+1}\hfill&c_{n+2}\hfill&\ldots&c_{2n}\hfill\cr
-\end{matrix}\right|>0\]
-\bigskip
-
-A regularization problem solved by Jerome Friedman, Trevor Hastie, Rob Tibshirani and Noah Simon, implemented in the \href{https://cran.r-project.org/web/packages/glmnet/index.html}{R package \texttt{glmnet}}.
-
-\[ \min_{\beta_0,\beta} \frac{1}{N}\sum_{i=1}^N w_il(y_i,\beta_0+\beta^Tx_i)+\lambda \left[(1-\alpha) ||\beta||_2^2/2+\alpha||\beta||_1\right]\]
-
-\bigskip
-
-From Lapidus and Pindar, Numerical Solution of Partial Differential Equations in Science and Engineering, page 54.
-
-\[\int_t\left\{\sum_{j=1}^3 T_j \left({d\phi_j\over dt}+k\phi_j\right)-kT_e\right\}w_i(t)\ dt=0, \qquad\quad i=1,2,3.\]
-
-\bigskip
-
-From Lapidus and Pindar, page 145.
-
-\[\int_{-1}^1\!\int_{-1}^1\!\int_{-1}^1 f\big(\xi,\eta,\zeta\big) = \sum_{k=1}^n\sum_{j=1}^n\sum_{i=1}^n w_i w_j w_k f\big( \xi,\eta,\zeta\big).\]
-
-\hypertarget{additional-r-markdown-and-bookdown-resources}{%
-\subsection*{Additional R Markdown and bookdown resources}\label{additional-r-markdown-and-bookdown-resources}}
-\addcontentsline{toc}{subsection}{Additional R Markdown and bookdown resources}
-\begin{itemize}
+Training GAN models is not a straightforward process and requires looping through the following specialized steps:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  \emph{Bookdown} Online Book - \url{https://bookdown.org/yihui/bookdown/}
+  \textbf{Train the discriminator with real samples.} We use a function to sample from the real training data. The size of this sample is usually 1/2 of the batch size parameter of the training script. We then feed this data and the target variable (a vector of 1's) to the discriminator model. The resulting error is the error of misclassificating real samples as fake. We use binary crossentropy as loss metric.
 \item
-  \emph{Markdown} Info Sheet - \url{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet}
+  \textbf{Train the discriminator with fake samples.} We use a function to generate fake samples using the generator model we've set up. The size of this sample is usually 1/2 of the batch size parameter of the training script. We then feed this data and the target variable (a vector of 0's) to the discriminator model. The resulting error is the error of misclassificating fake samples as real. We use binary crossentropy as loss metric.
 \item
-  \emph{R Markdown} Reference Guide - \url{https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf}
-\end{itemize}
+  \textbf{Train the adversarial model}. We feed the adversarial model with a number of batches of random noise as input, but mark the target variable as a vector of 1's, or telling the model that these are real samples. Since the adversarial is basically the sequential collection of the generator and discriminator, the random noise input will be converted into fake samples of music before getting fed into the discriminator, where the output is a classification of whether the sample is fake or real. Since we are technically mislabeling the data by using 1's as the target variable, the error will negatively correlated with how well the discriminator performs - the the better the discriminator does, the larger the error, thus the more the weights will be adjusted in the generator, and vice versa. The discriminator is not affected because its weights are frozen when training the adversarial model. This serves to balance the rate of learning for the generator and the discriminator and prevents any one of them to become overly good, but this occurs very often in training.
+\end{enumerate}
+GAN models are notoriously fickle and require special care to train properly \textbf{add footnote}. In our training script, we have set up a mechanism to collect the errors from the discriminator and the generator in order to keep track of training progress and detect any learning issues which happen frequently, and most of our work to date has been to find ways to address these issues. We will address our learning points in the Findings section.
+
 \hypertarget{findings}{%
 \chapter*{Findings}\label{findings}}
 \addcontentsline{toc}{chapter}{Findings}
 
-Placeholder
+We divide our findings into two separate sections: GAN Training and Assessment of Model Output.
 
-\hypertarget{findings-descriptive}{%
-\section*{Results of descriptive analyses}\label{findings-descriptive}}
-\addcontentsline{toc}{section}{Results of descriptive analyses}
+\hypertarget{findings-gan_training}{%
+\section*{GAN Training}\label{findings-gan_training}}
+\addcontentsline{toc}{section}{GAN Training}
 
-\hypertarget{modeling-results}{%
-\section*{Modeling results}\label{modeling-results}}
-\addcontentsline{toc}{section}{Modeling results}
+GAN models are notoriously hard to train properly. During training of our model, we encountered numerous issues which we have had varying degrees of success in addressing. The main issues are:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Loss balancing. In many cases, the errors from the discriminator and generator often collapse to 0 or become extremely large.
+\item
+  Mode collapse. Model learns to generate one kind of output that is able to fool the discriminator despite random input.
+\end{enumerate}
+We will be referring to discriminator and generator losses in the following section. To clarify, discriminator loss is loss from training the discriminator specifically and generator loss is the loss from training the adversarial model.
 
-\hypertarget{results-of-model-performance-and-validation}{%
-\section*{Results of model performance and validation}\label{results-of-model-performance-and-validation}}
-\addcontentsline{toc}{section}{Results of model performance and validation}
+\hypertarget{loss-balancing}{%
+\subsection*{Loss Balancing}\label{loss-balancing}}
+\addcontentsline{toc}{subsection}{Loss Balancing}
+
+Using the data we collected from the training process, we find that the GAN training can be summarized into three distinctive stages:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The initial chaos. The generator and discriminator are trying to balance each other out and the error can vary drastically from epoch to epoch and either the discriminator or generator loss can be much larger than the other. It often settles into a more balanced stage, but this is not a given as we observe some models being unable to get past this initial stage.
+\item
+  The stable equilibrium. The model enters into a stable stage characterized by similar magnitude of losses between discriminator and generator and across different epochs. Judging from the quality of the output, it is during this period when the model learned the most from training data and generated the most musical samples.
+\item
+  The final collapse. This stage is characterized by a steady increase in loss magnitude in one of or both the generator and the discriminator, until the losses of either model collapsing to 0. There are even rare cases where both the discriminator and generator losses go down to 0. Learning stops and music generated gets worse and worse.
+\end{enumerate}
+In the following plot of average epoch losses from one of the training sessions, we can observe these three distinctive stages:
+\begin{figure}
+
+{\centering \includegraphics[width=0.3\linewidth]{figure/all_losses_1} 
+
+}
+
+\caption{Training Loss Graph}\label{fig:unnamed-chunk-3}
+\end{figure}
+During the first 25 epochs or so we observe an initially high but declining losses for both the discriminator and the generator. Thereafter we enter the stable stage that lead to significant and high-quality learning where the loss stablized around 0.7 for both the discriminator and the generator. However, losses become unstable again starting around the 300 to 400 epoch mark and by the 500th epoch the generator loss has increased to around 2 while the discriminator loss is steadily declining. Finally, at around epoch 560, all losses go to zero and the model ceases to learn.
+
+It seems that the model showed the most promise during the stable equilibrium stage. While it is hard to show the quality of the generated samples in a mathematic way, we can clearly demonstrate this by hearing generated samples at different number of epochs. Here is the \href{https://github.com/terrywang15/museG_dev/tree/master/2020-01-31\%2002-20}{link} to our github page to access the generated samples at every 100 epochs during the training session above. At the first epoch, the output from the generator has no sense of rhythm or melody and its output is simply random notes. After 100 epochs, it is clear that there are improvements in rhythm, but the melody is still lacking. At epoch 200 the notes sound much more pleasant as they generally come from the same key. We see more improvement at epoch 300 and 400, which we believe is the best sample generated. However, the improvement trends are reversed starting at epoch 500, and the samples generated become increasingly nonsensical.
+
+This observation shows that the conventional GAN model training procedures that try to balance discriminator and generator learning have much to improve upon, as it fails to prevent the generator to learn how to generate samples that is able to produce zero loss both for the discriminator and at the adversarial stage\footnote{For our discriminator model this is necessary, but there are other model structures available to overcome this problem.}.
+
+{[}\^{}1 One explanation is that the the fake input to the discriminator when training the discriminator is different from when training the adversarial model: the input to train the discriminator has a preprocess step to take argmax of the softmax vector and make a one-hot vector on the argmax index, meaning that it has the same format as the real samples, but during the adversarial stage this is not the case as the discriminator is fed output from the generator directly without preprocessing. This will be addressed with an update to the model. However, there is also a good chance that there are other reasons for the collapse in losses, as this phenomenon is observed in many other GAN models.{]}
+
+It also seems that the loss collapse follows right after the wild oscillations in losses. Since the evidence seems to show that losses stability and generated sample quality are positively correlated, ideally we would want this stage of stable equilibrium to last as long as possible. To achieve that, we can either improve on the model structure, or revise the training procedures. We will discuss some of our ideas for improvement in a later section.
+
+\hypertarget{mode-collapse}{%
+\subsection*{Mode Collapse}\label{mode-collapse}}
+\addcontentsline{toc}{subsection}{Mode Collapse}
+
+Mode collapse is a common problem for GAN models{[}\^{}2{]} \textbf{maybe figure out correct format for citations}. It happens when the generator finds one single pattern that is able to fool the discriminator and then mapping the random noise input to that pattern, so that all outputs from the generator are very similar.
+
+{[}\^{}2: See p113, Generative Deep Learning{]}
+
+An example of mode collapse is found in one of our training sessions. Judging from the samples, the model seems to learn relatively well during the first few hundred epochs, but starting from epoch 900, the generator will only generate the same sample over and over again. Use this {[}link{]} (\url{https://github.com/terrywang15/museG_dev/tree/master/2020-02-11\%2022-13}) to download and listen to all the samples.
+
+After some investigations, it seems that mode collapse is related to the loss issue described above: mode collapse only happened after all losses collapsed to near zero. Notice in the below graph recording the average epoch losses from the training session that generated the samples mentioned above, the generator started to generate the exact same samples around epoch 900, shortly after the collapse of losses:
+\begin{figure}
+
+{\centering \includegraphics[width=0.3\linewidth]{figure/all_losses_2} 
+
+}
+
+\caption{Training Loss Graph}\label{fig:unnamed-chunk-4}
+\end{figure}
+It is unknown at this point whether the collapse in losses and mode collapse are related or if we encountered a special case. However, it is clear that we will need to have a mechanism to monitor losses which will indicate to us whether the model is learning effectively.
+
+\hypertarget{ideas-for-improvements-on-model-structure-and-training}{%
+\subsection*{Ideas for Improvements on Model Structure and Training}\label{ideas-for-improvements-on-model-structure-and-training}}
+\addcontentsline{toc}{subsection}{Ideas for Improvements on Model Structure and Training}
+
+\hypertarget{model-structure-changes-to-separate-pitch-loss-and-duration-loss}{%
+\subsubsection*{1. Model Structure Changes to Separate Pitch Loss and Duration Loss}\label{model-structure-changes-to-separate-pitch-loss-and-duration-loss}}
+\addcontentsline{toc}{subsubsection}{1. Model Structure Changes to Separate Pitch Loss and Duration Loss}
+
+One hypothesis that we pursued is that having one dedicated generator for pitch and duration would work better than our baseline model. The idea behind this is that, since pitch and duration are very different data types that differ in magnitude when comparing typical losses generated, it would make more sense to separate them so that loss is distributed proportional to how the model performs in terms of pitch and duration. This way, if a model does well in pitch and not duration, for example, the model would devote more losses to duration and less to pitch.
+
+We proceeded to try this idea out, and had one generator each for pitch and duration. However, preliminary results are not very encouraging as the model has so far failed to generate any musical sounding samples.
+
+\hypertarget{change-to-a-different-loss-metric}{%
+\subsubsection*{2. Change to a Different Loss Metric}\label{change-to-a-different-loss-metric}}
+\addcontentsline{toc}{subsubsection}{2. Change to a Different Loss Metric}
+
+One idea that has worked well in music generation is the Wasserstein loss, which according to its authors is a more meaningful loss metric that correlates better with output quality as well as stablizes the GAN training process{[}\^{}3{]}. We have yet found time to implement this in our model, so we will leave it as a potential next step.
+
+{[}\^{}3: For details see p115, Generative Deep Learning{]}
+
+\hypertarget{automated-monitoring-of-losses-during-training}{%
+\subsubsection*{3. Automated Monitoring of Losses During Training}\label{automated-monitoring-of-losses-during-training}}
+\addcontentsline{toc}{subsubsection}{3. Automated Monitoring of Losses During Training}
+
+As we have observed, preserving and prolonging the long-term loss stability stage during training should be the goal. We propose to have the following system set up in the training script:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Record losses during every batch
+\item
+  At the end of each epoch, calculate average losses (for generator and discriminator) for that epoch, and record it
+\item
+  Wait until model ``warms up'' or enters the stable learning stage. We can manually define how this look like or use a metric (such as stationarity)
+\item
+  Establish a metric for trend stability. This can be the standard deviation of the new epoch's losses compared to the distribution of losses from the stable process
+\item
+  Stop training when losses shoot up for x number of epochs. We have observed that once the training enters the final collapsing stage it rarely finds its way back, so its better to terminate training rather than keep going in the hopes of finding the stable stage again
+\end{enumerate}
+\hypertarget{automated-model-structure-changes-during-training}{%
+\subsubsection*{4. Automated Model Structure Changes During Training}\label{automated-model-structure-changes-during-training}}
+\addcontentsline{toc}{subsubsection}{4. Automated Model Structure Changes During Training}
+
+A more advanced idea that we have been considering is to combine automated loss monitoring with flexible model structures. The idea would go as follows:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Make a basic generator/discriminator model with as few layers as possible
+\item
+  Train model until it enters stable stage
+\item
+  Monitor losses, stop training when losses start to increase
+\item
+  Freeze current model weights
+\item
+  Add new layer to generator and/or discriminator (can have some conditions to trigger this for generator or discriminator)
+\item
+  Train this new model until loss start to increase. Repeat the process as needed or use a stopping criterion
+\end{enumerate}
+This way, we hope to maximize learning during the stable stage for each layer while avoiding many of the problems that we have encountered during our training. We believe this is a modeling technique that we should attempt in our next steps.
+
+\hypertarget{findings-assess_model}{%
+\section*{Assessment of Model Output}\label{findings-assess_model}}
+\addcontentsline{toc}{section}{Assessment of Model Output}
+
+One of the most significant achievements of our generator is that it successfully learned many musical structures despite being fed random snippets of data, demonstrating that GAN model structure is quite flexible in dealing with different forms of data and formats. To illustrate the musicality of generated outputs, we will focus on one generated sample that showed the success of our generator.
+
+The particular sample can be found via this \href{https://github.com/terrywang15/museG_dev/blob/master/2020-01-31\%2002-20/ep_400.mid}{link}. The notes of the sample is shown in the following table:
+\begin{longtable}[]{@{}lll@{}}
+\caption{\label{tab:inher} Generated Midi Sample 1}\tabularnewline
+\toprule
+Pitch & Start Time & End Time\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Pitch & Start Time & End Time\tabularnewline
+\midrule
+\endhead
+C5 & 0.000000 & 0.020455\tabularnewline
+A3 & 0.000000 & 1.888636\tabularnewline
+G4 & 0.000000 & 2.688636\tabularnewline
+F\#3 & 0.500000 & 4.229545\tabularnewline
+D5 & 2.313636 & 3.797727\tabularnewline
+F\#4 & 2.884091 & 2.979545\tabularnewline
+G3 & 3.020455 & 6.768182\tabularnewline
+E3 & 3.181818 & 3.677273\tabularnewline
+D4 & 3.827273 & 4.877273\tabularnewline
+D5 & 3.981818 & 4.375000\tabularnewline
+E5 & 4.145455 & 4.156818\tabularnewline
+C4 & 4.747727 & 5.856818\tabularnewline
+E4 & 5.190909 & 6.336364\tabularnewline
+A3 & 5.904545 & 6.263636\tabularnewline
+C5 & 5.938636 & 7.293182\tabularnewline
+E3 & 6.606818 & 7.634091\tabularnewline
+B3 & 8.020455 & 8.075000\tabularnewline
+D4 & 8.511364 & 8.545455\tabularnewline
+\bottomrule
+\end{longtable}
+When listening to this sample, one can't help but notice how ``musical'' it sounds. This is because it has a structure that adheres to classical western music theory.
+
+The sample begins with an ambiguous chord (A3, G4, C5) which is a transposed version of an A dominant chord with the fifth missing{[}\^{}4{]}, but this chord is abruptly transitioned to the (F\#3, A3, G4) chord, a very dissonant chord that, although jarring, start to pull the song in the direction of a G major/E minor key because of the introduction of the F\# note that is characteristic of the G major/E minor, so overall the beginning sequence establishes the key structure of this sample. The F\#3 note also has a strong tendency to go up a half-step and resolve to G3, which we will learn that it does right after.
+
+The next sequence of notes are very interesting. It starts with the melody line of D5, F\#4, G3, and E3, a remarkably smooth transition that implies D major with the major third as the root (F\#), which transitions to E minor (G3, E3){[}\^{}5{]}. There are several remarkable things happening here: first, the generator chooses a melody line that spans a wide range of octaves, giving it a sound that is very characteristic of piano music; second, the melody smartly includes the note G3, which serves the dual purpose of resolving the jarring F\#3 note from the beginning sequence and anticipating the next chord (E minor).
+
+After this sequence, the sample has firmly established an E minor feel. Next, it features an additional transition to C major then A minor through a very interesting setup (D4, D5, E5, C4, E4, A3). The octave-skipping D notes at the beginning is again found in many piano music and serves to reinforce the the D note, a note that clashes somewhat with the E minor chord the sample is in at that point and has a tendency to resolve to E or go down to C. After introducing this tension, the sample deftly does both of these things: the leading D5 goes up to E5 as a glide, the D4 goes down to C4, exactly what we would expect. But notice how the two resolutions went in different directions: D4 went down a step, while D5 went up a step. This kind of arrangement is very common in Baroque era music, which generally shuns multiple voices moving in parallel{[}\^{}6{]}. Finally, an E4 is played after C4 to anchor the chord with a major third and removing ambiguities to what the implied chord is. This is followed by an A3 note which is again a smooth transition because it transitions to a new chord (A minor) by only adding one note (A3) while keeping the other notes (C4, E4) the same.
+
+{[}\^{}4: There are other interpretations for this chord of course.{]}
+{[}\^{}5: See Circle of Fifths, (\url{https://en.wikipedia.org/wiki/Circle_of_fifths}). The D major chord should transition to G major but can also transition to E minor.{]}
+{[}\^{}6: See Counterpoint, (\url{https://en.wikipedia.org/wiki/Counterpoint}){]}
+
+The ending sequence also features an interesting movement that could be interpreted as an attempt to make a key change in the context. The note sequence (C5, E3, B3, D4) can be understood as an attempt to move from the A minor or C major to a B major. Either way, it would entail a parallel shift of voices up or down a whole step, something that Baroque does not like. The generator's solution to this problem is to spread out the the two voices by almost 2 octaves (C5, E3) then bringing them together closer, with the C5 moving down to D4 and E3 moving up to B3. Also, the kind of resolving chords to something a half step lower (C chord to B chord) is commonly heard in Jazz and certainly makes sense in music theory. The reason that this sounds like a transition to a different key is because B is never heard throughout the sample up to that point, in addition to the sudden break in rhythmic pattern.
+
+Speaking of rhythms, this generated sample also seems to have learned to produce coherent rhythmic structure. For example, in this sample melody line (D5, F\#4, G3, E3) has a rhythmic pattern consisting of a long note followed by several short notes. The next melody line (D4, D5, E5, C4) references the structure of the preceding notes by reversing it: it now has several short notes followed by a long note. This kind of rhythmic construction is what gives a melody line a ``human'' feel, because it creates a pattern that repeats itself and at the same time is different in each repetition. Moreover, the rhythm and melody seem to work extremely well together, showing the success of our model structure which generates pitches and duration from the same latent space.
+
+We now can see how the model successfully
 
 \hypertarget{conclusion}{%
 \chapter*{Conclusion}\label{conclusion}}
@@ -562,17 +1008,62 @@ Includes guidelines as to ways in which your results should or could be used in 
 This first appendix includes all of the R chunks of code that were hidden throughout the document (using the \texttt{include\ =\ FALSE} chunk tag) to help with readibility and/or setup.
 
 \textbf{In section} \ref{pressure-plot}:
-
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"cornflowerblue"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{,}
+               \DataTypeTok{xlab =} \StringTok{"Temperature (deg C)"}\NormalTok{,}
+               \DataTypeTok{ylab =} \StringTok{"Pressure (mm of Hg)"}\NormalTok{,}
+               \DataTypeTok{main =} \StringTok{"pressure data: Vapor Pressure of Mercury"}\NormalTok{,}
+               \DataTypeTok{frame =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 \textbf{In section \ref{ref-labels}:}
 
 \hypertarget{a-second-appendix-for-example}{%
 \chapter{A Second Appendix, for example}\label{a-second-appendix-for-example}}
 
+\backmatter
+
 \hypertarget{references}{%
 \chapter*{References}\label{references}}
 \addcontentsline{toc}{chapter}{References}
 
-Placeholder
+\markboth{References}{References}
+
+\noindent
+
+\setlength{\parindent}{-0.20in}
+\setlength{\leftskip}{0.20in}
+\setlength{\parskip}{8pt}
+
+There are a variety of tools available for creating a bibliography database (stored with the .bib extension). In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called \href{https://www.zotero.org/}{Zotero}.
+
+\emph{R Markdown} uses \emph{pandoc} (\url{http://pandoc.org/}) to build its bibliographies. To cite references in your thesis (after creating your bibliography database), place the reference name inside square brackets and precede it by the ``at'' symbol. For example, here's a reference to a book about worrying: (Molina \& Borkovec, 1994). This \texttt{Molina1994} entry appears in a file called \texttt{thesis.bib} in the \texttt{bib} folder. This bibliography database file was created by a program called BibTeX. You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the \texttt{bib} folder.
+
+\textbf{Additional Tips}
+\begin{itemize}
+\tightlist
+\item
+  The sooner you start compiling your bibliography for something as large as a capstone, the better. Typing in source after source is mind-numbing enough; do you really want to do it for hours on end at the last minute?
+\item
+  The cite key (a citation's label) needs to be unique from the other entries.
+\item
+  When you have more than one author or editor, you need to separate each author's name by the word ``and'' e.g. \texttt{Author\ =\ \{Noble,\ Sam\ and\ Youngberg,\ Jessica\},}
+\end{itemize}
+\textbf{Example output generated from bib file}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-angel2000}{}%
+Angel, E. (2000). \emph{Interactive computer graphics : A top-down approach with opengl}. Boston, MA: Addison Wesley Longman.
+
+\leavevmode\hypertarget{ref-angel2001}{}%
+Angel, E. (2001a). \emph{Batch-file computer graphics : A bottom-up approach with quicktime}. Boston, MA: Wesley Addison Longman.
+
+\leavevmode\hypertarget{ref-angel2002a}{}%
+Angel, E. (2001b). \emph{Test second book by angel}. Boston, MA: Wesley Addison Longman.
+
+\leavevmode\hypertarget{ref-Molina1994}{}%
+Molina, S. T., \& Borkovec, T. D. (1994). The Penn State worry questionnaire: Psychometric properties and associated characteristics. In G. C. L. Davey \& F. Tallis (Eds.), \emph{Worrying: Perspectives on theory, assessment and treatment} (pp. 265--283). New York: Wiley.
 
 
 % Index?
