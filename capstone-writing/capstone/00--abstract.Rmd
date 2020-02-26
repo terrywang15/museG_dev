@@ -7,7 +7,7 @@ Our work includes a modified version of the python package pretty_midi, which se
 \bigskip
 \bigskip
 
-**Keywords**: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing
+**Keywords**: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing, Time Series Music Note Prediction.
 
 \bigskip 
 \bigskip
