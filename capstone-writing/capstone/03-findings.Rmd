@@ -31,15 +31,15 @@ It seems that the model showed the most promise during the stable equilibrium st
 
 This observation shows that the conventional GAN model training procedures that try to balance discriminator and generator learning have much to improve upon, as it fails to prevent the generator to learn how to generate samples that is able to produce zero loss both for the discriminator and at the adversarial stage[^1].
 
-[^1 One explanation is that the the fake input to the discriminator when training the discriminator is different from when training the adversarial model: the input to train the discriminator has a preprocess step to take argmax of the softmax vector and make a one-hot vector on the argmax index, meaning that it has the same format as the real samples, but during the adversarial stage this is not the case as the discriminator is fed output from the generator directly without preprocessing. This will be addressed with an update to the model. However, there is also a good chance that there are other reasons for the collapse in losses, as this phenomenon is observed in many other GAN models.]
+[^1]: One explanation is that the the fake input to the discriminator when training the discriminator is different from when training the adversarial model: the input to train the discriminator has a preprocess step to take argmax of the softmax vector and make a one-hot vector on the argmax index, meaning that it has the same format as the real samples, but during the adversarial stage this is not the case as the discriminator is fed output from the generator directly without preprocessing. This will be addressed with an update to the model. However, there is also a good chance that there are other reasons for the collapse in losses, as this phenomenon is observed in many other GAN models.
 
 It also seems that the loss collapse follows right after the wild oscillations in losses. Since the evidence seems to show that losses stability and generated sample quality are positively correlated, ideally we would want this stage of stable equilibrium to last as long as possible. To achieve that, we can either improve on the model structure, or revise the training procedures. We will discuss some of our ideas for improvement in a later section.
 
 ### Mode Collapse {.unnumbered}
 
-Mode collapse is a common problem for GAN models[^2] **maybe figure out correct format for citations**. It happens when the generator finds one single pattern that is able to fool the discriminator and then mapping the random noise input to that pattern, so that all outputs from the generator are very similar.
+Mode collapse is a common problem for GAN models[^2]. **maybe figure out correct format for citations** It happens when the generator finds one single pattern that is able to fool the discriminator and then mapping the random noise input to that pattern, so that all outputs from the generator are very similar.
 
-[^2: See p113, Generative Deep Learning]
+[^2]: See p113, Generative Deep Learning
 
 An example of mode collapse is found in one of our training sessions. Judging from the samples, the model seems to learn relatively well during the first few hundred epochs, but starting from epoch 900, the generator will only generate the same sample over and over again. Use this [link] (https://github.com/terrywang15/museG_dev/tree/master/2020-02-11%2022-13) to download and listen to all the samples.
 
@@ -63,7 +63,7 @@ We proceeded to try this idea out, and had one generator each for pitch and dura
 
 One idea that has worked well in music generation is the Wasserstein loss, which according to its authors is a more meaningful loss metric that correlates better with output quality as well as stablizes the GAN training process[^3]. We have yet found time to implement this in our model, so we will leave it as a potential next step.
 
-[^3: For details see p115, Generative Deep Learning]
+[^3]: For details see p115, Generative Deep Learning
 
 #### 3. Automated Monitoring of Losses During Training {.unnumbered}
 
@@ -124,9 +124,9 @@ The next sequence of notes are very interesting. It starts with the melody line 
 
 After this sequence, the sample has firmly established an E minor feel. Next, it features an additional transition to C major then A minor through a very interesting setup (D4, D5, E5, C4, E4, A3). The octave-skipping D notes at the beginning is again found in many piano music and serves to reinforce the the D note, a note that clashes somewhat with the E minor chord the sample is in at that point and has a tendency to resolve to E or go down to C. After introducing this tension, the sample deftly does both of these things: the leading D5 goes up to E5 as a glide, the D4 goes down to C4, exactly what we would expect. But notice how the two resolutions went in different directions: D4 went down a step, while D5 went up a step. This kind of arrangement is very common in Baroque era music, which generally shuns multiple voices moving in parallel[^6]. Finally, an E4 is played after C4 to anchor the chord with a major third and removing ambiguities to what the implied chord is. This is followed by an A3 note which is again a smooth transition because it transitions to a new chord (A minor) by only adding one note (A3) while keeping the other notes (C4, E4) the same.
 
-[^4: There are other interpretations for this chord of course.]
-[^5: See Circle of Fifths, (https://en.wikipedia.org/wiki/Circle_of_fifths). The D major chord should transition to G major but can also transition to E minor.]
-[^6: See Counterpoint, (https://en.wikipedia.org/wiki/Counterpoint)]
+[^4]: There are other interpretations for this chord of course.
+[^5]: See Circle of Fifths, (https://en.wikipedia.org/wiki/Circle_of_fifths). The D major chord should transition to G major but can also transition to E minor.
+[^6]: See Counterpoint, (https://en.wikipedia.org/wiki/Counterpoint)
 
 The ending sequence also features an interesting movement that could be interpreted as an attempt to make a key change in the context. The note sequence (C5, E3, B3, D4) can be understood as an attempt to move from the A minor or C major to a B major. Either way, it would entail a parallel shift of voices up or down a whole step, something that Baroque does not like. The generator's solution to this problem is to spread out the the two voices by almost 2 octaves (C5, E3) then bringing them together closer, with the C5 moving down to D4 and E3 moving up to B3. Also, the kind of resolving chords to something a half step lower (C chord to B chord) is commonly heard in Jazz and certainly makes sense in music theory. The reason that this sounds like a transition to a different key is because B is never heard throughout the sample up to that point, in addition to the sudden break in rhythmic pattern.
 
