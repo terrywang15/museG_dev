@@ -19,7 +19,7 @@ We can reimagine the midi file to be like a dictionary, where each track is inde
 | 56    | 0.00       | 0.40     | 33             |
 | 61    | 0.40       | 0.81     | 26             |
 | 64    | 0.81       | 1.21     | 26             |
-Table: (\#tab:inher) Midi File Structure Example
+Table: Midi File Structure Example
 
 The above table tells us the following: at time 0.00 seconds pitch 56 is played with velocity 33, and the note stopped at time 0.40 seconds; then at time 0.40 seconds pitch 61 is played with velocity 26, and the note stopped at time 0.81 seconds; and so on. We can see clearly how a piece of music can be represented digitally via the midi file structure.
 

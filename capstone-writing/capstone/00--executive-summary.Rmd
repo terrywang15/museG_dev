@@ -10,6 +10,5 @@ Our work includes a modified version of the python package pretty_midi. We adapt
 \bigskip
 \bigskip
 \bigskip
-**NOTE:** Like the abstract, do not use "#" or "##" symbols to start new sections in the executive summary section. Doing so will result in generating a table table of contents entry _prior_ to the Introduction, which is not desirable.
 
 

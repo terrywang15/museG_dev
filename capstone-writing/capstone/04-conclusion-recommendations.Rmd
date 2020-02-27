@@ -1,12 +1,17 @@
 # Conclusion {.unnumbered}
 
-This section includes a concise summary of the findings. Your summary might be organized by the research objectives or hypotheses. Make sure you address the extent to which research objectives are achieved, and if they are not achieved, explain why. Make sure to interpret your findings in a way that acknowledges the limitations of the research. That is, do not extrapolate the insights derived from your research to situations you have not examined.
+The deep neural network structure implemented in our generator was able to generate human-like musical output that exhibits understanding of music theory, Baroque style, pattern recognition, and a preference to generate passages that is self-referencing. It shows great promise to become an additional tool for musicians to generate new musical ideas of certain styles. 
 
-_While increasing dosage leads to larger incisor length, the choice of delivery mechanism  between Orange Juice and Vitamin C does not seem to make a difference. However, at very low levels, Orange Juice appears more effective, displaying higher average growth._
-
-
+The model in the current state is plagued by the inability to maintain stable learning and the problem of mode collapse, which are related problems. We propose that in our next steps, we keep iterating on the model structure to improve on these issues.
 
 
-# Recommendations {.unnumbered}
 
-Includes guidelines as to ways in which your results should or could be used in practice. You may discuss other uses of your results, if there are any. The ways to extend your analysis and the benefits of doing so might be included in this section as well. 
+
+# Next Steps {.unnumbered}
+
+We see the following directions that we can take to further improve our model:
+
+1. Make training data more consistent in terms of style and music instrument. We believe that the more consistent the input, the better and faster the generator can learn. However, this is a quite time-consuming task to sift through each and every midi file to find which composers, passages and instruments to include.
+2. Upgrade model structure. While our relatively simplistic model structure is able to achieve quite a bit, we believe that adding additional complexity will marginally increase the performance of the model. We can also investigate the impact of increasing layers to our baseline generator or discriminator.
+3. Implement new training script that is able to monitor losses. This would involve the development of a loss stability metric and stops training when loss instability is detected.
+4. Implement flexible generator/discriminator in conjuction with loss monitoring. This idea is discussed in the Findings section and will enable each layer of the model to learn as much as possible before loss starts to increase, thus avoiding the problem of loss increase.

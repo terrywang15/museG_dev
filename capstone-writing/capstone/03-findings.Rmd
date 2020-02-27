@@ -88,6 +88,8 @@ A more advanced idea that we have been considering is to combine automated loss 
 
 This way, we hope to maximize learning during the stable stage for each layer while avoiding many of the problems that we have encountered during our training. We believe this is a modeling technique that we should attempt in our next steps.
 
+\newpage
+
 ## Assessment of Model Output {#findings-assess_model .unnumbered}
 
 One of the most significant achievements of our generator is that it successfully learned many musical structures despite being fed random snippets of data, demonstrating that GAN model structure is quite flexible in dealing with different forms of data and formats. To illustrate the musicality of generated outputs, we will focus on one generated sample that showed the success of our generator.
@@ -114,7 +116,7 @@ The particular sample can be found via this [link](https://github.com/terrywang1
 | E3    | 6.606818   | 7.634091 |
 | B3    | 8.020455   | 8.075000 |
 | D4    | 8.511364   | 8.545455 |
-Table: (\#tab:inher) Generated Midi Sample 1
+Table: Generated Midi Sample 1
 
 When listening to this sample, one can't help but notice how "musical" it sounds. This is because it has a structure that adheres to classical western music theory. 
 

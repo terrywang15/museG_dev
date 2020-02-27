@@ -12,5 +12,3 @@ Our work includes a modified version of the python package pretty_midi, which se
 \bigskip 
 \bigskip
 \bigskip
-
-**NOTE:** Do not use "#" or "##" symbols to start new sections in the abstract section, as one typically would in other r markdown documents. Doing so will result in generating a table of contents entry _prior_ to the Introduction, which is not desirable.

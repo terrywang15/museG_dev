@@ -14,7 +14,7 @@ We propose the application of Deep Learning models to help individuals generate 
 
 In addition, the model exhibits certain unconventional behavior. This can be attributed to the model using a different perspective to create music compared to humans. This behavior may or may not be useful in inspiring musicians to create interesting sounding music that at the same time stays true to the kind of melodies that the model is trained on.
 
-**Body** 
+**Purpose** 
 
 In 1950s, experimental music composers wrote music using randomized statistical modelling. In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of group of words and sentences to produce potentially significant lyrical combinations. Nowadays, there is an entire industry built around AI generated music including Flow Machines, IBM Watson Beat and Google’s NSynth. 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.17)  26 FEB 2020 14:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.17)  26 FEB 2020 15:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -462,31 +462,27 @@ mode.def
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count282
 \l__pdf_internal_box=\box55
-) (./UChicago-MScA-Capstone.aux
-
-LaTeX Warning: Label `tab:inher' multiply defined.
-
-)
+) (./UChicago-MScA-Capstone.aux)
 \openout1 = `UChicago-MScA-Capstone.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 15
-2.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 14
+8.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -503,14 +499,14 @@ e
 ))
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 152.
+less on input line 148.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 152.
+less on input line 148.
 
 \AtBeginShipoutBox=\box56
-Package hyperref Info: Link coloring OFF on input line 152.
+Package hyperref Info: Link coloring OFF on input line 148.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -522,56 +518,56 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count283
 )
-LaTeX Info: Redefining \ref on input line 152.
-LaTeX Info: Redefining \pageref on input line 152.
-LaTeX Info: Redefining \nameref on input line 152.
+LaTeX Info: Redefining \ref on input line 148.
+LaTeX Info: Redefining \pageref on input line 148.
+LaTeX Info: Redefining \nameref on input line 148.
 (./UChicago-MScA-Capstone.out) (./UChicago-MScA-Capstone.out)
 \@outlinefile=\write4
 \openout4 = `UChicago-MScA-Capstone.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 156.
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 152.
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
- 156.
+ 152.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line
- 156.
+ 152.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line
- 156.
+ 152.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line
- 156.
+ 152.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for U+lasy on input line 15
-6.
+2.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <8.40009> not available
-(Font)              size <8> substituted on input line 156.
+(Font)              size <8> substituted on input line 152.
 
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 1
-56.
+52.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 152.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.36008> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 152.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.40009> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 152.
 [1
 Non-PDF special ignored!
 <special> !% University of Chicago Graham MScA 2018/10/18
@@ -584,11 +580,14 @@ Non-PDF special ignored!
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.157 \frontmatter
+l.153 \frontmatter
                    % this stuff will be roman-numbered [1] [1
 
 
 ] [2
+
+
+] [3
 
 
 ] (./UChicago-MScA-Capstone.toc
@@ -602,26 +601,26 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 \tf@toc=\write5
 \openout5 = `UChicago-MScA-Capstone.toc'.
 
-[3
+[4
 
 
 ] (./UChicago-MScA-Capstone.lof)
 \tf@lof=\write6
 \openout6 = `UChicago-MScA-Capstone.lof'.
 
-[4
+[5
 
 ] (./UChicago-MScA-Capstone.lot)
 \tf@lot=\write7
 \openout7 = `UChicago-MScA-Capstone.lot'.
 
-[5
+[6
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.240 
+l.231 
        [1
 
 
@@ -637,74 +636,74 @@ This may cause the page layout to be inconsistent, however.
 ] [4] [5
 
 ]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-99.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
+09.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 303.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 313.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 303.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 313.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 303.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 313.
 [6] [7]
-<figure/model_terryjosh.png, id=207, 366.36874pt x 743.77875pt>
+<figure/model_terryjosh.png, id=213, 366.36874pt x 743.77875pt>
 File: figure/model_terryjosh.png Graphic file (type png)
 <use figure/model_terryjosh.png>
-Package pdftex.def Info: figure/model_terryjosh.png  used on input line 326.
+Package pdftex.def Info: figure/model_terryjosh.png  used on input line 336.
 (pdftex.def)             Requested size: 130.08731pt x 264.09438pt.
 [8 <./figure/model_terryjosh.png>] [9] [10] [11
 
 ]
-<figure/all_losses_1.png, id=240, 433.62pt x 289.08pt>
+<figure/all_losses_1.png, id=247, 433.62pt x 289.08pt>
 File: figure/all_losses_1.png Graphic file (type png)
 <use figure/all_losses_1.png>
-Package pdftex.def Info: figure/all_losses_1.png  used on input line 416.
+Package pdftex.def Info: figure/all_losses_1.png  used on input line 426.
 (pdftex.def)             Requested size: 130.08731pt x 86.72466pt.
 [12 <./figure/all_losses_1.png>]
-<figure/all_losses_2.png, id=253, 433.62pt x 289.08pt>
+<figure/all_losses_2.png, id=259, 433.62pt x 289.08pt>
 File: figure/all_losses_2.png Graphic file (type png)
 <use figure/all_losses_2.png>
-Package pdftex.def Info: figure/all_losses_2.png  used on input line 441.
+Package pdftex.def Info: figure/all_losses_2.png  used on input line 451.
 (pdftex.def)             Requested size: 130.08731pt x 86.72466pt.
-[13 <./figure/all_losses_2.png>] [14] [15] [16] [17] [18
+[13 <./figure/all_losses_2.png>] [14] [15] [16] [17] [18] [19
 
-] [19
+] [20
 
 ]
 Appendix A.
 
-LaTeX Warning: Reference `pressure-plot' on page 20 undefined on input line 594
+LaTeX Warning: Reference `pressure-plot' on page 21 undefined on input line 617
 .
 
 
-LaTeX Warning: Reference `ref-labels' on page 20 undefined on input line 596.
+LaTeX Warning: Reference `ref-labels' on page 21 undefined on input line 619.
 
-[20
-
-]
-Appendix B.
 [21
 
 ]
+Appendix B.
+[22
+
+]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 6
-23.
+46.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 647.
-[22
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 670.
+[23
 
 
-] [23]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 647.
+] [24]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 670.
 (./UChicago-MScA-Capstone.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 647.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 647.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 670.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 670.
 Package rerunfilecheck Info: File `UChicago-MScA-Capstone.out' has not changed.
 
-(rerunfilecheck)             Checksum: 73C8C3147A590832E7A7C53B7D542323;1410.
+(rerunfilecheck)             Checksum: 96E7F951360629EA3E64811C0FED659C;1406.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.40009pt have occurred.
@@ -712,16 +711,13 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 647.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 670.
  ) 
 Here is how much of TeX's memory you used:
- 9310 strings out of 483158
- 142229 string characters out of 5963880
- 401787 words of memory out of 5000000
- 23966 multiletter control sequences out of 15000+600000
+ 9316 strings out of 483158
+ 142262 string characters out of 5963880
+ 400315 words of memory out of 5000000
+ 23965 multiletter control sequences out of 15000+600000
  602991 words of font info for 136 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  41i,12n,49p,1795b,389s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -733,10 +729,10 @@ sers/terrymclee/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users
 /terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users
 /terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users
 /terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on UChicago-MScA-Capstone.pdf (30 pages, 201055 bytes).
+Output written on UChicago-MScA-Capstone.pdf (32 pages, 202130 bytes).
 PDF statistics:
- 407 PDF objects out of 1000 (max. 8388607)
- 360 compressed objects within 4 object streams
- 128 named destinations out of 1000 (max. 500000)
+ 424 PDF objects out of 1000 (max. 8388607)
+ 375 compressed objects within 4 object streams
+ 135 named destinations out of 1000 (max. 500000)
  200 words of extra memory for PDF output out of 10000 (max. 10000000)
 
