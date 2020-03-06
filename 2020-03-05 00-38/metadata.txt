@@ -1,0 +1,8 @@
+training script: GAN_model_ver4.py
+training sample: training_samples/sample_2019-11-13-16-10.npy
+latent dim: 128 
+number of nodes : 256 
+generator dropout rate: 0.200000.2 
+number of epochs: 1000 
+samples per epoch: 600 
+Note: +1 Layer in generator

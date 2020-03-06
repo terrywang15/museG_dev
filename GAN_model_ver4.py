@@ -102,6 +102,54 @@ def define_generator(latent_dim, dropout_rate, num_nodes):
     return generator
 
 
+# Experimental Generators
+def define_generator_plus1layer(latent_dim, dropout_rate, num_nodes):
+    """
+    Outputs a generator model
+    :param latent_dim: Int, dimension of latent points aka how many random numbers you want to use as input
+    :param dropout_rate: float between 0 and 1, dropout rate you give to the dropout layers
+    :param num_nodes: Int, number of nodes in the dense layers
+    :return: a keras model
+    """
+
+    random_inputs = Input(shape=(latent_dim,))
+    dense1 = Dense(num_nodes, activation='relu')(random_inputs)
+    dropout1 = Dropout(dropout_rate)(dense1)
+    batchNorm1 = BatchNormalization()(dropout1)
+    dense2 = Dense(num_nodes, activation='relu')(batchNorm1)
+    dropout2 = Dropout(dropout_rate)(dense2)
+    batchNorm2 = BatchNormalization()(dropout2)
+    dense3 = Dense(num_nodes, activation='relu')(batchNorm2)
+    dropout3 = Dropout(dropout_rate)(dense3)
+    batchNorm3 = BatchNormalization()(dropout3)
+    dense4 = Dense(num_nodes, activation='relu')(batchNorm3)
+    dropout4 = Dropout(dropout_rate)(dense4)
+    batchNorm4 = BatchNormalization()(dropout4)
+    dense5 = Dense(num_nodes, activation='relu')(batchNorm4)
+    dropout5 = Dropout(dropout_rate)(dense5)
+    batchNorm5 = BatchNormalization()(dropout5)
+    pitch1 = Dense(num_nodes, activation='relu')(batchNorm5)
+    pitch_dropoff1 = Dropout(dropout_rate)(pitch1)
+    duration1 = Dense(num_nodes, activation='relu')(batchNorm5)
+    dur_dropoff1 = Dropout(dropout_rate)(duration1)
+    pitch2 = Dense(num_nodes, activation='relu')(pitch_dropoff1)
+    duration2 = Dense(num_nodes, activation='relu')(dur_dropoff1)
+    pitch = Dense(20 * 128)(pitch2)
+    duration = Dense(20 * 2)(duration2)
+
+    pitch_reshaped = Reshape((20, 128))(pitch)
+
+    duration_reshaped = Reshape((20, 2))(duration)
+
+    pitch_output = Softmax(axis=-1)(pitch_reshaped)
+
+    duration_output = Dense(2, activation='relu', name='duration')(duration_reshaped)
+    output_concat = concatenate([duration_output, pitch_output])
+    generator = Model(inputs=random_inputs, outputs=output_concat)
+
+    return generator
+
+
 # Adversarial Model
 def define_gan(generator, discriminator):
     """
@@ -162,7 +210,7 @@ def generate_fake_samples(generator, latent_dim, n_samples):
     """
     # generate points in latent space
     x_input = generate_latent_points(latent_dim, n_samples)
-    # predict fake images
+    # predict fake music
     X = generator.predict(x_input)
     duration = X[:,:,:2]
     pitches = np.eye(128)[np.argmax(X[:,:,2:], axis=-1)]
@@ -238,14 +286,14 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=100, n_batc
             X_real, y_real = generate_real_samples(dataset, half_batch)
             # update weights of discriminator model on real reamples
             d_loss1, _ = d_model.train_on_batch(X_real, y_real)
-            # generate 'fake' images
+            # generate 'fake' music
             X_fake, y_fake = generate_fake_samples(g_model, latent_dim, half_batch)
             # update discriminator model weights on fake samples
             d_loss2, _ = d_model.train_on_batch(X_fake, y_fake)
             for _ in range(2):
                 # prepare points in latent space as input for the generator
                 X_gan = generate_latent_points(latent_dim, n_batch)
-                # label fake images as ones to train generator
+                # label fake music as ones to train generator
                 y_gan = np.ones((n_batch, 1))
                 # update weights of the generator based on the discriminator's errors
                 g_loss = gan_model.train_on_batch(X_gan, y_gan)
@@ -254,7 +302,7 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=100, n_batc
                 (i+1, j+1, bat_per_epo, d_loss1, d_loss2, g_loss))
             df_history.loc[len(df_history)] = [i+1, j+1, d_loss1, d_loss2, g_loss]
         # Generate a midi sample every 100 epochs
-        if i % 100 == 0:
+        if i % 50 == 0:
             pred = make_pred(g_model, latent_dim, 1)
             make_midi(pred, ts_str + "/ep_" + str(i) + ".mid")
             
@@ -269,7 +317,7 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=100, n_batc
     df_history.to_csv(ts_str + '/loss_history.csv', mode='a', index=False, header=False)
 
 
-# In[17]:
+################### Training Parameters #########################
 
 
 # size of the latent space
@@ -281,29 +329,30 @@ gen_dropout = 0.2
 # create the discriminator
 discriminator = define_discriminator()
 # create the generator
-generator = define_generator(latent_dim, gen_dropout, num_nodes)
+generator = define_generator_plus1layer(latent_dim, gen_dropout, num_nodes)
 # create the gan
 gan_model = define_gan(generator, discriminator)
 # load training data
-train_fp = "training_samples/sample_2020-02-13-17-14.npy"
+train_fp = "training_samples/sample_2019-11-13-16-10.npy"
 dataset = np.load(train_fp)
 # Make timestamp
 ts_str = time.strftime("%Y-%m-%d %H-%M", time.gmtime())
 # other parameters
-n_epochs = 2000
+n_epochs = 1000
 n_batch = 600
 # create directory if not exist
 if not os.path.exists(ts_str):
     os.makedirs(ts_str)
 # create log for training metadata
-with open("metadata.txt", "w+") as f:
+with open(ts_str + "/metadata.txt", "w+") as f:
     f.write("training script: GAN_model_ver" + "4" + ".py\n")
-    f.write("training sample: " + train_fp)
+    f.write("training sample: " + train_fp + "\n")
     f.write("latent dim: %i \n" % latent_dim)
     f.write("number of nodes : %i \n" % num_nodes)
     f.write("generator dropout rate: %f.2 \n" % gen_dropout)
     f.write("number of epochs: %i \n" % n_epochs)
     f.write("samples per epoch: %i \n" % n_batch)
+    f.write("Note: +1 Layer in generator")
 
 
 # train model

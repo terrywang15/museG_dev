@@ -126,7 +126,7 @@ def make_multi_midi(pred, write_folder_name):
 
 # Model parameters
 # Number of files to generate
-n_output = 1
+n_output = 10
 # size of the latent space
 latent_dim = 128
 # length of noise vectors
@@ -134,16 +134,19 @@ num_nodes = 256
 # generator dropout
 gen_dropout = 0.2
 # model filepath
-weights_fp = "2020-02-12 19-31/gen_wgts_ep_700.h5"
+weights_fp = "2020-02-18 02-44/gen_wgts_ep_400.h5"
 # Make timestamp
 ts_str = time.strftime("%Y-%m-%d %H-%M", time.gmtime())
 # create directory if not exist
 if not os.path.exists("gen_samples"):
     os.makedirs("gen_samples")
 # output filepath
-output_fp = "gen_samples/" + ts_str + ".mid"
+output_fp = "2020-02-18 02-44/gen_samples/"
 
 model = define_generator(latent_dim, gen_dropout, num_nodes)
 model.load_weights(weights_fp)
-make_midi(make_pred(model, latent_dim, n_output), output_fp)
+if n_output == 1:
+    make_midi(make_pred(model, latent_dim, n_output), output_fp)
+elif n_output > 1:
+    make_multi_midi(make_pred(model, latent_dim, n_output), output_fp)
 
