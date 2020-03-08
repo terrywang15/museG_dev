@@ -58,7 +58,7 @@ The basic structure of the model has three parts: the generator, the discriminat
 Our generator is a deep neural network with the following basic structure:
 
 ```{r, out.width="0.3\\linewidth", include=TRUE, fig.align="center", fig.cap=c("museGen Model Structure"), echo=FALSE}
-knitr::include_graphics("figure/model_terryjosh.png")
+knitr::include_graphics("figure/gen_model.png")
 ```
 
 The input of this model is a 128-length vector of standard normal Gaussian noise. The noise will go through 4 dense layers (currently set at 256 nodes each) with ReLU activation, dropout, and batch normalization. Then, the model splits in half, one each for pitch and duration generation.  The pitch part of the model then upsamples the output from the last layer into 20\*128 nodes, where 20 is for the 20 notes to generate, and 128 is for the one-hot vector of pitches. Similarly, we upsample duration from the same layer into 20\*2 nodes, where 20 is for the 20 notes to generate and 2 is for start and end times. Afterwards, we have to reshape these nodes into the correct shapes, (20, 128) for pitches and (20, 2) for duration, and apply to the correct axis the corresponding activation functions: softmax for pitch (for pitch onehot), and ReLU for duration (for outputting positive numbers).  The generated pitch and duration vectors are then concacted into one single array of dimensions (20, 130) as the output of the model.
@@ -73,7 +73,9 @@ Once the generator has made its predictions, we have to feed it through another 
 
 Our discriminator model is a simple dense neural network with input dimensions of 20*130 (for the 20 note sample, either generated or real) and outputs a float between 0 and 1 (using sigmoid activation) that represents the probability of whether the sample is fake (0) or real (1).
 
-**Insert Discriminator model image here**
+```{r, out.width="0.3\\linewidth", include=TRUE, fig.align="center", fig.cap=c("museGen Model Structure"), echo=FALSE}
+knitr::include_graphics("figure/dis_model.png")
+```
 
 As we can see the model is a straightforward dense neural network (with dropout and batch normalization layers).   The model is deliberately kept simplistic here because a big concern during the training was the unequal speeds at which the generator and discriminator learns. More often than not in our case, the discriminator learns much quicker than the generator, and we have concluded that such a simple model actually was the most optimal so that the generator and discriminator can achieve balanced learning for long periods of time.
 
@@ -81,7 +83,9 @@ As we can see the model is a straightforward dense neural network (with dropout 
 
 The adversarial model is simply the sequential collection of the generator and the discriminator as illustrated below:
 
-**Insert GAN model image here**
+```{r, out.width="0.3\\linewidth", include=TRUE, fig.align="center", fig.cap=c("museGen Model Structure"), echo=FALSE}
+knitr::include_graphics("figure/gan_model.png")
+```
 
 However, in the adversarial model, the weights of the discriminator is frozen. The reason for that is the need to feed the error from the discriminator to train the generator. We will expand on this topic in the next section regarding training GAN models.
 
@@ -93,8 +97,8 @@ Training GAN models is not a straightforward process and requires looping throug
 2. **Train the discriminator with fake samples.** We use a function to generate fake samples using the generator model we've set up. The size of this sample is usually 1/2 of the batch size parameter of the training script. We then feed this data and the target variable (a vector of 0's) to the discriminator model. The resulting error is the error of misclassificating fake samples as real. We use binary crossentropy as loss metric.
 3. **Train the adversarial model**. We feed the adversarial model with a number of batches of random noise as input, but mark the target variable as a vector of 1's, or telling the model that these are real samples. Since the adversarial is basically the sequential collection of the generator and discriminator, the random noise input will be converted into fake samples of music before getting fed into the discriminator, where the output is a classification of whether the sample is fake or real. Since we are technically mislabeling the data by using 1's as the target variable, the error will negatively correlated with how well the discriminator performs - the the better the discriminator does, the larger the error, thus the more the weights will be adjusted in the generator, and vice versa. The discriminator is not affected because its weights are frozen when training the adversarial model. This serves to balance the rate of learning for the generator and the discriminator and prevents any one of them to become overly good, but this occurs very often in training.
 
-GAN models are notoriously fickle and require special care to train properly **add footnote**. In our training script, we have set up a mechanism to collect the errors from the discriminator and the generator in order to keep track of training progress and detect any learning issues which happen frequently, and most of our work to date has been to find ways to address these issues. We will address our learning points in the Findings section.
+GAN models are notoriously fickle and require special care to train properly[^3]. In our training script, we have set up a mechanism to collect the errors from the discriminator and the generator in order to keep track of training progress and detect any learning issues which happen frequently, and most of our work to date has been to find ways to address these issues. We will address our learning points in the Findings section.
 
-
+[^3]: p107, Generative Deep Learning by David Foster.
 
 
