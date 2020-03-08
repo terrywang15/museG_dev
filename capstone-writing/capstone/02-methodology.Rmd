@@ -4,15 +4,17 @@
 
 The training data used to train our model is a collection of midi files that was compiled by a Reddit user [see reddit page](https://www.reddit.com/r/WeAreTheMusicMakers/comments/3ajwe4/the_largest_midi_collection_on_the_internet/) and put up for [download](https://mega.co.nz/#!Elg1TA7T!MXEZPzq9s9YObiUcMCoNQJmCbawZqzAkHzY4Ym6Gs_Q). There are about 130,000 midi files from a wide range of genres included in this collection. Our training, however, centers around a small subset of the files that are of 4/4 rhythm, in order to reduce the chance of complication from training with a wider range of rhythmic patterns.
 
-In addition, in our pre-processing script, we took steps to "normalize" the samples as much as we can, in terms of making the tempo constant as well as transposing all songs to the key of C major (or A minor if in minor key). The efforts to normalize keys is not always successful. In some midi files, tempo and key changes are included as part of the metadata, which we can then extract and edit. But in others, the metadata is not included.
+In addition, in our pre-processing script, we took steps to "normalize" the samples as much as we can, in terms of making the tempo constant as well as transposing all songs to the key of C major (or A minor if in minor key). The efforts to normalize keys is not always successful. In some midi files, tempo and key changes are included as part of the metadata, which we can then extract and make changes accordingly. But in others, the metadata is not included.
 
-Before diving deeper into the details of our data, it is necessary to introduce the basic structure of midi files. Midi files (.mid) are digital records of musical "events" divided into various tracks, where each track contains a voice, an instrument, or a line of melody. For example, a midi file containing piano music might have two tracks representing the notes played by the two hands of the human piano player. Each time the human player plays a note, the midi file would record the following information: the time is the piano key is pressed; the time the key is released; how hard the key is pressed; the pitch bend. After collecting these information for each and every note in a song in a midi file, we will have most of the information needed to reproduce the song in its entirety down to some basic expressive elements. In the midi metadata, some other relevant information is stored, such as tempo, key, tempo changes, etc. Midi files are not music by themselves because they only contain the information needed to produce music; think of it as the digital equivalent of the sheet music. Midi decoders and synthesizers are needed to translate midi files into music.
+Before diving deeper into the details of our data, it is necessary to introduce the basic structure of midi files. Midi files (.mid) are digital records of musical "events" divided into various tracks, where each track contains a voice, an instrument, or a line of melody. For example, a midi file containing piano music might have two tracks representing the notes played by the two hands of the human piano player. Each time the human player plays a note, the midi file would record the following information: at what time is the piano key pressed; at what time is the key released; how hard is the key pressed; what is the pitch bend. After collecting these information for each and every note in a song in a midi file, we will have most of the information needed to reproduce the song in its entirety down to some basic expressive elements. In the midi metadata, some other relevant information is stored, such as tempo, key, tempo changes, etc. Midi files are not music by themselves because they only contain the information needed to produce music: it is the digital equivalent of the sheet music. Midi decoders and synthesizers are needed to translate midi files into music.
 
 If we strip the midi file structure down to its most basic elements, it would look something like this:
 
-**Insert graph 1-1, unable to get DiagrammeR to work for now**
+```{r, out.width="0.8\\linewidth", include=TRUE, fig.align="center", fig.cap=c("museGen Model Structure"), echo=FALSE}
+knitr::include_graphics("figure/midi_file_structure.png")
+```
 
-We can reimagine the midi file to be like a dictionary, where each track is indexed by its name, and in each track we have a nice tabular structure of data consisting of the following columns: pitch number, start time, end time, and pitch velocity (we will ignore pitch bend for now). For example, if we look at the first 3 notes played by the right hand in Beethoven's song Moonlight Sonata, we can tabulate them like the following:
+We can imagine the midi file to be a dictionary, where each track is indexed by its name, and in each track we have a nice tabular structure of data consisting of the following columns: pitch number, start time, end time, and pitch velocity (we will ignore pitch bend for now). For example, if we look at the first 3 notes played by the right hand in Beethoven's song Moonlight Sonata, we can tabulate them like the following:
 
 | Pitch | Start Time | End Time | Pitch Velocity |
 |-------|------------|----------|----------------|
@@ -31,7 +33,9 @@ For data fed into the model, we use a processing script to rewrite a pre-selecte
 
 [^1]: For our discriminator model this is necessary, but there are other model structures available to overcome this problem.
 
-**maybe insert a chart with sample data structure**
+```{r, out.width="0.8\\linewidth", include=TRUE, fig.align="center", fig.cap=c("museGen Model Structure"), echo=FALSE}
+knitr::include_graphics("figure/training_data_structure.png")
+```
 
 One early choice we made to make the pitch a one-hot vector was done out of the observation about the nature of pitches in the Western musical tradition: the meaning of pitches in the musical sense do not exist in a continuum despite their origins in the frequencies. Therefore, it does not make sense to treat them like so. Instead, one-hot encoding pitches will allow us to treat each pitch as independent objects; in addition, our model will be able to output softmax for pitches, therefore leading to pitch probabilities that can be further investigated. However, there are successful music generation models that treat pitches as one number.
 
@@ -41,7 +45,13 @@ One early choice we made to make the pitch a one-hot vector was done out of the 
 
 Our model follows the Generative Adversarial Networks (GAN) architecture. GANs are a special case of deep learning models where the goal is to turn random noise into some kind of output (images or, in our case, music) which captures the essence of the training data. They have been successfully deployed to generate realistic-looking images.
 
-The basic structure of the model has three parts: the generator, the discriminator, and the adversarial model, which combines the generator and the discriminator. The basic idea of the model is to train the discriminator with both real samples (from training data) and fake samples (generated by the generator), and then train the generator with the error from the discriminator. The goal is not to minimize the error of the generator or discriminator, but rather to have achieve a balance between the generator and the discriminator so that they get better together. **insert some kind of quote or footnote from wikipedia** 
+```{r, out.width="0.8\\linewidth", include=TRUE, fig.align="center", fig.cap=c("museGen Model Structure"), echo=FALSE}
+knitr::include_graphics("figure/GAN_structure.png")
+```
+
+The basic structure of the model has three parts: the generator, the discriminator, and the adversarial model, which combines the generator and the discriminator. The basic idea of the model is to train the discriminator with both real samples (from training data) and fake samples (generated by the generator), and then train the generator with the error from the discriminator. The goal is not to minimize the error of the generator or discriminator, but rather to have achieve a balance between the generator and the discriminator so that they get better together.[^2]
+
+[^2]: See Generative adversarial network, Wikipedia. https://en.wikipedia.org/wiki/Generative_adversarial_network
 
 ### Generator {.unnumbered}
 
@@ -63,7 +73,7 @@ Once the generator has made its predictions, we have to feed it through another 
 
 Our discriminator model is a simple dense neural network with input dimensions of 20*130 (for the 20 note sample, either generated or real) and outputs a float between 0 and 1 (using sigmoid activation) that represents the probability of whether the sample is fake (0) or real (1).
 
-**Insert discriminator model image here**
+**Insert Discriminator model image here**
 
 As we can see the model is a straightforward dense neural network (with dropout and batch normalization layers).   The model is deliberately kept simplistic here because a big concern during the training was the unequal speeds at which the generator and discriminator learns. More often than not in our case, the discriminator learns much quicker than the generator, and we have concluded that such a simple model actually was the most optimal so that the generator and discriminator can achieve balanced learning for long periods of time.
 

@@ -1,7 +1,9 @@
 library(DiagrammeR)
+library(DiagrammeRsvg)
+library(rsvg)
 
 # Data Graph 1-1
-DiagrammeR::grViz("
+graph <- DiagrammeR::grViz("
 digraph flowchart {
       # node definitions with substituted label text
       node [fontname = Helvetica, shape = rectangle]
@@ -37,6 +39,6 @@ digraph flowchart {
       [9]: 'Pitch Bend'
       ")
 
-export_graph(graph_name,
+export_graph(graph,
              file_name = "graph_1-1.png",
              file_type = "png")
