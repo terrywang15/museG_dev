@@ -1,13 +1,13 @@
 
-We propose the application of Deep Learning models to help individuals generate interesting music ideas. The platform has a GAN-based generator. The data used to train the generator are 130,000 midi files across many different genres of music. The algorithmic process is expected to be able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
+We propose the application of Deep Learning to help humans generate new and exciting music. There have been recent attempts around this topic (Google's Magenta) that focused mainly on automation. However, our approach is to form a partnership with humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system [our architecture choice: a Generative Adversarial Network (GAN), our data: 130,000 midi files from various generes] that focuses on music discovery; 2) incorporate user feedback back into the system to align model training with individualistic taste.
 
-Our work includes a modified version of the python package pretty_midi, which serves as a midi pre-processing starter package for Deep Learning. Using Generative Adversarial models, we provide insights on predicting pitches and duration to ultimately generate music notes.
+While maintaining the spirit of our approach, we narrowed the scope to the first step as an obtainable checkpoint. Our training concluded with sample outputs we consider interesting, and most importantly, music. We note a few obstacles that continue to make the first phase of work challenging: mode collapse during model training (i.e., learning ceases), model architectural design, and hyper parameter selection.
 
 \bigskip 
 \bigskip
 \bigskip
 
-**Keywords**: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing, Time Series Music Note Prediction.
+*keywords*: Deep Learning, Music Generation, Generative Adversarial Model, midi, Time Series Music Note Prediction
 
 \bigskip 
 \bigskip

@@ -96,15 +96,15 @@
 
 
 \Abstract{
-We propose the application of Deep Learning models to help individuals generate interesting music ideas. The platform has a GAN-based generator. The data used to train the generator are 130,000 midi files across many different genres of music. The algorithmic process is expected to be able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
+We propose the application of Deep Learning to help humans generate new and exciting music. There have been recent attempts around this topic (Google's Magenta) that focused mainly on automation. However, our approach is to form a partnership with humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system {[}our architecture choice: a Generative Adversarial Network (GAN), our data: 130,000 midi files from various generes{]} that focuses on music discovery; 2) incorporate user feedback back into the system to align model training with individualistic taste.
 
-Our work includes a modified version of the python package pretty\_midi, which serves as a midi pre-processing starter package for Deep Learning. Using Generative Adversarial models, we provide insights on predicting pitches and duration to ultimately generate music notes.
+While maintaining the spirit of our approach, we narrowed the scope to the first step as an obtainable checkpoint. Our training concluded with sample outputs we consider interesting, and most importantly, music. We note a few obstacles that continue to make the first phase of work challenging: mode collapse during model training (i.e., learning ceases), model architectural design, and hyper parameter selection.
 
 \bigskip 
 \bigskip
 \bigskip
 
-\textbf{Keywords}: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing, Time Series Music Note Prediction.
+\emph{keywords}: Deep Learning, Music Generation, Generative Adversarial Model, midi, Time Series Music Note Prediction
 
 \bigskip 
 \bigskip
@@ -113,13 +113,13 @@ Our work includes a modified version of the python package pretty\_midi, which s
 
 % Added by JMS
 \Executive{
-We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. The results show limited success in reaching our goal of meaningful musical output, and we include a few ideas for future improvement on the model.
+We propose the application of Deep Learning to generate interesting music ideas to aid individuals in their music creation process. The generated music sample results show some promise and bring us a step closer to reaching our goal of useful musical output. We include a few ideas on the future improvement of the model training process.
 
-Our main model is a Generative Adversarial Network with two components: the generative model, which takes a Gaussian noise input of length 128 and outputs a numpy array representing a 20-note midi sample; the discriminator, which takes an input of the numpy array representing a 20-note midi sample and outputs a float between 0 and 1, with 1 representing real and 0 fake. For real samples, we used a midi data repository totaling 130,000 midi files across many different genres of music, but for this project specifically we used mostly Baroque music. For generated samples, we use a deep neural network structure that terminates in separate branches for pitches, whose output is a length 128 softmax vector representing the probabilities of the pitches, and duration, whose output is a vector of 2 positive numbers representing the start and end time of the note, for each of the 20 notes generated. This structure seems to perform the best out of the many structures we tried.
+Our primary model is a GAN with two components: a generator and a discriminator (also called critic). The generator takes a random input and outputs a midi sample (a file type for music). The discriminator takes a midi sample as the input and outputs a classification of real or fake. For real samples, we used a midi data repository containing 130,000 midi files across many different genres of music. For this project, we specifically used Baroque music. We structured our data with two main components in mind: the music note and the duration of the note. The \texttt{note} was one-hot encoded with 128 possible notes. The duration of the note was broken out by \texttt{start\_time} and \texttt{end\_time}, which are positive float vectors. This structure seems to perform the best out of the many we tried.
 
-Some other models we tried are based on time series prediction of music notes, including an RNN model which uses grouping of 3 notes as input to predict the next 3 notes.
+Some other models we tried used time series prediction of music notes, including an RNN model that uses a grouping of three notes as input to predict the next three notes.
 
-Our work includes a modified version of the python package pretty\_midi. We adapted its main engine to pre-process midi files with varying tempo and key changes and write midi files into numpy array, as well as putting the generated numpy array back into the midi format. In addition, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
+In order to perform the necessary pre-processing of the data, our work includes a modified version of the python package pretty\_midi. We adapted pretty\_midi's main engine to manipulate midi files with varying tempo and key changes, adapt midi files into data structures usable by python, and reverse-adapt our output back into a midi that can be used by musical software. Lastly, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
 
 \bigskip
 \bigskip
@@ -156,15 +156,15 @@ We would like to thank Prof.~Yuri Balasanov for his guidance and kind support du
 
 %% Reorganized by JMS
   \begin{abstract}
-    We propose the application of Deep Learning models to help individuals generate interesting music ideas. The platform has a GAN-based generator. The data used to train the generator are 130,000 midi files across many different genres of music. The algorithmic process is expected to be able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
+    We propose the application of Deep Learning to help humans generate new and exciting music. There have been recent attempts around this topic (Google's Magenta) that focused mainly on automation. However, our approach is to form a partnership with humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system {[}our architecture choice: a Generative Adversarial Network (GAN), our data: 130,000 midi files from various generes{]} that focuses on music discovery; 2) incorporate user feedback back into the system to align model training with individualistic taste.
     
-    Our work includes a modified version of the python package pretty\_midi, which serves as a midi pre-processing starter package for Deep Learning. Using Generative Adversarial models, we provide insights on predicting pitches and duration to ultimately generate music notes.
+    While maintaining the spirit of our approach, we narrowed the scope to the first step as an obtainable checkpoint. Our training concluded with sample outputs we consider interesting, and most importantly, music. We note a few obstacles that continue to make the first phase of work challenging: mode collapse during model training (i.e., learning ceases), model architectural design, and hyper parameter selection.
     
     \bigskip 
     \bigskip
     \bigskip
     
-    \textbf{Keywords}: Deep Learning, Music Generation, Generative Adversarial Model, Midi Processing, Time Series Music Note Prediction.
+    \emph{keywords}: Deep Learning, Music Generation, Generative Adversarial Model, midi, Time Series Music Note Prediction
     
     \bigskip 
     \bigskip
@@ -172,13 +172,13 @@ We would like to thank Prof.~Yuri Balasanov for his guidance and kind support du
   \end{abstract}
  % Added by JMS
   \begin{executive}
-    We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. The results show limited success in reaching our goal of meaningful musical output, and we include a few ideas for future improvement on the model.
+    We propose the application of Deep Learning to generate interesting music ideas to aid individuals in their music creation process. The generated music sample results show some promise and bring us a step closer to reaching our goal of useful musical output. We include a few ideas on the future improvement of the model training process.
     
-    Our main model is a Generative Adversarial Network with two components: the generative model, which takes a Gaussian noise input of length 128 and outputs a numpy array representing a 20-note midi sample; the discriminator, which takes an input of the numpy array representing a 20-note midi sample and outputs a float between 0 and 1, with 1 representing real and 0 fake. For real samples, we used a midi data repository totaling 130,000 midi files across many different genres of music, but for this project specifically we used mostly Baroque music. For generated samples, we use a deep neural network structure that terminates in separate branches for pitches, whose output is a length 128 softmax vector representing the probabilities of the pitches, and duration, whose output is a vector of 2 positive numbers representing the start and end time of the note, for each of the 20 notes generated. This structure seems to perform the best out of the many structures we tried.
+    Our primary model is a GAN with two components: a generator and a discriminator (also called critic). The generator takes a random input and outputs a midi sample (a file type for music). The discriminator takes a midi sample as the input and outputs a classification of real or fake. For real samples, we used a midi data repository containing 130,000 midi files across many different genres of music. For this project, we specifically used Baroque music. We structured our data with two main components in mind: the music note and the duration of the note. The \texttt{note} was one-hot encoded with 128 possible notes. The duration of the note was broken out by \texttt{start\_time} and \texttt{end\_time}, which are positive float vectors. This structure seems to perform the best out of the many we tried.
     
-    Some other models we tried are based on time series prediction of music notes, including an RNN model which uses grouping of 3 notes as input to predict the next 3 notes.
+    Some other models we tried used time series prediction of music notes, including an RNN model that uses a grouping of three notes as input to predict the next three notes.
     
-    Our work includes a modified version of the python package pretty\_midi. We adapted its main engine to pre-process midi files with varying tempo and key changes and write midi files into numpy array, as well as putting the generated numpy array back into the midi format. In addition, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
+    In order to perform the necessary pre-processing of the data, our work includes a modified version of the python package pretty\_midi. We adapted pretty\_midi's main engine to manipulate midi files with varying tempo and key changes, adapt midi files into data structures usable by python, and reverse-adapt our output back into a midi that can be used by musical software. Lastly, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
     
     \bigskip
     \bigskip
@@ -254,19 +254,17 @@ The final training data consists of a randomly sampled of 100,000 samples of 20 
 
 \textbf{Introduction}
 
-We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. Our model focuses on generating melody instead of the sound - we use midi files, or consisting of music notes, as training data. In addition, we explore an unique model structure where the time dependency inherent in music is not explicitly given by the model structure but is inferred by the model through the deep neural net structure. Despite this, we have observed that the model was able to learn time-dependent musical structure, such as the pre-dominant to dominant to tonic chord progression.
+We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. Our model focuses on generating melody instead of the sound. We use midi files consisting of music notes, as training data. In addition, we explore a unique model structure where the time dependency inherent in music is not explicitly given by the model structure but is inferred by the model through the deep neural net structure. Despite this, we have observed that the model was able to learn time-dependent musical structure, such as the pre-dominant to dominant to tonic chord progression.
 
-In addition, the model exhibits certain unconventional behavior. This can be attributed to the model using a different perspective to create music compared to humans. This behavior may or may not be useful in inspiring musicians to create interesting sounding music that at the same time stays true to the kind of melodies that the model is trained on.
+We note that the model exhibits certain unconventional behavior. This can be attributed to the model using a different perspective to create music compared to humans. This behavior may be useful in inspiring musicians to create interesting from a different perspective.
 
 \textbf{Purpose}
 
-In 1950s, experimental music composers wrote music using randomized statistical modelling. In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of group of words and sentences to produce potentially significant lyrical combinations. Nowadays, there is an entire industry built around AI generated music including Flow Machines, IBM Watson Beat and Google's NSynth.
+Our purpose is to build an effective platform to help artists in their creative process and assist them in music composition. Note that artists do not have to be professionals. Any individual interested in creating music should find the platform useful and empowering. The first concrete step we need to take to achieve that goal is to build a music generation model that is able to generate music that is similar to what a human would compose in the style of music the model is trained on.
 
-Our purpose is to build an effective platform to help artists in their creative process and assist them in music composition. Note that artists do not have to be professionally designated. Any individual interested in creating music should find the platform useful and empowering. The first concrete step we need to take to achieve that goal is to build a music generation model that is able to generate music that is similar to what a human would compose in the style of music the model is trained on.
+To provide some historical context, consider in 1950s that experimental music composers wrote music using randomized statistical modelling. In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of groups of words and sentences to produce potentially significant lyrical combinations. A 17 seconds long melody named ``The Silver Scale'' was the first ever music generated by computer, which was in the year 1957. Some of the very early algorithms used stochastic Markov Chain models for generation and rule filtering.
 
-\textbf{Conclusion}
-
-The music generator achieved the goals we set at the beginning. Our deep neural network model is able to generate natural sounding musical passages that mimic the musical styles of the data it is fed, with minimal artificial elements model structure and extensive training data preprocessing. It shows a lot of promise to become a tool for musicians to compose new music.
+Since then, computer music has been gaining a lot of public attention. In present time, there is an entire industry built around AI generated music including Flow Machines, IBM Watson Beat and Google's NSynth.
 
 \newpage
 
@@ -282,7 +280,7 @@ The training data used to train our model is a collection of midi files that was
 
 In addition, in our pre-processing script, we took steps to ``normalize'' the samples as much as we can, in terms of making the tempo constant as well as transposing all songs to the key of C major (or A minor if in minor key). The efforts to normalize keys is not always successful. In some midi files, tempo and key changes are included as part of the metadata, which we can then extract and edit. But in others, the metadata is not included.
 
-Before diving deeper into the details of our data, it is necessary to introduce the basic structure of midi files. Midi files (.mid) are digital records of musical ``events'' divided into various tracks, where each track contains a voice, an instrument, or a line of melody. For example, a midi file containing piano music might have two tracks representing the notes played by the two hands of the human piano player. Each time the human player plays a note, the midi file would record the following information: at what time is the piano key pressed; at what time is the key released; how hard is the key pressed; what is the pitch bend. After collecting these information for each and every note in a song in a midi file, we will have most of the information needed to reproduce the song in its entirety down to some basic expressive elements. In the midi metadata, some other relevant information is stored, such as tempo, key, tempo changes, etc. Midi files are not music by themselves because they only contain the information needed to produce music - think of it as the digital equivalent of the sheet music. Midi decoders and synthesizers are needed to translate midi files into music.
+Before diving deeper into the details of our data, it is necessary to introduce the basic structure of midi files. Midi files (.mid) are digital records of musical ``events'' divided into various tracks, where each track contains a voice, an instrument, or a line of melody. For example, a midi file containing piano music might have two tracks representing the notes played by the two hands of the human piano player. Each time the human player plays a note, the midi file would record the following information: the time is the piano key is pressed; the time the key is released; how hard the key is pressed; the pitch bend. After collecting these information for each and every note in a song in a midi file, we will have most of the information needed to reproduce the song in its entirety down to some basic expressive elements. In the midi metadata, some other relevant information is stored, such as tempo, key, tempo changes, etc. Midi files are not music by themselves because they only contain the information needed to produce music; think of it as the digital equivalent of the sheet music. Midi decoders and synthesizers are needed to translate midi files into music.
 
 If we strip the midi file structure down to its most basic elements, it would look something like this:
 
