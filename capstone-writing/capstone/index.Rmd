@@ -9,6 +9,8 @@ department: 'Continuing Liberal and Professional Studies'
 degree: 'Master of Science in Analytics'
 title: 'musG_dev, the Deep Music Generator'
 knit: "bookdown::render_book"
+header-includes:
+    - \usepackage{setspace}\doublespacing
 site: bookdown::bookdown_site
 output: 
   phoenixdown::capstone_pdf: default
