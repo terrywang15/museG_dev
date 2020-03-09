@@ -33,7 +33,11 @@ executive: |
  # A preface is OPTIONAL. Use a preface if you want to explain your interest in the report topic and include anything about your experience that readers should keep in mind. If you would rather not include a preface, comment it out or delete it from the YAML header of the index.Rmd file.
 
 acknowledgements: |
-  We would like to thank Prof. Yuri Balasanov for his guidance and kind support during our investigations.
+  We would like to thank our mentor, Prof. Yuri Balasanov, for his guidance and kind support during our investigations. 
+  
+  Prof. Mildred Rey provided valuable feedback to improve the style and content of this paper. We truly appreciate her help.
+  
+  Profs. Lawrence Zbikowski and Sam Pluta provided additional feedback. Thank you.
 #dedication: |
 #  You can have a dedication here if you wish.
 #

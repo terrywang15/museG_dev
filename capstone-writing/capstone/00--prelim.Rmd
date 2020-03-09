@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Preliminary Content {.unnumbered}
 
 ## Acknowledgements {.unnumbered}
@@ -20,6 +25,8 @@ The purpose of the project is to develop a deep learning-based music generator (
 
 By doing this iteratively, the weights and parameters of the model will hopefully converge to a point at which the music generated is satisfactory to the user, who can use the output of the model, or save the weights for future use. We expect the algorithmic process to able to explore more music combinations than any individual and thus provide a more holistic and creative approach to music creation.
 
+
+<!--
 **Variables and Scope** 
 
 Python libraries like Music21 and PrettyMIDI are the toolkits we used to extract meaningful information from our midi files. 
@@ -40,3 +47,4 @@ From the measure, we were then able to identify:
 We did our initial EDA with metrics like the Pitch Histogram and other Composition Parameters Analysis. AnalyzedKey is a Key object with a few extra parameters and  correlationCoefficient shows how well this key fits the profile of a piece in that key. We analyzed music time Signature, expected music key, nusic key confidence and other music key alternatives based on correlation values.
 
 We also extracted harmonic sequences and attempted harmonic reductions to be able to compare how similar or dissimilar different music files are from each other.
+-->
