@@ -182,12 +182,13 @@ def keyConvert(NP, original_key, target_key):
                     return np_conv
 
 
-def generate_samples(np_midi_file, sample_length, n_samples=1):
+def generate_samples(np_midi_file, sample_length, n_samples=1, end_time=True):
     """
     Generate random samples of a certain length from a midi file in numpy form
     :param np_midi_file: a .npy file which can be understood as a list of numpy arrays
     :param sample_length: number of notes contained in each sample generated
     :param n_samples: number of samples to be generated
+    :param end_time: boolean, if second column indicates end times slot. If false, then it indicates length of note
     :return: a numpy array of shape (n_samples, sample_length, 3)
     """
 
@@ -219,7 +220,10 @@ def generate_samples(np_midi_file, sample_length, n_samples=1):
         samp_notes = samp_track[samp_startPos:samp_startPos+sample_length, :]
 
         # normalize start time to 0
-        samp_notes = samp_notes - [samp_notes[0, 0], samp_notes[0, 0], 0]
+        if end_time:
+            samp_notes = samp_notes - [samp_notes[0, 0], samp_notes[0, 0], 0]
+        else:
+            samp_notes = samp_notes - [samp_notes[0, 0], 0, 0]
 
         output.append(samp_notes)
 

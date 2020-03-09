@@ -141,5 +141,7 @@ from .containers import *
 from .utilities import *
 from .constants import *
 from .musGen_utils import *
+from .musGen_models import *
+from .musGen_training import *
 
 __version__ = '0.2.8'
