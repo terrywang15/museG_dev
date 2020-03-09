@@ -9,14 +9,17 @@ import numpy as np
 
 from pretty_midi_musGen.musGen_utils import generate_samples, sample_pitch_to_onehot
 
+# sample usage
+# python3 generate_training_samples.py midi_np_data/bach_choral training_samples 20 100000 False
 
-def main(source_folder, samples_folder, sample_length, n_samples):
+def main(source_folder, samples_folder, sample_length, n_samples, end_time):
     """
     generate samples from folder containing .npy files, with specified length and num of samples
     :param source_folder: folder containing .npy files
     :param samples_folder: target folder to write to
     :param sample_length: how many notes should each sample contain
     :param n_samples: how many samples should we generate
+    :param end_time: str, "True" then second column indicates end timestamp
     :return: nothing - samples written as .npy file to samples folder with a .txt log
 
     ## Note: .npy files must exist directly under source folder and not under sub folders
@@ -37,13 +40,18 @@ def main(source_folder, samples_folder, sample_length, n_samples):
     processed_files = []
     unprocessed_files = []
 
+    # check whether ending time is end time or note length
+    end_time_ind = False
+    if end_time == "True":
+        end_time_ind = True
+
     num_sampled = 0
     while num_sampled < n_samples:
         # randomly pick one file
         sample_file = all_files[random.randint(0, num_files-1)]
         # get 1 random sample from that file
         try:
-            samp = generate_samples(sample_file, sample_length, 1)
+            samp = generate_samples(sample_file, sample_length, 1, end_time_ind)
             processed_files.append(sample_file)
             # print("successfully processed " + sample_file)
             output.append(sample_pitch_to_onehot(samp))
@@ -74,4 +82,5 @@ if __name__ == '__main__':
     sys.exit(main(source_folder=sys.argv[1],
                   samples_folder=sys.argv[2],
                   sample_length=int(sys.argv[3]),
-                  n_samples=int(sys.argv[4])))
+                  n_samples=int(sys.argv[4]),
+                  end_time=sys.argv[5]))
