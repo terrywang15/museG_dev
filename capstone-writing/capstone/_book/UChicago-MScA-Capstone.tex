@@ -96,7 +96,7 @@
 
 
 \Abstract{
-We propose the application of Deep Learning to help humans generate new and exciting music. There have been recent attempts around this topic (Google's Magenta) that focused mainly on automation. However, our approach is to form a partnership with humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system {[}our architecture choice: a Generative Adversarial Network (GAN), our data: 130,000 midi files from various generes{]} that focuses on music discovery; 2) incorporate user feedback back into the system to align model training with individualistic taste.
+We propose the application of Deep Learning to help humans generate new music. There have been recent attempts around this area (Google's Magenta) that focused mainly on producing music through automation. However, our approach is to form a partnership between humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system, with a Generative Adversarial Network and 130,000 midi files, that focuses on music generation; 2) incorporate user feedback back into the system to align model training with individualistic taste.
 
 While maintaining the spirit of our approach, we narrowed the scope to the first step as an obtainable checkpoint. Our training concluded with sample outputs we consider interesting, and most importantly, music. We note a few obstacles that continue to make the first phase of work challenging: mode collapse during model training (i.e., learning ceases), model architectural design, and hyper parameter selection.
 
@@ -104,7 +104,7 @@ While maintaining the spirit of our approach, we narrowed the scope to the first
 \bigskip
 \bigskip
 
-\emph{keywords}: Deep Learning, Music Generation, Generative Adversarial Model, midi, Time Series Music Note Prediction
+~~~~~~\emph{Keywords}: deep learning, music generation, generative adversarial model, midi
 
 \bigskip 
 \bigskip
@@ -113,13 +113,11 @@ While maintaining the spirit of our approach, we narrowed the scope to the first
 
 % Added by JMS
 \Executive{
-We propose the application of Deep Learning to generate interesting music ideas to aid individuals in their music creation process. The generated music sample results show some promise and bring us a step closer to reaching our goal of useful musical output. We include a few ideas on the future improvement of the model training process.
+We propose the application of deep learning to generate new music ideas to aid individuals in their music creation process. This approach in using deep learning differs from current approaches that emphasize automation which removes human input in the music generation process. The purpose is to have an interaction between human and AI. As such, it should be seen as an augmentation. The generated sample results can be perceived as musical. However, we include a few ideas on the future improvement of the model training process.
 
-Our primary model is a GAN with two components: a generator and a discriminator (also called critic). The generator takes a random input and outputs a midi sample (a file type for music). The discriminator takes a midi sample as the input and outputs a classification of real or fake. For real samples, we used a midi data repository containing 130,000 midi files across many different genres of music. For this project, we specifically used Baroque music. We structured our data with two main components in mind: the music note and the duration of the note. The \texttt{note} was one-hot encoded with 128 possible notes. The duration of the note was broken out by \texttt{start\_time} and \texttt{end\_time}, which are positive float vectors. This structure seems to perform the best out of the many we tried.
+Our primary model is a GAN with two components: a generator and a discriminator (also called critic). The generator takes a random input and outputs a midi sample (a file type for music). The discriminator takes a midi sample as the input and outputs a classification of ``real'' or ``fake''. For real samples, we used a midi data repository containing 130,000 midi files across many different genres of music. For this project, we specifically used Baroque music. We structured our data with two main components in mind: the pitch and the duration of the note. The pitch was one-hot encoded with 128 possible pitches. The duration of the note was broken out by start time and end time, which are positive float vectors. This structure seems to perform the best out of the many we tried.
 
-Some other models we tried used time series prediction of music notes, including an RNN model that uses a grouping of three notes as input to predict the next three notes.
-
-In order to perform the necessary pre-processing of the data, our work includes a modified version of the python package pretty\_midi. We adapted pretty\_midi's main engine to manipulate midi files with varying tempo and key changes, adapt midi files into data structures usable by python, and reverse-adapt our output back into a midi that can be used by musical software. Lastly, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
+In order to set up the model training for success, the tempo of the music had to be made constant and varying keys had to be tranposed to C major and A minor. Additionally, data had to be further pre-processed so the deep learning system can interpret and learn the structure in the data. To perform these steps, our work includes a modified version of the python package pretty\_midi. We adapted pretty\_midi's main engine to manipulate midi files with varying tempo and key changes, adapt midi files into data structures usable by python, and reverse-adapt our output back into a midi that can be used by music production software. Lastly, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
 
 \bigskip
 \bigskip
@@ -161,7 +159,7 @@ Profs. Lawrence Zbikowski and Sam Pluta provided additional feedback. Thank you.
 
 %% Reorganized by JMS
   \begin{abstract}
-    We propose the application of Deep Learning to help humans generate new and exciting music. There have been recent attempts around this topic (Google's Magenta) that focused mainly on automation. However, our approach is to form a partnership with humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system {[}our architecture choice: a Generative Adversarial Network (GAN), our data: 130,000 midi files from various generes{]} that focuses on music discovery; 2) incorporate user feedback back into the system to align model training with individualistic taste.
+    We propose the application of Deep Learning to help humans generate new music. There have been recent attempts around this area (Google's Magenta) that focused mainly on producing music through automation. However, our approach is to form a partnership between humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system, with a Generative Adversarial Network and 130,000 midi files, that focuses on music generation; 2) incorporate user feedback back into the system to align model training with individualistic taste.
     
     While maintaining the spirit of our approach, we narrowed the scope to the first step as an obtainable checkpoint. Our training concluded with sample outputs we consider interesting, and most importantly, music. We note a few obstacles that continue to make the first phase of work challenging: mode collapse during model training (i.e., learning ceases), model architectural design, and hyper parameter selection.
     
@@ -169,7 +167,7 @@ Profs. Lawrence Zbikowski and Sam Pluta provided additional feedback. Thank you.
     \bigskip
     \bigskip
     
-    \emph{keywords}: Deep Learning, Music Generation, Generative Adversarial Model, midi, Time Series Music Note Prediction
+    ~~~~~~\emph{Keywords}: deep learning, music generation, generative adversarial model, midi
     
     \bigskip 
     \bigskip
@@ -177,13 +175,11 @@ Profs. Lawrence Zbikowski and Sam Pluta provided additional feedback. Thank you.
   \end{abstract}
  % Added by JMS
   \begin{executive}
-    We propose the application of Deep Learning to generate interesting music ideas to aid individuals in their music creation process. The generated music sample results show some promise and bring us a step closer to reaching our goal of useful musical output. We include a few ideas on the future improvement of the model training process.
+    We propose the application of deep learning to generate new music ideas to aid individuals in their music creation process. This approach in using deep learning differs from current approaches that emphasize automation which removes human input in the music generation process. The purpose is to have an interaction between human and AI. As such, it should be seen as an augmentation. The generated sample results can be perceived as musical. However, we include a few ideas on the future improvement of the model training process.
     
-    Our primary model is a GAN with two components: a generator and a discriminator (also called critic). The generator takes a random input and outputs a midi sample (a file type for music). The discriminator takes a midi sample as the input and outputs a classification of real or fake. For real samples, we used a midi data repository containing 130,000 midi files across many different genres of music. For this project, we specifically used Baroque music. We structured our data with two main components in mind: the music note and the duration of the note. The \texttt{note} was one-hot encoded with 128 possible notes. The duration of the note was broken out by \texttt{start\_time} and \texttt{end\_time}, which are positive float vectors. This structure seems to perform the best out of the many we tried.
+    Our primary model is a GAN with two components: a generator and a discriminator (also called critic). The generator takes a random input and outputs a midi sample (a file type for music). The discriminator takes a midi sample as the input and outputs a classification of ``real'' or ``fake''. For real samples, we used a midi data repository containing 130,000 midi files across many different genres of music. For this project, we specifically used Baroque music. We structured our data with two main components in mind: the pitch and the duration of the note. The pitch was one-hot encoded with 128 possible pitches. The duration of the note was broken out by start time and end time, which are positive float vectors. This structure seems to perform the best out of the many we tried.
     
-    Some other models we tried used time series prediction of music notes, including an RNN model that uses a grouping of three notes as input to predict the next three notes.
-    
-    In order to perform the necessary pre-processing of the data, our work includes a modified version of the python package pretty\_midi. We adapted pretty\_midi's main engine to manipulate midi files with varying tempo and key changes, adapt midi files into data structures usable by python, and reverse-adapt our output back into a midi that can be used by musical software. Lastly, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
+    In order to set up the model training for success, the tempo of the music had to be made constant and varying keys had to be tranposed to C major and A minor. Additionally, data had to be further pre-processed so the deep learning system can interpret and learn the structure in the data. To perform these steps, our work includes a modified version of the python package pretty\_midi. We adapted pretty\_midi's main engine to manipulate midi files with varying tempo and key changes, adapt midi files into data structures usable by python, and reverse-adapt our output back into a midi that can be used by music production software. Lastly, we provided an assortment of utility functions and model selections, which we made into a python package together with the pretty\_midi.
     
     \bigskip
     \bigskip
@@ -216,62 +212,27 @@ Profs. Lawrence Zbikowski and Sam Pluta provided additional feedback. Thank you.
 \chapter*{Introduction}\label{introduction}}
 \addcontentsline{toc}{chapter}{Introduction}
 
-\hypertarget{problem-statement}{%
-\section*{Problem Statement}\label{problem-statement}}
-\addcontentsline{toc}{section}{Problem Statement}
+Perfecting the creative process is a goal across all forms of art (ex. music, photography, painting, singing, poetry, writing). Finding a place to start can be the most challenging (writer's block). A musician can go down a melodic path that leads to a dead end. The process of discovery and satisfaction by the creator is iterative trial and error. To use a model as an analogy, this would be similar to an infinite grid search for hyperparameters --- something that is not practical in the field of machine learning. Astonishingly, musicians today have been able to create music with their bare intellect and network of inspiration.
 
-A 17 seconds long melody named ``The Silver Scale'' was the first ever music generated by computer, which was in the year 1957. Some of the very early algorithms used stochastic Markov Chain models for generation and rule filtering. Since then, computer music has been gaining a lot of public attention. The objective is to assist human musicians (composers, arrangers, producers etc) with the help of computer based music generation environments.
+While there are successful musicians in today's creative environment, we think there is always room for improvement in the creative process. This deep learning approach aims to be the catalyst for that improvement by handling the difficult and arduous task of discovery and ideation for musicians and individuals interested in creating music by generating new melodic ideas in a short amount of time based on the musician's preferences, dramatically enhancing the creative capacity of the musician.
 
-The concept is to let the machine learn the music styles automatically with as little human intervention as possible. The motivation behind using Deep Learning models to generate music is its generality and flexibility. As opposed to a rule based or a grammar based system, Deep Learning can generate samples which inherit the music styles and introduce appropriate randomness.
+The purpose of the project is to develop a deep learning-based music generator (instrumental music) that has a good understanding of the language of music and can generate human-like outputs. Ultimately, the generator supports musicians and non-musicians alike in developing and refining musical ideas. We divided the model phase of the project into two parts: Generation and Validation.
 
-\hypertarget{research-purpose}{%
-\section*{Research Purpose}\label{research-purpose}}
-\addcontentsline{toc}{section}{Research Purpose}
+By doing this iteratively, the weights and parameters of the model will hopefully converge to a point at which the music generated is satisfactory to the user so they can use the output of the model or save the weights for future use. We expect the algorithmic process to able to explore more music combinations than any individual and thus provide a more holistic and creative approach to music creation.
 
-The purpose of this project is to develop a deep learning based music generator (instrumental music) which has a good understanding of the language of music and is able to generate human-like outputs, ultimately helping musicians and non-musicians alike to develop and refine musical ideas, and facilitate them in the music composition process. The model follows the Generative Adversarial Network structure, in which a generator and a discriminator (also called critic) compete to become better at generating human-like samples and finding fake samples, respectively. In contrast to more popular approaches that use explicit and artificial model structures to model time dependency and pattern recognition, we use a deep neural network structure for the generator which we have proven to achieve similar level of musical output.
-
-During training, weights and parameters of the model will hopefully converge to a point at which the music generated is satisfactory to the user, who can use the output of the model, or save the weights for future use. In a sense, we are democratizing deep learning to non-technical users wishing to generate new music ideas in a novel way. Moreover, we expect the algorithmic process to able to explore more music combinations than any individual, and thus provide a more holistic and creative approach to music creation.
-
-\hypertarget{variables-and-scope}{%
-\section*{Variables and Scope}\label{variables-and-scope}}
-\addcontentsline{toc}{section}{Variables and Scope}
-
-We used a midi dataset ( \href{https://www.reddit.com/r/WeAreTheMusicMakers/comments/3ajwe4/the_largest_midi_collection_on_the_internet/}{see reddit page}) ( \href{https://mega.co.nz/\#!Elg1TA7T!MXEZPzq9s9YObiUcMCoNQJmCbawZqzAkHzY4Ym6Gs_Q}{download}) consisting of 130,000 midi files from a wide range of genres included in this collection. We substantially narrowed down our training data to around 30 songs representative of the Baroque era.
-
-Python libraries like Music21 and PrettyMIDI are the toolkits we used to extract meaningful information from our MIDI files.
-
-Some initial EDA led us to reading the music files as music21.stream.Score objects, which is a stream subclass for handling multi-part music. We were able to extract all partStreams in a Score using parts.stream.
-
-The Stream object can then be used to identify:
-1. Instruments
-2. Key Signatures
-3. Overlaps
-4. Time Signatures
-5. Measures
-
-From the measure, we were then able to identify:
-1. Notes
-2. Chord
-
-Our initial EDA consisted of generating the Pitch Histogram and performing other Composition Parameters Analysis. We analyzes Music time Signature, Expected Music Key, Music Key Confidence and other Music Key Alternatives based on correlation values. The EDA helped us to narrow down on Baroque music because of its structural similarity and style saliency, so that we can better assesss the quality of the generator's output.
-
-The final training data consists of a randomly sampled of 100,000 samples of 20 notes taken from the 30 Baroque songs. All of the generated samples are also capable of generating 20-note samples in the same format as the input data.
+At the current stage, we are focused on taking the first step towards our stated goal, and have created a deep learning model that shows great promise of generating human-like musical output.
 
 \hypertarget{background}{%
 \chapter*{Background}\label{background}}
 \addcontentsline{toc}{chapter}{Background}
 
-\textbf{Introduction}
+We propose the application of Deep Learning models to help individuals generate interesting music ideas with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. Our model focuses on generating melody instead of the sound. We use midi files consisting of music notes, as training data. In addition, we explore a unique model structure where the time dependency inherent in music is not explicitly given to the model but is inferred by the model through the deep neural network structure. Despite this, we have observed that the model was able to learn time-dependent musical structure, such as the pre-dominant to dominant to tonic chord progression.
 
-We propose the application of Deep Learning models to help individuals generate interesting music ideas, with the goal of aiding musicians to use these computer-generated musical ideas to enhance their music writing process. Our model focuses on generating melody instead of the sound. We use midi files consisting of music notes, as training data. In addition, we explore a unique model structure where the time dependency inherent in music is not explicitly given by the model structure but is inferred by the model through the deep neural net structure. Despite this, we have observed that the model was able to learn time-dependent musical structure, such as the pre-dominant to dominant to tonic chord progression.
+We note that the model exhibits certain unconventional behavior. This can be attributed to the model using a different perspective to create music compared to humans. This behavior may be useful in inspiring musicians to create new music.
 
-We note that the model exhibits certain unconventional behavior. This can be attributed to the model using a different perspective to create music compared to humans. This behavior may be useful in inspiring musicians to create interesting from a different perspective.
+\textbf{Historical Background}
 
-\textbf{Purpose}
-
-Our purpose is to build an effective platform to help artists in their creative process and assist them in music composition. Note that artists do not have to be professionals. Any individual interested in creating music should find the platform useful and empowering. The first concrete step we need to take to achieve that goal is to build a music generation model that is able to generate music that is similar to what a human would compose in the style of music the model is trained on.
-
-To provide some historical context, consider in 1950s that experimental music composers wrote music using randomized statistical modelling. In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of groups of words and sentences to produce potentially significant lyrical combinations. A 17 seconds long melody named ``The Silver Scale'' was the first ever music generated by computer, which was in the year 1957 (nSFTMC, 2020). Some of the very early algorithms used stochastic Markov Chain models for generation and rule filtering (Temperley, 2007).
+in 1957, A 17 seconds long melody named ``The Silver Scale'' was the first ever music generated by computer (nSFTMC, 2020) using synthesizers. Around the same time, musicians and statisticians started to attempt to decode the language of music using statistical methods. Some of the very early algorithms used stochastic Markov Chain models for generation and rule filtering as well as more advanced Bayesian models (Temperley, 2007). In 1990s, David Bowie built the Verbasizer, which implemented a random re-ordering of groups of words and sentences to produce potentially significant lyrical combinations (provide an example of this).
 
 Since then, computer music has been gaining a lot of public attention. In present time, there is an entire industry built around AI generated music including Flow Machines (Flow Machine Authors, 2020), IBM Watson Beat (IBM Corporation, 2020) and Google's NSynth (Google AI, 2020).
 
@@ -281,15 +242,17 @@ Since then, computer music has been gaining a lot of public attention. In presen
 \chapter*{Methodology}\label{methodology}}
 \addcontentsline{toc}{chapter}{Methodology}
 
+The purpose is to build an effective platform to help artists in their creative process and assist them in music composition. Note that artists do not have to be professionals. Any individual interested in creating music should find the platform useful and empowering. The first concrete step we need to take to achieve that goal is to build a music generation model that is able to generate music that is similar to what a human would compose in the style of music the model is trained on. In this section we will dive deep into the details of how we preprocess the training data and how we set up the model for music generation.
+
 \hypertarget{methodology-data}{%
 \section*{Data}\label{methodology-data}}
 \addcontentsline{toc}{section}{Data}
 
 The training data used to train our model is a collection of midi files that was compiled by a Reddit user \href{https://www.reddit.com/r/WeAreTheMusicMakers/comments/3ajwe4/the_largest_midi_collection_on_the_internet/}{see reddit page} and put up for \href{https://mega.co.nz/\#!Elg1TA7T!MXEZPzq9s9YObiUcMCoNQJmCbawZqzAkHzY4Ym6Gs_Q}{download}. There are about 130,000 midi files from a wide range of genres included in this collection. Our training, however, centers around a small subset of the files that are of 4/4 rhythm, in order to reduce the chance of complication from training with a wider range of rhythmic patterns.
 
-In addition, in our pre-processing script, we took steps to ``normalize'' the samples as much as we can, in terms of making the tempo constant as well as transposing all songs to the key of C major (or A minor if in minor key). The efforts to normalize keys is not always successful. In some midi files, tempo and key changes are included as part of the metadata, which we can then extract and make changes accordingly. But in others, the metadata is not included.
+In addition, in our pre-processing script, we took steps to ``normalize'' the samples, in terms of making the tempo constant as well as transposing all songs to the key of C major (or A minor if in minor key). The efforts to normalize keys is not always successful. In some midi files, tempo and key changes are included as part of the metadata, which we can then extract and make changes accordingly. But in others, the metadata is not included in which case we do not adjust the keys.
 
-Before diving deeper into the details of our data, it is necessary to introduce the basic structure of midi files. Midi files (.mid) are digital records of musical ``events'' divided into various tracks, where each track contains a voice, an instrument, or a line of melody. For example, a midi file containing piano music might have two tracks representing the notes played by the two hands of the human piano player. Each time the human player plays a note, the midi file would record the following information: at what time is the piano key pressed; at what time is the key released; how hard is the key pressed; what is the pitch bend. After collecting these information for each and every note in a song in a midi file, we will have most of the information needed to reproduce the song in its entirety down to some basic expressive elements. In the midi metadata, some other relevant information is stored, such as tempo, key, tempo changes, etc. Midi files are not music by themselves because they only contain the information needed to produce music: it is the digital equivalent of the sheet music. Midi decoders and synthesizers are needed to translate midi files into music.
+In order to understand how to convert midi files into a format that can be an input to a deep neural network, it is necessary to introduce the basic structure of midi files. Midi files (.mid) are digital records of musical ``events'' divided into various tracks, where each track contains a voice, an instrument, or a line of melody. For example, a midi file containing piano music might have two tracks representing the notes played by the two hands of the human piano player. Each time the human player plays a note, the midi file would record the following information: which key is pressed; the time the key is pressed; the time the key is released; how hard the key is pressed; what the pitch bend is. After collecting this information for each and every note in a song in a midi file, we would have most of the information needed to reproduce the song in its entirety down to some basic expressive elements. In the midi metadata, some other relevant information is stored, such as tempo, key, tempo changes, etc. Midi files are not music by themselves because they only contain the information needed to produce music: it is the digital equivalent of sheet music. Midi decoders and synthesizers are needed to translate midi files into music.
 
 If we strip the midi file structure down to its most basic elements, it would look something like this:
 \begin{figure}
@@ -300,7 +263,7 @@ If we strip the midi file structure down to its most basic elements, it would lo
 
 \caption{Midi File Structure}\label{fig:unnamed-chunk-2}
 \end{figure}
-We can imagine the midi file to be a dictionary, where each track is indexed by its name, and in each track we have a nice tabular structure of data consisting of the following columns: pitch number, start time, end time, and pitch velocity (we will ignore pitch bend for now). For example, if we look at the first 3 notes played by the right hand in Beethoven's song Moonlight Sonata, we can tabulate them like the following:
+We can imagine the midi file to be a dictionary, where each track is indexed by its name, and in each track we have a tabular structure of data consisting of the following columns: pitch number, start time, end time, and pitch velocity (we will ignore pitch bend for now). For example, if we look at the first three notes played by the right hand in Beethoven's Moonlight Sonata, we can tabulate them as follows:
 \begin{longtable}[]{@{}llll@{}}
 \caption{Midi File Structure Example}\tabularnewline
 \toprule
@@ -316,13 +279,11 @@ Pitch & Start Time & End Time & Pitch Velocity\tabularnewline
 64 & 0.81 & 1.21 & 26\tabularnewline
 \bottomrule
 \end{longtable}
-The above table tells us the following: at time 0.00 seconds pitch 56 is played with velocity 33, and the note stopped at time 0.40 seconds; then at time 0.40 seconds pitch 61 is played with velocity 26, and the note stopped at time 0.81 seconds; and so on. We can see clearly how a piece of music can be represented digitally via the midi file structure.
+Table 1 tells us the following: At time 0.00 seconds, pitch 56 is played with velocity 33, and the note stopped at time 0.40 seconds; then at time 0.40 seconds pitch 61 is played with velocity 26, and the note stopped at time 0.81 seconds; and so on. We can see clearly how a piece of music can be represented digitally via the midi file structure.
 
-The other thing to note about midi is the data types of the columns above. The \texttt{Pitch} and \texttt{Pitch\ Velocity} columns take only an integer between 0-127. The \texttt{Start\ Time} and \texttt{End\ Time} columns are positive floats to represent the number of seconds since the start of the song. These things will have an impact on the decisions we made about the model structure.
+Finally, different components of the midi file have different data types. The \texttt{Pitch} and \texttt{Pitch\ Velocity} columns take only an integer between 0-127, which is a discrete structure that required one-hot encoding. The \texttt{Start\ Time} and \texttt{End\ Time} columns are positive floats to represent the number of seconds since the start of the song. Since the goal of the model is to generate novel melody ideas, we decided to focus only on \texttt{Pitch}, \texttt{Start\ Time}, and \texttt{End\ Time} from the midi file information as well as limiting the output of the generator to 20 notes at a time. We made the decision to only focus on these variables in order to focus on learning the melody and not expressiveness as well as to cut down on complexity. Again, \texttt{Pitch} is the piano key pressed, and \texttt{Start\ Time} and \texttt{End\ Time} are time marks at which the keys are pressed. These features had an impact on the data pre-processing.
 
-Since the goal of the model is to generate novel melody ideas, we decided to focus only on pitch, start time, and end time from the midi file information, as well as limiting the output of the generator to 20 notes at a time.
-
-For data fed into the model, we use a processing script to rewrite a pre-selected subset of these midi files into numpy arrays in accordance with the above-mentioned structure: each song will be represented by a series of numpy arrays, each representing a track, and each array will have the tabular structure of 130 columns: a 128-length one hot vector for pitch, start time, and end time. We made the decision to only focus on pitch, start time, and end time in order to focus on learning the melody and not expressiveness, as well as to cut down on complexity. We then use another training script to randomly make 20-note samples from the training data and arrange them into a numpy array. We need 20-note samples in order to make sure that the real and fake samples have the same dimensions\footnote{One explanation is that the the fake input to the discriminator when training the discriminator is different from when training the adversarial model: the input to train the discriminator has a preprocess step to take argmax of the softmax vector and make a one-hot vector on the argmax index, meaning that it has the same format as the real samples, but during the adversarial stage this is not the case as the discriminator is fed output from the generator directly without preprocessing. This will be addressed with an update to the model. However, there is also a good chance that there are other reasons for the collapse in losses, as this phenomenon is observed in many other GAN models.}. Therefore, our training dataset has dimensions of (x, 130, 20) where x represents the number of real samples generated for training, the number 130 represents the three columns (pitch, start time, end time), and 20 represents the 20 notes sampled.
+For data fed into the model, we use a processing script to rewrite a pre-selected subset of these midi files into numpy arrays in accordance with the above-mentioned structure: each song was represented by a series of numpy arrays, each representing a track, and each array will have the tabular structure of 130 columns: a 128-length one-hot vector for \texttt{Pitch}, one column for \texttt{Start\ Time}, and another column for \texttt{End\ Time}. We then use another training script to randomly make 20-note samples from the training data and arrange them into a numpy array. We need 20-note samples in order to make sure that the real and fake samples have the same dimensions.\footnote{One explanation is that the the fake input to the discriminator when training the discriminator is different from when training the adversarial model: the input to train the discriminator has a preprocess step to take argmax of the softmax vector and make a one-hot vector on the argmax index, meaning that it has the same format as the real samples, but during the adversarial stage this is not the case as the discriminator is fed output from the generator directly without preprocessing. This will be addressed with an update to the model. However, there is also a good chance that there are other reasons for the collapse in losses, as this phenomenon is observed in many other GAN models.} Therefore, our training dataset has dimensions of (x, 130, 20) where x represents the number of real samples generated for training, the number 130 represents the three columns (\texttt{Pitch}, \texttt{Start\ Time}, \texttt{End\ Time}), and 20 represents the 20 notes sampled.
 \begin{figure}
 
 {\centering \includegraphics[width=0.8\linewidth]{figure/training_data_structure} 
@@ -331,7 +292,7 @@ For data fed into the model, we use a processing script to rewrite a pre-selecte
 
 \caption{Training Data Structure}\label{fig:unnamed-chunk-3}
 \end{figure}
-One early choice we made to make the pitch a one-hot vector was done out of the observation about the nature of pitches in the Western musical tradition: the meaning of pitches in the musical sense do not exist in a continuum despite their origins in the frequencies. Therefore, it does not make sense to treat them like so. Instead, one-hot encoding pitches will allow us to treat each pitch as independent objects; in addition, our model will be able to output softmax for pitches, therefore leading to pitch probabilities that can be further investigated. However, there are successful music generation models that treat pitches as one number.
+The decision to make the pitch a one-hot vector was made because in the Western musical tradition pitches do not exist on a linear or ordinal scale as we typically think of them. Musical theory does have a pattern and order, but for the purposes of modeling, this does not exist. One-hot encoding pitches will allow us to treat each pitch as and independent object. In addition, our model will be able to output softmax for pitches, therefore leading to pitch probabilities that can be further investigated.
 
 \newpage
 
@@ -339,7 +300,7 @@ One early choice we made to make the pitch a one-hot vector was done out of the 
 \section*{Modeling Framework}\label{methodology-modeling}}
 \addcontentsline{toc}{section}{Modeling Framework}
 
-Our model follows the Generative Adversarial Networks (GAN) architecture. GANs are a special case of deep learning models where the goal is to turn random noise into some kind of output (images or, in our case, music) which captures the essence of the training data. They have been successfully deployed to generate realistic-looking images.
+Our model follows the Generative Adversarial Networks (GAN) architecture. GANs are a special case of deep learning models where the goal is to turn random noise into some kind of output (images or, in our case, music) which captures the essence of the training data. For example, they have been successfully deployed to generate realistic visual images.
 \begin{figure}
 
 {\centering \includegraphics[width=0.8\linewidth]{figure/GAN_structure} 
@@ -348,7 +309,7 @@ Our model follows the Generative Adversarial Networks (GAN) architecture. GANs a
 
 \caption{GAN Structure}\label{fig:unnamed-chunk-4}
 \end{figure}
-The basic structure of the model has three parts: the generator, the discriminator, and the adversarial model, which combines the generator and the discriminator. The basic idea of the model is to train the discriminator with both real samples (from training data) and fake samples (generated by the generator), and then train the generator with the error from the discriminator. The goal is not to minimize the error of the generator or discriminator, but rather to have achieve a balance between the generator and the discriminator so that they get better together.\footnote{p.113, (Foster, 2019)}
+The basic structure of the model has three parts: the generator, the discriminator, and the adversarial model, which combines the generator and the discriminator. The basic idea of the model is to train the discriminator with both real samples (from training data) and fake samples (generated by the generator), and then train the generator with the error from the discriminator. The goal is not to minimize the error of the generator or discriminator, but rather to achieve a balance between the generator and the discriminator so that they get better together.\footnote{p.113, (Foster, 2019)}
 
 \hypertarget{generator}{%
 \subsection*{Generator}\label{generator}}
@@ -363,19 +324,19 @@ Our generator is a deep neural network with the following basic structure:
 
 \caption{Generator Structure}\label{fig:unnamed-chunk-5}
 \end{figure}
-The input of this model is a 128-length vector of standard normal Gaussian noise. The noise will go through 4 dense layers (currently set at 256 nodes each) with ReLU activation, dropout, and batch normalization. Then, the model splits in half, one each for pitch and duration generation. The pitch part of the model then upsamples the output from the last layer into 20*128 nodes, where 20 is for the 20 notes to generate, and 128 is for the one-hot vector of pitches. Similarly, we upsample duration from the same layer into 20*2 nodes, where 20 is for the 20 notes to generate and 2 is for start and end times. Afterwards, we have to reshape these nodes into the correct shapes, (20, 128) for pitches and (20, 2) for duration, and apply to the correct axis the corresponding activation functions: softmax for pitch (for pitch onehot), and ReLU for duration (for outputting positive numbers). The generated pitch and duration vectors are then concacted into one single array of dimensions (20, 130) as the output of the model.
+The input of this model (figure 4) is a 128-length vector of Gaussian noise. The noise will go through four dense layers (currently set at 256 nodes each) with ReLU activation, dropout, and batch normalization. Then, the model splits in half, one each for pitch and duration generation. The pitch part of the model then upsamples the output from the last layer into \(20\times128\) nodes, where 20 is for the 20 notes to generate, and 128 is for the one-hot vector of pitches. Similarly, we upsample duration from the same layer into \(20\times2\) nodes, where 20 is for the 20 notes to generate and 2 is for start and end times. Afterwards, we reshaped these nodes into the correct shapes, (20, 128) for pitches and (20, 2) for duration, and apply the corresponding activation functions to the correct axis: softmax for pitch (for pitch onehot), and ReLU for duration (for outputting positive numbers). The generated pitch and duration vectors are then concatenated into one single array of dimensions (20, 130) as the output of the model.
 
 Using this modeling structure, we ensure that pitch and duration of one generated music sample is generated by a single model and one single noise input. The dense layers preceding the split in the model will allow the model to learn latent features and rules of music before feeding that latent representation of the final product into the part of the model that turns latent vectors into pitch and duration.
 
-Conventionally, music generator models are usually time-dependent models such as the LSTM, with some added features like the attention mechanism for model to learn how to place emphasis on repeated patterns. While those models work, they are quite a bit more complex than simple dense neural networks deployed in our approach. We observe that, even with a more simplistic (and thus less artificial) model, the generator is still able to learn basic musical structures.
+Conventionally, music generator models are usually time-dependent models such as the LSTM, with some added features like the attention mechanism for model to learn how to emphasize on repeated patterns. While those models work, they are more complex than simple dense neural networks deployed in our approach. We observe that, even with a more simplistic (and thus less artificial) model, the generator used in this research is still able to learn basic musical structures.
 
-Once the generator has made its predictions, we have to feed it through another function we wrote to convert the softmax vector for pitch into a one-hot vector, so that the output would look as similar as possible to the real samples.
+Once the generator made its predictions, we fed them through another function we wrote to convert the softmax vector for pitch into a one-hot vector, so that the output would be identical to the real samples in terms of format.
 
 \hypertarget{discriminator}{%
 \subsection*{Discriminator}\label{discriminator}}
 \addcontentsline{toc}{subsection}{Discriminator}
 
-Our discriminator model is a simple dense neural network with input dimensions of 20*130 (for the 20 note sample, either generated or real) and outputs a float between 0 and 1 (using sigmoid activation) that represents the probability of whether the sample is fake (0) or real (1).
+The discriminator's job is to take a sample and judge whether this sample is real (composed by a human) or fake (generated by the generator). Our discriminator model is a simple dense neural network with input dimensions of \(20\times130\) (for the 20-note sample, either generated or real) and outputs a float between 0 and 1 (using sigmoid activation) that represents the probability of whether the sample is fake (0) or real (1).
 \begin{figure}
 
 {\centering \includegraphics[width=0.3\linewidth]{figure/dis_model} 
@@ -384,13 +345,13 @@ Our discriminator model is a simple dense neural network with input dimensions o
 
 \caption{Discriminator Structure}\label{fig:unnamed-chunk-6}
 \end{figure}
-As we can see the model is a straightforward dense neural network (with dropout and batch normalization layers). The model is deliberately kept simplistic here because a big concern during the training was the unequal speeds at which the generator and discriminator learns. More often than not in our case, the discriminator learns much quicker than the generator, and we have concluded that such a simple model actually was the most optimal so that the generator and discriminator can achieve balanced learning for long periods of time.
+As we can see, the model is a straightforward dense neural network (with dropout and batch normalization layers). The model is deliberately kept simple here because unequal speeds at which the generator and discriminator learn was a big concern during the training. More often than not in this case, the discriminator learns faster than the generator. Surpsingly, we found that a simple discriminator model provided an environment that was conducive to long-term learning between both the generator and discriminator.
 
 \hypertarget{adversarial-model}{%
 \subsection*{Adversarial Model}\label{adversarial-model}}
 \addcontentsline{toc}{subsection}{Adversarial Model}
 
-The adversarial model is simply the sequential collection of the generator and the discriminator as illustrated below:
+The adversarial model is simply the generator and discriminator organized in sequence as illustrated below:
 \begin{figure}
 
 {\centering \includegraphics[width=0.3\linewidth]{figure/gan_model} 
@@ -399,24 +360,24 @@ The adversarial model is simply the sequential collection of the generator and t
 
 \caption{Adversarial Model Structure}\label{fig:unnamed-chunk-7}
 \end{figure}
-However, in the adversarial model, the weights of the discriminator is frozen. The reason for that is the need to feed the error from the discriminator to train the generator. We will expand on this topic in the next section regarding training GAN models.
+However, in the adversarial model, the weights of the discriminator are frozen because the error from the discriminator must be fed only to the generator in order to train the generator. We will expand on this topic in the next section.
 
 \hypertarget{training-gan-models}{%
 \subsection*{Training GAN models}\label{training-gan-models}}
 \addcontentsline{toc}{subsection}{Training GAN models}
 
-Training GAN models is not a straightforward process and requires looping through the following specialized steps:
+Training GAN models is not a straightforward process and requires iterating through the following specialized steps:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Train the discriminator with real samples.} We use a function to sample from the real training data. The size of this sample is usually 1/2 of the batch size parameter of the training script. We then feed this data and the target variable (a vector of 1's) to the discriminator model. The resulting error is the error of misclassificating real samples as fake. We use binary crossentropy as loss metric.
+  \textbf{Train the discriminator with real samples.} We use a function to sample from the real training data. The size of this sample is usually 1/2 of the batch size parameter of the training script. We then feed these data and the target variable (a vector of 1s indicating they are real samples) into the discriminator model. The resulting error is the error of misclassifying real samples as fake. We use binary crossentropy as the loss metric.
 \item
-  \textbf{Train the discriminator with fake samples.} We use a function to generate fake samples using the generator model we've set up. The size of this sample is usually 1/2 of the batch size parameter of the training script. We then feed this data and the target variable (a vector of 0's) to the discriminator model. The resulting error is the error of misclassificating fake samples as real. We use binary crossentropy as loss metric.
+  \textbf{Train the discriminator with fake samples.} We use a function to generate fake samples using the generator model that we set up. The size of this sample is 1/2 of the batch size parameter of the training script. We then feed these data and the target variable (a vector of 0s indicating they are fake) to the discriminator model. The resulting error is the error of misclassifying fake samples as real. We use binary crossentropy as the loss metric.
 \item
-  \textbf{Train the adversarial model}. We feed the adversarial model with a number of batches of random noise as input, but mark the target variable as a vector of 1's, or telling the model that these are real samples. Since the adversarial is basically the sequential collection of the generator and discriminator, the random noise input will be converted into fake samples of music before getting fed into the discriminator, where the output is a classification of whether the sample is fake or real. Since we are technically mislabeling the data by using 1's as the target variable, the error will negatively correlated with how well the discriminator performs - the the better the discriminator does, the larger the error, thus the more the weights will be adjusted in the generator, and vice versa. The discriminator is not affected because its weights are frozen when training the adversarial model. This serves to balance the rate of learning for the generator and the discriminator and prevents any one of them to become overly good, but this occurs very often in training.
+  \textbf{Train the adversarial model}. We feed the adversarial model with a number of batches of noise as input, but mark the target variable as a vector of 1's, or telling the model that these are real samples. The adversarial model is the generator and discriminator organized in sequence, so the random noise input will be converted into fake samples of music before getting fed into the discriminator, where the output is a classification of whether the sample is fake or real. Since we technically mislabeled the data by using 1s as the target variable, the error was negatively correlated with how well the discriminator performs --- the better the discriminator did, the larger the error, thus the more the weights will be adjusted in the generator, and vice versa. The discriminator is not affected because its weights were frozen when training the adversarial model. This was expected to balance the rate of learning for the generator and the discriminator and should have prevented either of them from outpeforming the other. In many cases this held true; however, as training persisted for an extended period of time, it became increasingly difficult to maintain this balance.
 \end{enumerate}
-GAN models are notoriously fickle and require special care to train properly\footnote{For details see p115, Generative Deep Learning}. In our training script, we have set up a mechanism to collect the errors from the discriminator and the generator in order to keep track of training progress and detect any learning issues which happen frequently, and most of our work to date has been to find ways to address these issues. We will address our learning points in the Findings section.
+GAN models are notoriously fickle and require special care to train properly.\footnote{For details see p115, Generative Deep Learning} In our training script, we set up a mechanism to collect the errors from the discriminator and the generator in order to keep track of training progress and detect any frequently occurring learning issues, and most of our work focused on ways to address these issues. We will address our learning points in the Findings section.
 
 \hypertarget{findings}{%
 \chapter*{Findings}\label{findings}}
@@ -428,42 +389,40 @@ We divide our findings into two separate sections: GAN Training and Assessment o
 \section*{GAN Training}\label{findings-gan_training}}
 \addcontentsline{toc}{section}{GAN Training}
 
-GAN models are notoriously hard to train properly. During training of our model, we encountered numerous issues which we have had varying degrees of success in addressing. The main issues are:
+GAN models are notoriously hard to train properly. During the training of our model, we encountered numerous issues and had some success in addressing them. The main issues are:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Loss balancing. In many cases, the errors from the discriminator and generator often collapse to 0 or become extremely large.
+  Loss balancing. In many cases, the losses from the discriminator and generator often collapsed to zero or become extremely large. To clarify, discriminator loss is loss from training the discriminator specifically and generator loss is the loss from training the adversarial model.
 \item
-  Mode collapse. Model learns to generate one kind of output that is able to fool the discriminator despite random input.
+  Mode collapse. The model learned to generate one kind of output that was able to fool the discriminator regardless of input.
 \end{enumerate}
-We will be referring to discriminator and generator losses in the following section. To clarify, discriminator loss is loss from training the discriminator specifically and generator loss is the loss from training the adversarial model.
-
 \hypertarget{loss-balancing}{%
 \subsection*{Loss Balancing}\label{loss-balancing}}
 \addcontentsline{toc}{subsection}{Loss Balancing}
 
-Using the data we collected from the training process, we find that the GAN training can be summarized into three distinctive stages:
+Using the data we collected from the training process, we found that the GAN training can be summarized into three distinct stages:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  The initial chaos. The generator and discriminator are trying to balance each other out and the error can vary drastically from epoch to epoch and either the discriminator or generator loss can be much larger than the other. It often settles into a more balanced stage, but this is not a given as we observe some models being unable to get past this initial stage.
+  The initial chaos. The generator and discriminator are trying to balance each other out and the error can vary drastically from epoch to epoch. The loss of either the discriminator or generator loss can be much larger than the other. It often settles into a more balanced stage, but this is not a given as we observe some models being unable to get past this initial stage.
 \item
-  The stable equilibrium. The model enters into a stable stage characterized by similar magnitude of losses between discriminator and generator and across different epochs. Judging from the quality of the output, it is during this period when the model learned the most from training data and generated the most musical samples.
+  The stable equilibrium. The model enters into a stable stage characterized by a similar magnitude of losses between discriminator and generator across different epochs. Judging from the quality of the output, it is during this period when the model learned the most from training data and generated the most musical samples.
 \item
-  The final collapse. This stage is characterized by a steady increase in loss magnitude in one of or both the generator and the discriminator, until the losses of either model collapsing to 0. There are even rare cases where both the discriminator and generator losses go down to 0. Learning stops and music generated gets worse and worse.
+  The final collapse. This stage is characterized by a steady increase in loss magnitude in either the generator or the discriminator or both until the losses of either model collapsing to zero. There were even rare cases where the losses from both the discriminator and generator went down to zero. In that scenario, learning stops and mode collapse set in.
 \end{enumerate}
 In the following plot of average epoch losses from one of the training sessions, we can observe these three distinctive stages:
 \begin{figure}
 
-{\centering \includegraphics[width=0.3\linewidth]{figure/all_losses_1} 
+{\centering \includegraphics[width=0.8\linewidth]{figure/all_losses_1} 
 
 }
 
 \caption{Training Loss Graph}\label{fig:unnamed-chunk-8}
 \end{figure}
-During the first 25 epochs or so we observe an initially high but declining losses for both the discriminator and the generator. Thereafter we enter the stable stage that lead to significant and high-quality learning where the loss stablized around 0.7 for both the discriminator and the generator. However, losses become unstable again starting around the 300 to 400 epoch mark and by the 500th epoch the generator loss has increased to around 2 while the discriminator loss is steadily declining. Finally, at around epoch 560, all losses go to zero and the model ceases to learn.
+During the first 25 epochs or so, we observed initially high but declining losses for both the discriminator and the generator. Thereafter, we enter the stable stage that lead to significant and high-quality learning where the loss stablized around 0.7 for both the discriminator and the generator. However, losses became unstable again starting around the 300th to 400th epoch mark and by the 500th epoch the generator loss increased to around 2 while the discriminator loss steadily declined. Finally, at around epoch 560, all losses went to zero and the model ceased learning.
 
 It seems that the model showed the most promise during the stable equilibrium stage. While it is hard to show the quality of the generated samples in a mathematic way, we can clearly demonstrate this by hearing generated samples at different number of epochs. Here is the \href{https://github.com/terrywang15/museG_dev/tree/master/2020-01-31\%2002-20}{link} to our github page to access the generated samples at every 100 epochs during the training session above. At the first epoch, the output from the generator has no sense of rhythm or melody and its output is simply random notes. After 100 epochs, it is clear that there are improvements in rhythm, but the melody is still lacking. At epoch 200 the notes sound much more pleasant as they generally come from the same key. We see more improvement at epoch 300 and 400, which we believe is the best sample generated. However, the improvement trends are reversed starting at epoch 500, and the samples generated become increasingly nonsensical.
 
@@ -482,7 +441,7 @@ An example of mode collapse is found in one of our training sessions. Judging fr
 After some investigations, it seems that mode collapse is related to the loss issue described above: mode collapse only happened after all losses collapsed to near zero. Notice in the below graph recording the average epoch losses from the training session that generated the samples mentioned above, the generator started to generate the exact same samples around epoch 900, shortly after the collapse of losses:
 \begin{figure}
 
-{\centering \includegraphics[width=0.3\linewidth]{figure/all_losses_2} 
+{\centering \includegraphics[width=0.8\linewidth]{figure/all_losses_2} 
 
 }
 
@@ -653,7 +612,7 @@ We have performed additional experiments on our baseline model, which is shown i
 For this run, we kept the basic model structure in place, with the only change being increasing the number of nodes in each layer in the generator to 512, from 256. Additional nodes should help the model break down the problem deeper and gain extra levels of abstraction of the music generation process.
 \begin{figure}
 
-{\centering \includegraphics[width=0.3\linewidth]{figure/ap_512} 
+{\centering \includegraphics[width=0.8\linewidth]{figure/ap_512} 
 
 }
 
@@ -666,7 +625,7 @@ We see that during this run the stable learning stage ended just around 650 epoc
 For this run, we kept the basic model structure in place, with the only change being adding an additional Dense layer (along with its corresponding dropoff and batch normalization layers) to the generator. Additional layers should work similarly to adding nodes to existing dense layers and help model to learn higher levels of abstractions.
 \begin{figure}
 
-{\centering \includegraphics[width=0.3\linewidth]{figure/ap_1pluslayer} 
+{\centering \includegraphics[width=0.8\linewidth]{figure/ap_1pluslayer} 
 
 }
 
@@ -679,7 +638,7 @@ For this particular run, we see the stable stage ended just before 600 epochs, i
 For this run, we made a separate generator each for pitch and duration (with their corresponding discriminators). The model structure remain unchanged from the baseline model. This means that, instead of the generator outputting the entire 20-note sample, two separate generator will output one 20-note pitch sample and one 20-note duration sample. The reason for this experimentation was the hypothesis that pitch and duration are different datatypes with different magnitudes for error, therefore separating the amount of error fed into them is a better choice.
 \begin{figure}
 
-{\centering \includegraphics[width=0.3\linewidth]{figure/ap_newmod_pitch} 
+{\centering \includegraphics[width=0.8\linewidth]{figure/ap_newmod_pitch} 
 
 }
 
@@ -687,7 +646,7 @@ For this run, we made a separate generator each for pitch and duration (with the
 \end{figure}
 \begin{figure}
 
-{\centering \includegraphics[width=0.3\linewidth]{figure/ap_newmod_dur} 
+{\centering \includegraphics[width=0.8\linewidth]{figure/ap_newmod_dur} 
 
 }
 
@@ -700,7 +659,7 @@ However, under this setup the model completely failed to learn, as indicated by 
 For this run, we tried to use 30-note samples as training data. Subsequently, we changed the generator output from 20-note samples to 30-note samples to match the training data.
 \begin{figure}
 
-{\centering \includegraphics[width=0.3\linewidth]{figure/ap_30notes} 
+{\centering \includegraphics[width=0.8\linewidth]{figure/ap_30notes} 
 
 }
 

@@ -1,13 +1,13 @@
 
-We propose the application of Deep Learning to help humans generate new and exciting music. There have been recent attempts around this topic (Google's Magenta) that focused mainly on automation. However, our approach is to form a partnership with humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system [our architecture choice: a Generative Adversarial Network (GAN), our data: 130,000 midi files from various generes] that focuses on music discovery; 2) incorporate user feedback back into the system to align model training with individualistic taste.
+We propose the application of Deep Learning to help humans generate new music. There have been recent attempts around this area (Google's Magenta) that focused mainly on producing music through automation. However, our approach is to form a partnership between humans and AI (artificial intelligence) in the music generation process. With this augmentation mindset, there are two phases of work: 1) train a Deep Learning system, with a Generative Adversarial Network and 130,000 midi files, that focuses on music generation; 2) incorporate user feedback back into the system to align model training with individualistic taste.
 
 While maintaining the spirit of our approach, we narrowed the scope to the first step as an obtainable checkpoint. Our training concluded with sample outputs we consider interesting, and most importantly, music. We note a few obstacles that continue to make the first phase of work challenging: mode collapse during model training (i.e., learning ceases), model architectural design, and hyper parameter selection.
 
 \bigskip 
 \bigskip
 \bigskip
-
-*keywords*: Deep Learning, Music Generation, Generative Adversarial Model, midi, Time Series Music Note Prediction
+<!-- Indented first line -->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Keywords*: deep learning, music generation, generative adversarial model, midi
 
 \bigskip 
 \bigskip

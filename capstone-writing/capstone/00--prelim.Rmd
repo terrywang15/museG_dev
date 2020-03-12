@@ -3,6 +3,8 @@ output:
   pdf_document: default
   html_document: default
 ---
+
+<!--
 # Preliminary Content {.unnumbered}
 
 ## Acknowledgements {.unnumbered}
@@ -24,7 +26,7 @@ While there are successful musicians in today's creative environment, we think t
 The purpose of the project is to develop a deep learning-based music generator (instrumental music) that has a good understanding of the language of music and can generate human-like outputs. Ultimately, the generator supports musicians and non-musicians alike in developing and refining musical ideas. We divided the model phase of the project into two parts: Generation and Validation.
 
 By doing this iteratively, the weights and parameters of the model will hopefully converge to a point at which the music generated is satisfactory to the user, who can use the output of the model, or save the weights for future use. We expect the algorithmic process to able to explore more music combinations than any individual and thus provide a more holistic and creative approach to music creation.
-
+-->
 
 <!--
 **Variables and Scope** 

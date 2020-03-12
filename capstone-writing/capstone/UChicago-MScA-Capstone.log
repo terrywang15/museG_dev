@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.17)  9 MAR 2020 13:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.17)  11 MAR 2020 20:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -465,24 +465,24 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 ) (./UChicago-MScA-Capstone.aux)
 \openout1 = `UChicago-MScA-Capstone.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 151.
+LaTeX Font Info:    ... okay on input line 151.
 LaTeX Font Info:    Trying to load font information for T1+ptm on input line 15
-3.
+1.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -499,14 +499,14 @@ e
 ))
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 153.
+less on input line 151.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 153.
+less on input line 151.
 
 \AtBeginShipoutBox=\box56
-Package hyperref Info: Link coloring OFF on input line 153.
+Package hyperref Info: Link coloring OFF on input line 151.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -518,56 +518,56 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count283
 )
-LaTeX Info: Redefining \ref on input line 153.
-LaTeX Info: Redefining \pageref on input line 153.
-LaTeX Info: Redefining \nameref on input line 153.
+LaTeX Info: Redefining \ref on input line 151.
+LaTeX Info: Redefining \pageref on input line 151.
+LaTeX Info: Redefining \nameref on input line 151.
 (./UChicago-MScA-Capstone.out) (./UChicago-MScA-Capstone.out)
 \@outlinefile=\write4
 \openout4 = `UChicago-MScA-Capstone.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 157.
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 155.
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
- 157.
+ 155.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line
- 157.
+ 155.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line
- 157.
+ 155.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line
- 157.
+ 155.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for U+lasy on input line 15
-7.
+5.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <8.40009> not available
-(Font)              size <8> substituted on input line 157.
+(Font)              size <8> substituted on input line 155.
 
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 1
-57.
+55.
 (/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 157.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 155.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.36008> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 157.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 155.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.40009> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 157.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 155.
 [1
 Non-PDF special ignored!
 <special> !% University of Chicago Graham MScA 2018/10/18
@@ -580,16 +580,11 @@ Non-PDF special ignored!
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.158 \frontmatter
+l.156 \frontmatter
                    % this stuff will be roman-numbered [1] [1
 
 
-]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-82.
-(/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [2
+] [2
 
 
 ] [3] [4
@@ -625,7 +620,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.232 
+l.222 
        [1
 
 
@@ -636,173 +631,181 @@ Make it at least 14.49998pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
-[2] [3] [4
+[2] [3
 
-] [5] [6
+] [4] [5
 
 ]
-<figure/midi_file_structure.png, id=231, 954.56625pt x 801.99625pt>
+<figure/midi_file_structure.png, id=206, 954.56625pt x 801.99625pt>
 File: figure/midi_file_structure.png Graphic file (type png)
 <use figure/midi_file_structure.png>
-Package pdftex.def Info: figure/midi_file_structure.png  used on input line 297
+Package pdftex.def Info: figure/midi_file_structure.png  used on input line 260
 .
 (pdftex.def)             Requested size: 346.89731pt x 291.44737pt.
-[7 <./figure/midi_file_structure.png>]
+[6] [7 <./figure/midi_file_structure.png>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+84.
+(/Users/terrymclee/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 325.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 286.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 325.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 286.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 325.
-<figure/training_data_structure.png, id=239, 705.63625pt x 287.0725pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 286.
+<figure/training_data_structure.png, id=218, 705.63625pt x 287.0725pt>
 File: figure/training_data_structure.png Graphic file (type png)
 <use figure/training_data_structure.png>
 Package pdftex.def Info: figure/training_data_structure.png  used on input line
- 328.
+ 289.
 (pdftex.def)             Requested size: 346.89731pt x 141.1267pt.
-[8] [9 <./figure/training_data_structure.png>] [10]
-<figure/GAN_structure.png, id=255, 803.0pt x 349.305pt>
+[8] [9 <./figure/training_data_structure.png>]
+<figure/GAN_structure.png, id=231, 803.0pt x 349.305pt>
 File: figure/GAN_structure.png Graphic file (type png)
 <use figure/GAN_structure.png>
-Package pdftex.def Info: figure/GAN_structure.png  used on input line 345.
+Package pdftex.def Info: figure/GAN_structure.png  used on input line 306.
 (pdftex.def)             Requested size: 346.89731pt x 150.90176pt.
-<figure/gen_model.png, id=257, 369.38pt x 1916.15875pt>
+<figure/gen_model.png, id=233, 369.38pt x 1916.15875pt>
 File: figure/gen_model.png Graphic file (type png)
 <use figure/gen_model.png>
-Package pdftex.def Info: figure/gen_model.png  used on input line 360.
+Package pdftex.def Info: figure/gen_model.png  used on input line 321.
 (pdftex.def)             Requested size: 130.08731pt x 674.81744pt.
-[11 <./figure/GAN_structure.png>]
+[10 <./figure/GAN_structure.png>]
 Overfull \vbox (48.88744pt too high) has occurred while \output is active []
 
-[12 <./figure/gen_model.png>]
-<figure/dis_model.png, id=270, 177.66376pt x 743.77875pt>
+[11 <./figure/gen_model.png>]
+<figure/dis_model.png, id=246, 177.66376pt x 743.77875pt>
 File: figure/dis_model.png Graphic file (type png)
 <use figure/dis_model.png>
-Package pdftex.def Info: figure/dis_model.png  used on input line 381.
+Package pdftex.def Info: figure/dis_model.png  used on input line 342.
 (pdftex.def)             Requested size: 130.08731pt x 544.6223pt.
-[13] [14] [15 <./figure/dis_model.png>]
-<figure/gan_model.png, id=285, 215.80624pt x 255.95625pt>
+[12] [13] [14 <./figure/dis_model.png>]
+<figure/gan_model.png, id=261, 215.80624pt x 255.95625pt>
 File: figure/gan_model.png Graphic file (type png)
 <use figure/gan_model.png>
-Package pdftex.def Info: figure/gan_model.png  used on input line 396.
+Package pdftex.def Info: figure/gan_model.png  used on input line 357.
 (pdftex.def)             Requested size: 130.08731pt x 154.29355pt.
-[16 <./figure/gan_model.png>] [17] [18
+[15 <./figure/gan_model.png>] [16] [17] [18
 
 ]
-<figure/all_losses_1.png, id=312, 433.62pt x 289.08pt>
+<figure/all_losses_1.png, id=294, 433.62pt x 289.08pt>
 File: figure/all_losses_1.png Graphic file (type png)
 <use figure/all_losses_1.png>
-Package pdftex.def Info: figure/all_losses_1.png  used on input line 460.
-(pdftex.def)             Requested size: 130.08731pt x 86.72466pt.
+Package pdftex.def Info: figure/all_losses_1.png  used on input line 419.
+(pdftex.def)             Requested size: 346.89731pt x 231.27754pt.
 [19 <./figure/all_losses_1.png>] [20]
-<figure/all_losses_2.png, id=331, 433.62pt x 289.08pt>
+<figure/all_losses_2.png, id=311, 433.62pt x 289.08pt>
 File: figure/all_losses_2.png Graphic file (type png)
 <use figure/all_losses_2.png>
-Package pdftex.def Info: figure/all_losses_2.png  used on input line 485.
-(pdftex.def)             Requested size: 130.08731pt x 86.72466pt.
-[21 <./figure/all_losses_2.png>] [22] [23] [24] [25] [26] [27] [28
+Package pdftex.def Info: figure/all_losses_2.png  used on input line 444.
+(pdftex.def)             Requested size: 346.89731pt x 231.27754pt.
+[21] [22 <./figure/all_losses_2.png>] [23] [24] [25] [26] [27] [28] [29
 
-] [29
+] [30
 
 ]
 Appendix A.
-<figure/ap_512.png, id=415, 462.528pt x 346.896pt>
+<figure/ap_512.png, id=400, 462.528pt x 346.896pt>
 File: figure/ap_512.png Graphic file (type png)
 <use figure/ap_512.png>
-Package pdftex.def Info: figure/ap_512.png  used on input line 656.
-(pdftex.def)             Requested size: 130.08731pt x 97.56425pt.
-[30
+Package pdftex.def Info: figure/ap_512.png  used on input line 615.
+(pdftex.def)             Requested size: 346.89731pt x 260.18723pt.
+[31
 
- <./figure/ap_512.png>]
-<figure/ap_1pluslayer.png, id=421, 462.528pt x 346.896pt>
+]
+<figure/ap_1pluslayer.png, id=405, 462.528pt x 346.896pt>
 File: figure/ap_1pluslayer.png Graphic file (type png)
 <use figure/ap_1pluslayer.png>
-Package pdftex.def Info: figure/ap_1pluslayer.png  used on input line 669.
-(pdftex.def)             Requested size: 130.08731pt x 97.56425pt.
-<figure/ap_newmod_pitch.png, id=422, 433.62pt x 289.08pt>
+Package pdftex.def Info: figure/ap_1pluslayer.png  used on input line 628.
+(pdftex.def)             Requested size: 346.89731pt x 260.18723pt.
+[32 <./figure/ap_512.png>]
+<figure/ap_newmod_pitch.png, id=411, 433.62pt x 289.08pt>
 File: figure/ap_newmod_pitch.png Graphic file (type png)
 <use figure/ap_newmod_pitch.png>
-Package pdftex.def Info: figure/ap_newmod_pitch.png  used on input line 682.
-(pdftex.def)             Requested size: 130.08731pt x 86.72466pt.
-<figure/ap_newmod_dur.png, id=423, 433.62pt x 289.08pt>
+Package pdftex.def Info: figure/ap_newmod_pitch.png  used on input line 641.
+(pdftex.def)             Requested size: 346.89731pt x 231.27754pt.
+<figure/ap_newmod_dur.png, id=412, 433.62pt x 289.08pt>
 File: figure/ap_newmod_dur.png Graphic file (type png)
 <use figure/ap_newmod_dur.png>
-Package pdftex.def Info: figure/ap_newmod_dur.png  used on input line 690.
-(pdftex.def)             Requested size: 130.08731pt x 86.72466pt.
-[31 <./figure/ap_1pluslayer.png>]
-<figure/ap_30notes.png, id=429, 462.528pt x 346.896pt>
+Package pdftex.def Info: figure/ap_newmod_dur.png  used on input line 649.
+(pdftex.def)             Requested size: 346.89731pt x 231.27754pt.
+[33 <./figure/ap_1pluslayer.png>] [34 <./figure/ap_newmod_pitch.png> <./figure/
+ap_newmod_dur.png>]
+<figure/ap_30notes.png, id=425, 462.528pt x 346.896pt>
 File: figure/ap_30notes.png Graphic file (type png)
 <use figure/ap_30notes.png>
-Package pdftex.def Info: figure/ap_30notes.png  used on input line 703.
-(pdftex.def)             Requested size: 130.08731pt x 97.56425pt.
-[32 <./figure/ap_newmod_pitch.png> <./figure/ap_newmod_dur.png> <./figure/ap_30
-notes.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 726--728
+Package pdftex.def Info: figure/ap_30notes.png  used on input line 662.
+(pdftex.def)             Requested size: 346.89731pt x 260.18723pt.
+[35 <./figure/ap_30notes.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 685--687
  []$\T1/lmtt/m/n/12 https : / / brangerbriz . com / blog / using -[] machine -[
 ] learning -[] to -[] create -[] new -[]
  []
 
 
-Overfull \hbox (27.75334pt too wide) in paragraph at lines 738--740
+Overfull \hbox (27.75334pt too wide) in paragraph at lines 697--699
  [][]\T1/ptm/m/n/12 Huang, A., & Wu, R. (2016). Deep Learn-ing for Mu-sic. \T1/
 ptm/m/it/12 arXiv E-Prints\T1/ptm/m/n/12 , arXiv:1606.04930. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 747--749
+Underfull \hbox (badness 10000) in paragraph at lines 706--708
  \T1/ptm/m/n/12 from []$\T1/lmtt/m/n/12 https : / / machinelearningmastery . co
 m / keras -[] functional -[] api -[] deep -[]
  []
 
-[33
+[36
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 765--767
+Underfull \hbox (badness 10000) in paragraph at lines 724--726
  \T1/ptm/m/n/12 from []$\T1/lmtt/m/n/12 https : / / towardsdatascience . com / 
 gan -[] by -[] example -[] using -[] keras -[] on -[]
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 777--779
+Underfull \hbox (badness 1205) in paragraph at lines 736--738
  \T1/ptm/m/n/12 en-cy-clo-pe-dia. Re-trieved from []$\T1/lmtt/m/n/12 https : / 
 / en . wikipedia . org / wiki / Generative _
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 783.
-[34]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 783.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 742.
+[37]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 742.
 (./UChicago-MScA-Capstone.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 783.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 783.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 742.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 742.
 Package rerunfilecheck Info: File `UChicago-MScA-Capstone.out' has not changed.
 
-(rerunfilecheck)             Checksum: 50444B32369DAF38DE39357A325D5496;1363.
+(rerunfilecheck)             Checksum: 005D15B7ED458CD65DDD6C863BCDD0FA;1165.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.40009pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 783.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 742.
  ) 
 Here is how much of TeX's memory you used:
- 9413 strings out of 483158
- 144523 string characters out of 5963880
- 401366 words of memory out of 5000000
- 24021 multiletter control sequences out of 15000+600000
- 602358 words of font info for 134 fonts, out of 8000000 for 9000
+ 9408 strings out of 483158
+ 144383 string characters out of 5963880
+ 401446 words of memory out of 5000000
+ 24015 multiletter control sequences out of 15000+600000
+ 603410 words of font info for 138 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,12n,49p,1795b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,12n,49p,1710b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/terrymclee/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/U
 sers/terrymclee/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users
-/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></Users
-/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></Users
-/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users
-/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users
-/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on UChicago-MScA-Capstone.pdf (44 pages, 430617 bytes).
+/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></Users/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pf
+b></Users/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pf
+b></Users/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pf
+b></Users/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pf
+b></Users/terrymclee/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.p
+fb>
+Output written on UChicago-MScA-Capstone.pdf (47 pages, 437608 bytes).
 PDF statistics:
- 549 PDF objects out of 1000 (max. 8388607)
- 469 compressed objects within 5 object streams
- 171 named destinations out of 1000 (max. 500000)
- 242 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 544 PDF objects out of 1000 (max. 8388607)
+ 460 compressed objects within 5 object streams
+ 168 named destinations out of 1000 (max. 500000)
+ 218 words of extra memory for PDF output out of 10000 (max. 10000000)
 

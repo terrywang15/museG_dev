@@ -4,28 +4,26 @@ We divide our findings into two separate sections: GAN Training and Assessment o
 
 ## GAN Training {#findings-gan_training .unnumbered}
  
-GAN models are notoriously hard to train properly. During training of our model, we encountered numerous issues which we have had varying degrees of success in addressing. The main issues are:
+GAN models are notoriously hard to train properly. During the training of our model, we encountered numerous issues and had some success in addressing them. The main issues are:
 
-1. Loss balancing. In many cases, the errors from the discriminator and generator often collapse to 0 or become extremely large.
-2. Mode collapse. Model learns to generate one kind of output that is able to fool the discriminator despite random input.
-
-We will be referring to discriminator and generator losses in the following section. To clarify, discriminator loss is loss from training the discriminator specifically and generator loss is the loss from training the adversarial model.
+1. Loss balancing. In many cases, the losses from the discriminator and generator often collapsed to zero or become extremely large. To clarify, discriminator loss is loss from training the discriminator specifically and generator loss is the loss from training the adversarial model.
+2. Mode collapse. The model learned to generate one kind of output that was able to fool the discriminator regardless of input.
 
 ### Loss Balancing {.unnumbered}
 
-Using the data we collected from the training process, we find that the GAN training can be summarized into three distinctive stages:
+Using the data we collected from the training process, we found that the GAN training can be summarized into three distinct stages:
 
-1. The initial chaos. The generator and discriminator are trying to balance each other out and the error can vary drastically from epoch to epoch and either the discriminator or generator loss can be much larger than the other. It often settles into a more balanced stage, but this is not a given as we observe some models being unable to get past this initial stage.
-2. The stable equilibrium. The model enters into a stable stage characterized by similar magnitude of losses between discriminator and generator and across different epochs. Judging from the quality of the output, it is during this period when the model learned the most from training data and generated the most musical samples.
-3. The final collapse. This stage is characterized by a steady increase in loss magnitude in one of or both the generator and the discriminator, until the losses of either model collapsing to 0. There are even rare cases where both the discriminator and generator losses go down to 0. Learning stops and music generated gets worse and worse.
+1. The initial chaos. The generator and discriminator are trying to balance each other out and the error can vary drastically from epoch to epoch. The loss of either the discriminator or generator loss can be much larger than the other. It often settles into a more balanced stage, but this is not a given as we observe some models being unable to get past this initial stage.
+2. The stable equilibrium. The model enters into a stable stage characterized by a similar magnitude of losses between discriminator and generator across different epochs. Judging from the quality of the output, it is during this period when the model learned the most from training data and generated the most musical samples.
+3. The final collapse. This stage is characterized by a steady increase in loss magnitude in either the generator or the discriminator or both until the losses of either model collapsing to zero. There were even rare cases where the losses from both the discriminator and generator went down to zero. In that scenario, learning stops and mode collapse set in.
 
 In the following plot of average epoch losses from one of the training sessions, we can observe these three distinctive stages:
 
-```{r, out.width="0.3\\linewidth", include=TRUE, fig.align="center", fig.cap=c("Training Loss Graph"), echo=FALSE}
+```{r, out.width="0.8\\linewidth", include=TRUE, fig.align="center", fig.cap=c("Training Loss Graph"), echo=FALSE}
 knitr::include_graphics("figure/all_losses_1.png")
 ```
 
-During the first 25 epochs or so we observe an initially high but declining losses for both the discriminator and the generator. Thereafter we enter the stable stage that lead to significant and high-quality learning where the loss stablized around 0.7 for both the discriminator and the generator. However, losses become unstable again starting around the 300 to 400 epoch mark and by the 500th epoch the generator loss has increased to around 2 while the discriminator loss is steadily declining. Finally, at around epoch 560, all losses go to zero and the model ceases to learn. 
+During the first 25 epochs or so, we observed initially high but declining losses for both the discriminator and the generator. Thereafter, we enter the stable stage that lead to significant and high-quality learning where the loss stablized around 0.7 for both the discriminator and the generator. However, losses became unstable again starting around the 300th to 400th epoch mark and by the 500th epoch the generator loss increased to around 2 while the discriminator loss steadily declined. Finally, at around epoch 560, all losses went to zero and the model ceased learning. 
 
 It seems that the model showed the most promise during the stable equilibrium stage. While it is hard to show the quality of the generated samples in a mathematic way, we can clearly demonstrate this by hearing generated samples at different number of epochs. Here is the [link](https://github.com/terrywang15/museG_dev/tree/master/2020-01-31%2002-20) to our github page to access the generated samples at every 100 epochs during the training session above. At the first epoch, the output from the generator has no sense of rhythm or melody and its output is simply random notes. After 100 epochs, it is clear that there are improvements in rhythm, but the melody is still lacking. At epoch 200 the notes sound much more pleasant as they generally come from the same key. We see more improvement at epoch 300 and 400, which we believe is the best sample generated. However, the improvement trends are reversed starting at epoch 500, and the samples generated become increasingly nonsensical.
 
@@ -45,7 +43,7 @@ An example of mode collapse is found in one of our training sessions. Judging fr
 
 After some investigations, it seems that mode collapse is related to the loss issue described above: mode collapse only happened after all losses collapsed to near zero. Notice in the below graph recording the average epoch losses from the training session that generated the samples mentioned above, the generator started to generate the exact same samples around epoch 900, shortly after the collapse of losses:
 
-```{r, out.width="0.3\\linewidth", include=TRUE, fig.align="center", fig.cap=c("Mode Collapse Loss Graph"), echo=FALSE}
+```{r, out.width="0.8\\linewidth", include=TRUE, fig.align="center", fig.cap=c("Mode Collapse Loss Graph"), echo=FALSE}
 knitr::include_graphics("figure/all_losses_2.png")
 ```
 
